@@ -1,0 +1,103 @@
+#######################
+# Port Configurations #
+#######################
+TCP_PORTS="1,7,9,11,15,70,79,109,110,111,119,138,139,512,513,514,515,540,635,1080,1524,2000,2001,4000,4001,5742,6000,6001,6667,12345,12346,20034,27665,30303,32771,32772,32773,32774,31337,40421,40425,49724,54320"
+UDP_PORTS="1,7,9,66,67,68,69,111,137,138,161,162,474,513,517,518,635,640,641,666,700,2049,31335,27444,34555,32770,32771,32772,32773,32774,31337,54321"
+
+###########################################
+# Advanced Stealth Scan Detection Options #
+###########################################
+ADVANCED_PORTS_TCP="1024"
+ADVANCED_PORTS_UDP="1024"
+#
+# This field tells PortSentry what ports (besides listening daemons) to
+# ignore. This is helpful for services like ident that services such
+# as FTP, SMTP, and wrappers look for but you may not run (and probably
+# *shouldn't* IMHO).
+#
+# By specifying ports here PortSentry will simply not respond to
+# incoming requests, in effect PortSentry treats them as if they are
+# actual bound daemons. The default ports are ones reported as
+# problematic false alarms and should probably be left alone for
+# all but the most isolated systems/networks.
+#
+# Default TCP ident and NetBIOS service
+ADVANCED_EXCLUDE_TCP="113,139"
+# Default UDP route (RIP), NetBIOS, bootp broadcasts.
+ADVANCED_EXCLUDE_UDP="520,138,137,67"
+
+
+######################
+# Configuration Files#
+######################
+# Hosts to ignore
+IGNORE_FILE="/usr/local/etc/portsentry.ignore"
+# Hosts that have been denied (running history)
+HISTORY_FILE="/usr/local/etc/portsentry.history"
+# Hosts that have been denied this session only (temporary until next restart)
+BLOCKED_FILE="/usr/local/etc/portsentry.blocked"
+
+##############################
+# Misc. Configuration Options#
+##############################
+RESOLVE_HOST = "1"
+
+##################
+# Ignore Options #
+##################
+# 0 = Do not block UDP/TCP scans.
+# 1 = Block UDP/TCP scans.
+# 2 = Run external command only (KILL_RUN_CMD)
+
+BLOCK_UDP="1"
+BLOCK_TCP="1"
+
+###################
+# Dropping Routes:#
+###################
+KILL_ROUTE="/sbin/pfctl -t bruteforce -T add $TARGET$"
+
+###############
+# TCP Wrappers#
+###############
+KILL_HOSTS_DENY="ALL: $TARGET$"
+
+# Format Two: New Style - The format used when extended option
+# processing is enabled. You can drop in extended processing
+# options, but be sure you escape all '%' symbols with a backslash
+# to prevent problems writing out (i.e. \%c \%h )
+#
+#KILL_HOSTS_DENY="ALL: $TARGET$ : DENY"
+
+###################
+# External Command#
+###################
+# The KILL_RUN_CMD_FIRST value should be set to "1" to force the command
+# to run *before* the blocking occurs and should be set to "0" to make the
+# command run *after* the blocking has occurred.
+#
+#KILL_RUN_CMD_FIRST = "0"
+#KILL_RUN_CMD="/some/path/here/script $TARGET$ $PORT$"
+
+
+#####################
+# Scan trigger value#
+#####################
+# Enter in the number of port connects you will allow before an
+# alarm is given. The default is 0 which will react immediately.
+# A value of 1 or 2 will reduce false alarms.
+SCAN_TRIGGER="0"
+
+######################
+# Port Banner Section#
+######################
+#
+# Enter text in here you want displayed to a person tripping the PortSentry.
+# I *don't* recommend taunting the person as this will aggravate them.
+# Leave this commented out to disable the feature
+#
+# Stealth scan detection modes don't use this feature
+#
+#PORT_BANNER="** UNAUTHORIZED ACCESS PROHIBITED *** YOUR CONNECTION ATTEMPT HAS BEEN LOGGED. GO AWAY."
+
+# EOF

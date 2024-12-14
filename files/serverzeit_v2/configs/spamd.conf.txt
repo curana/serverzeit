@@ -1,0 +1,54 @@
+all:\
+        :spews1:spews2:spamhausdroplist:korea:russia:myown-black:
+
+# Mirrored from http://www.spews.org/spews_list_level1.txt
+spews1:\
+        :black:\
+        :msg="SPAM. Your address %A is in the spews level 1 database\n\
+        See http://www.spews.org/ask.cgi?x=%A for more details":\
+        :method=http:\
+        :file=www.openbsd.org/spamd/spews_list_level1.txt.gz:
+
+# Mirrored from http://www.spews.org/spews_list_level2.txt
+spews2:\
+        :black:\
+        :msg="SPAM. Your address %A is in the spews level 2 database\n\
+        See http://www.spews.org/ask.cgi?x=%A for more details":\
+        :method=http:\
+        :file=www.openbsd.org/spamd/spews_list_level2.txt.gz:
+
+spamhausdroplist:\
+        :black:\
+        :msg="SPAM. Your address %A is in the Spamhaus drop list\n\
+        See http://www.spamhaus.org for more details":\
+        :method=http:\
+        :file=www.spamhaus.org/drop/drop.lasso:
+        
+nixspam:\
+        :black:\
+        :method=http:\
+        :file=www.openbsd.org/spamd/nixspam.gz:
+
+# Mirrored from http://www.okean.com/koreacidr.txt
+korea:\
+        :black:\
+        :msg="SPAM. Your address %A appears to be from Korea\n\
+        See http://www.okean.com/asianspamblocks.html for more details":\
+        :method=http:\
+        :file=www.openbsd.org/spamd/koreacidr.txt.gz:
+
+# Mirrored from http://www.completewhois.com/statistics/data/ips-bycountry/rirstats/RU-cidr.txt
+russia:\
+        :black:\
+        :msg="SPAM. Your address %A appears to be a source of spam email\n\
+        Please contact your ISP regarding this issue":\
+        :method=http:\
+        :file=www.completewhois.com/statistics/data/ips-bycountry/rirstats/RU-cidr.txt:
+
+# Meine Blacklist
+myown-black:\
+        :black:\
+        :msg="SPAM. Your address %A is in my spammers list. Please stop.\n\
+        Please contact me if you feel mistreated":\
+        :method=file:\
+        :file=/etc/pf_files/blacklist.lst:

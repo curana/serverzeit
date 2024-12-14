@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <title>Firewall mit pf - Tutorials und Anleitungen zu FreeBSD, Servern & Diensten :: serverzeit.de</title>
+  <base href="">
+
+  <meta charset="utf-8">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="Eine Firewall unter FreeBSD einzurichten ist danke pf nicht schwer. Hier findest du eine kleine Einführung in dieses Thema.">
+  <meta name="keywords" content="firewall, pf, openbsd, expiretable, rules, rdr, nat, block">
+  <meta name="google-site-verification" content="yghLhV7EXvN6dHIltCHFyKpGePQ033_oRI7eMxWbQbg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="../files/serverzeit_v2/images/favicon.ico" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic%7CDroid+Sans:400%7CUbuntu:400,400italic,300,300italic,700,700italic%7CUbuntu+Mono">
+<link rel="stylesheet" href="../assets/css/5ee243558dbc.css">
+    <!--[if (lt IE 9)]>
+   <script type="text/javascript" src="http://ie-print-protector.googlecode.com/svn/trunk/javascript/iepp.min.js"></script>
+<![endif]-->
+</head>
+
+<body id="top" class="unix other  print">  
+  <div id="wrapper">
+  
+        
+<!-- indexer::stop -->
+  <div id="searchbar-frame">
+    <div id="searchbar">        
+      
+
+      <div class="searchfield">
+        <form action="http://serverzeit.de/suche" method="get" id="search" enctype="application/x-www-form-urlencoded">
+          <label for="searchfield">Suche:</label>
+          <span><input type="text" name="keywords" id="searchfield" value="" required /></span>
+          <input type="submit" name="perform-search" value="GO" />
+          
+                    
+<input type="hidden" name="date" value="2024-12-12">
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<!-- indexer::continue -->
+
+<!-- indexer::stop -->
+  <!-- indexer::stop -->
+<header>
+  <a href="../index.html"><img src="../files/serverzeit_v2/images/logo.png" style="margin-top:-14px" alt="serverzeit.de - Logo" title="serverzeit.de - Logo" /></a>
+  <nav>
+    <ul class="level_1" id="main-navigation">
+              <li class="first"><a href="../index.html" title="Startseite" class="first">Startseite</a></li>
+                  <li class="trail"><a href="../tutorials.html" title="Tutorials" class="trail">Tutorials</a></li>
+                  <li><a href="../das-ebook.html" title="Das Buch">Das Buch</a></li>
+                  <li class="last"><a href="../aus-zweiter-hand.html" title="Aus zweiter Hand" class="last">Aus zweiter Hand</a></li>
+            </ul>
+  </nav>
+</header>
+<!-- indexer::continue --><!-- indexer::continue -->
+ 
+    
+    
+    <div id="main">    
+      <div id="content-wrapper">
+	    
+<article itemscope itemtype="http://schema.org/Article">
+
+
+<div class="article-header">
+  <div class="article-title">
+    <h1 class="ce_headline first">Firewall mit pf</h1>
+  </div>
+</div>
+
+<!-- indexer::continue -->
+<div class="article-text" itemprop="articleBody" id="article"><!-- indexer::continue -->
+<p>pf als Firewall-System wurde für openBSD entwickelt und ist äußerst leistungsfähig. Wir werden aber nur grundlegende Regeln und Funktionen betrachten. Es gibt sehr umfangreiche Anleitungen und Dokumentationen. Aber wenn du das Prinzip verstanden hast, dann findest du dich damit schnell zurecht.</p>
+<p>Dieses Tutorial ist lediglich als Grundlage zu verstehen. Wenn du dieses Tutorial durchgelesen hast und verstanden hast was hier passiert, dann kannst du dich auf den tiefer gehenden Webseiten (siehe&nbsp;<a title="Hilfreiche Links für die Administration" href="http://serverzeit.de/Links">Links</a>) weiter einlesen.<br>Ich beschreibe hier nicht alle Funktionen von pf, das wäre viel zu umfangreich. Es gibt ein sehr gutes Handbuch, welches auch in der&nbsp;<a title="Hilfreiche Links für die Administration" href="http://serverzeit.de/Links">Linksammlung</a>&nbsp;zu finden ist. Weiters gehe ich hier von einem Server aus und nicht von einem Gateway, sodass Weiterleitungsregeln o.ä. hier nicht angesprochen werden.</p>
+<p><strong><span style="color: #ff0000;">ACHTUNG:</span></strong>&nbsp;Um die Firewall zu konfigurieren sind root-Rechte erforderlich. Du kannst die Befehle also alle mit einem vorangestellen 'sudo' ausführen. Details dazu im Kapitel "<a title="Einführung in sudo" href="http://serverzeit.de/FreeBSD/Grundlagen/Einfuhrung-in-sudo">Einführung in sudo</a>".</p>
+<p>Um pf beim Systemstart zu starten, müssen wir es in der Datei&nbsp;<em>/etc/rc.conf</em>&nbsp;aktivieren. Dafür schreiben wir folgendes in die Datei:</p>
+<p>pf_enable="YES"<br>pf_rules="/etc/pf.conf"<br>pflog_enable="YES"<br>pflog_logfile="/var/log/pflog"</p>
+<ol>
+<li>Wenn wir mit pf experimentieren, kann schnell mal ein Fehler unterlaufen. Um zu verhindern, dass wir uns versehentlich aussperren, erstellen wir einen&nbsp;<a href="http://de.wikipedia.org/wiki/Cronjob" target="_blank">cronjob</a>, der in regelmäßigen Abständen die Firewall wieder deaktiviert:<br><br># crontab -e<br><br>Jetzt tragen wir folgende Zeilen ein:<br><br>### Firewall alle 10 Minuten deaktivieren ###<br>*/10&nbsp;&nbsp; *&nbsp;&nbsp; *&nbsp;&nbsp; *&nbsp;&nbsp; *&nbsp;&nbsp; root&nbsp;&nbsp; /usr/local/bin/sudo /sbin/pfctl -d<br><br>Durch Abspeichern wird der&nbsp;<a href="http://de.wikipedia.org/wiki/Cronjob" target="_blank">cronjob</a>&nbsp;aktiviert.<br><br><em>Tipp:</em>&nbsp;der Befehl crontab -l listet alle installierten user-cronjobs auf.</li>
+<li>Wir beginnen unsere Experimente indem wir die Datei&nbsp;<em>pf.conf</em>&nbsp;im Home-Verzeichnis erstellen. Diese werden wir später mit&nbsp;<em>sudo</em>&nbsp;laden und nach erfolgreichem Test über die Datei&nbsp;<em>/etc/pf.conf</em>&nbsp;kopieren.<br><br>Zunächst aber ein paar Grundlagen:<ol>
+<li>Makros sind eine Art Array, also eine Liste von Daten. In unserem Fall Ports, wie wir sie aus der Datei<em>/etc/services</em>&nbsp;bereits kennen. Wir verwenden diese Makros um eine Regel für mehrere Ports gültig zu machen, ohne diese Regel für jeden Port neu einzufügen.&nbsp;Ein Makro sieht so aus (Port 80 für Webserver, 2031 für unseren SSH):</li>
+<li><strong class="code">tcp_pass = "{ 80 2031 }"</strong></li>
+<li>pf liest Regeln von oben nach unten</li>
+<li>Port-Ranges können so geschrieben werden: bspw.&nbsp;<strong>120:135</strong></li>
+<li><strong>pass on</strong>&nbsp;=&gt; ein- und ausgehender Datenverkehr<br><strong>pass in</strong>&nbsp;=&gt; eingehender Datenverkehr<br><strong>pass out</strong>&nbsp;=&gt; ausgehender Datenverkehr</li>
+<li>Das Wort&nbsp;<em>'quick'</em>&nbsp;in einer Regel bewirkt, dass bei Zutreffen der Regel die nachfolgenden Regeln ignoriert werden.</li>
+<li>Der Tag 'keep state' sorgt dafür, dass eine einmal hergestellte Verbindung nicht nochmal geprüft wird. Wenn du also einen Webserver betreibst und er über den Port 80 angesprochen wird, werden die Firewall-Regeln nicht&nbsp; noch einmal durchlaufen, sondern pf geht davon aus, dass diese Verbindung erlaubt ist, da sie ja schon besteht.</li>
+</ol></li>
+<li>Wir öffnen also unsere Datei aus dem Homeverzeichnis. Der Übersichtlichkeit zu liebe nenne ich meine Test-Datei pf-ben.conf. Zunächst legen wir ein Makro für die eingebauten Interfaces an, falls wir die Konfiguration mal auf einen anderen Server übertragen wollen.<br><em>Hinweis:</em>&nbsp;lnc0 musst du natürlich durch dein Interface ersetzen.<br><br><span class="code">if = "{ lnc0 }"</span></li>
+<li>Anschließend legen wir zwei Makros an: offene tcp- und udp-Ports:<br><br>tcp_pass = "{ 2031 }"<br>udp_pass = "{ 2031 }"</li>
+<li>Nach diesen Makros (und nur da!) ergänzen wir nun unsere erste Regel, und zwar zur Paket-Normalisierung:<br>scrub in all</li>
+<li>Jetzt schützen wir uns noch gegen spoofed oder forged IP-Adressen und blocken alle Ports um nur ausgesuchte freizugeben:<br><br>antispoof for $if<br>block in all</li>
+<li>Unsere erste Regel sieht also folgendermaßen aus:<br><br>if = "{ lnc0 }"<br>tcp_pass = "{ 2031 }"<br>udp_pass = "{ 2031 }"<br>scrub in all<br>antispoof for $if<br>block in all</li>
+<li>Bevor wir nun unseren ersten Port öffnen, will ich noch auf zwei Besonderheiten von pf eingehen:&nbsp;<strong>tables</strong>&nbsp;und<strong>anchors</strong>.<br>
+<ul>
+<li><span style="text-decoration: underline;">tables</span>&nbsp; - Speichern mehrere IP-Adressen oder ganzer IP-Kreise<br><br>Die tables werden über den Regeln eingetragen und meist mit dem Zusatz 'quick', der oben schon erwähnt wurde, versehen, sodass diese IP-Adressen direkt verarbeitet werden, ohne extra alle Regeln durchlaufen.<br>Du kannst diese Tabellen beispielsweise einsetzen, wenn du Zugriffen aus dem eigenen IP-Netz (bspw. 192.168.0.XXX) grundsätzlich erlauben willst. Dann könntest du weit oben eine entsprechende Regel anlegen, die jeden Datenverkehr erlaubt.<br><br>Die Syntax zum Anlegen einer Tabelle lautet wie folgt:<br><br><span class="code">table &lt;intranet&gt; { 192.168.0.0/24, 192.168.1.0/24, !192.168.0.1 }</span><br><br><em>Hinweis:</em>&nbsp;Die spitzen Klammern müssen bleiben. 'intranet' ist hier der Name der Tabelle. Die letzte IP-Adresse wird durch das '!' ausgeschlossen.<br><br>Um nun, wie oben beispielhaft erwähnt, jede Verbindung aus den in der Tabelle 'intranet' hinterlegten IP-Netzen zu erlauben, könntest du folgende Regel möglichst weit oben einfügen (pf liest ja von oben nach unten!):<br><br><span class="code">pass in quick from &lt;intranet&gt; to any keep state</span><br><br>Um nun die angelegten Tabellen zu prüfen, kannst du diese über folgenden Befehl einsehen:<br><br><span class="code"># pfctl -t intranet -T show</span><br><br>Um die Tabelle nun zu laden ohne den Server neu zu starten (das kann im Produktivbetrieb nicht so ohne weiteres möglich sein), kannst du dies mit folgendem Befehl tun (bei jeder Änderung an der Tabelle muss dies getan werden!):<br><br><span class="code"># pfctl -t intranet -Tl -f /etc/pf.conf</span><br><br><em>Hinweis:</em>&nbsp;<em>/etc/pf.conf</em>&nbsp;ist die Datei in der wir die Tabelle hinzugefügt haben. Ich würde also, wie oben erwähnt, zunächst&nbsp;<em>/home/sz_benedikt/pf-ben.conf</em>&nbsp;schreiben.<br><br>Um eine Tabelle nun wieder zu leeren, gibst du folgenden Befehl ein:<br><br><span class="code"># pfctl -t intranet -T flush</span></li>
+<li><span style="text-decoration: underline;">anchors</span>&nbsp;- Speichern Regeln, die on the fly geladen und entladen werden können<br><br>Es gibt eigentlich zwei Hauptszenarien, in denen man anchors einsetzen will:<br><br><strong>Fall 1:</strong>&nbsp;Man will nur gelegentlich Ports öffnen, bspw. bei einem Serverupdate<br>
+<blockquote>Wir speichern einen Regelsatz in die Datei '/etc/ftp-anchor' (Name frei wählbar) und fügen folgende Zeile ans Ende unserer pf.conf ein:<br><br><span class="code">anchor ftpanchor</span><br><br>Jetzt können wir den Regelsatz mit folgendem Befehl laden und damit aktivieren:<br><br><span class="code"># pfctl -a ftpanchor -f /etc/ftp-anchor</span><br><br>Um den anchor nun zu prüfen, verwende folgenden Befehl:<br><br><span class="code"># pfctl -a ftpanchor -s rules</span></blockquote>
+<strong>Fall 2:</strong>&nbsp;Man will nur gelegentlich Ports schließen, bspw. bei Verdacht auf eine Bruteforce-Attacke<br>
+<blockquote>Wir speichern wieder einen Regelsatz in die Datei '/etc/ssh-anchor' (Name frei wählbar) und fügen folgende Zeile ans Ende unserer pf.conf ein:<br><br><span class="code">anchor sshanchor</span><br><br>Bisher ist es identisch zu Fall 1, allerdings schreiben wir jetzt noch zusätzlich in die Zeile darunter<br><br><span class="code">load anchor sshanchor from "/etc/ssh-anchor"</span><br><br>Dies ist vergleichbar mit einem 'include'-Befehl.<br><br></blockquote>
+Um nun einen anchor wieder zu entladen, verwendest du folgenden Befehl:<br><br><span class="code"># pfctl -a sshanchor -F rules</span><br><br>Dann kannst du wieder prüfen ob der anchor entladen ist:<br><br><span class="code"># pfctl -a sshanchor -s rules</span><br><br>Für jede Art von Regel gibt es eine eigene Anchor-Syntax. Siehe hierzu bitte im&nbsp;<a href="http://www.openbsd.org/faq/pf/anchors.html" target="_blank">Handbuch</a>&nbsp;nach.</li>
+</ul>
+</li>
+<li>Jetzt noch eine kleine Befehlsübersicht für pf. Beachte bitte auch das Unterkapitel "<a title="pf: Bruteforce und mehr" href="http://serverzeit.de/FreeBSD/Firewall/pf-Bruteforce-und-mehr">pf: Bruteforce und mehr</a>" sowie das Kapitel "<a title="pf-Überwachung: pftop" href="http://serverzeit.de/FreeBSD/Firewall/pf-uberwachung-pftop">pf-Überwachung: pftop</a>".<br><br>
+<ul>
+<li>pf deaktivieren: pfctl -d</li>
+<li>pf aktivieren: pfctl -e</li>
+<li>Regeln aus einem anderen Verzeichnis laden: pfctl -ef /home/sz_benedikt/pf-ben.conf</li>
+<li>Default-Regeln laden: pfctl -f /etc/pf.conf</li>
+<li>kurzer Status von pf: pfctl -s info</li>
+<li>Detailstatus zu jeder Regel: pfctl -vs info</li>
+</ul>
+</li>
+<li>Um die Regeln, die ich in der Datei /home/sz_benedikt/pf-ben.conf nun dauerhaft als /etc/pf.conf zu speichern, entferne ich wieder den cronjob (Zeile einfach löschen oder ein '#' davor schreiben -&gt; crontab -e) gehe wie folgt vor:<br><br><span class="code"># cp /home/sz_benedikt/pf-ben.conf /etc/pf.conf</span><br><br><span class="code"># pfctl -f /etc/pf.conf</span><br><br>Hiermit werden die Regeln aus pf.conf geladen und die, die sich noch im Arbeitsspeicher befinden, gelöscht!<br><br><span class="code"># pfctl -s rules</span><br><br>Hiermit gebe ich die nun aktivierten Regeln aus und kann nochmals prüfen ob alles stimmt und die richtige Datei geladen ist.</li>
+<li>Um dir ein Beispiel zu zeigen, poste ich meine 'pf.conf'. Beachte bitte, dass ich noch zwei Regeln eingebaut habe, die PING und TRACEROUTE erlauben:<br>
+<p class="code">### INTERFACES ###<br>if = "{ lo0, rl0 }"<br><br>### SETTINGS ###<br>set block-policy drop<br><br>### OFFENE TCP/UDP-PORTS ###<br>tcp_pass = "{ 53 2031 }"<br>udp_pass = "{ 53 2031 }"<br>icmp_types = "echoreq"<br><br>### NORMALISATION ###<br>scrub in all<br>antispoof for $if<br><br>### TABLES ###<br>table &lt;intranet&gt;&nbsp;&nbsp; { 192.168.0.0/24 }<br>table &lt;bruteforce&gt; persist<br><br>### RULES ###<br>set skip on lo0<br>block all<br>block quick from &lt;bruteforce&gt;<br>pass in quick from &lt;intranet&gt; to any keep state<br>pass in on $if proto tcp from any to any port $tcp_pass flags S/SA keep state (max-src-conn 100, max-src-conn-rate 15/5, overload &lt;bruteforce&gt; flush global)<br>pass in on $if proto udp to any port $udp_pass keep state<br>pass out quick all keep state<br><br># PING #<br>pass in on $if inet proto icmp all icmp-type $icmp_types keep state<br><br># TRACEROUTE #<br>pass in on $if inet proto udp from any to any port 33433 &gt;&lt; 33626 keep state</p>
+</li>
+</ol><!-- indexer::stop -->
+  </div>
+</article>
+ 
+
+	          </div>
+        
+      
+      <aside id="sidebar">
+        
+<!-- indexer::stop -->
+    <nav id="sub-navigation">
+    <ol class="level_1" id="sub-navigation-items">
+  
+    	  		<li class="sibling first"><a href="admins-haften.html" title="Admins haften" class="sibling first">» Das Risiko eines Administrators</a></li>
+  	    	  		<li class="sibling"><a href="installation.html" title="Installation" class="sibling">01 Installation</a></li>
+  	    	  		<li class="sibling"><a href="grundlegendes.html" title="Grundlegendes" class="sibling">02 Grundlegendes</a></li>
+  	    	  		<li class="sibling"><a href="software-raid-mit-gmirror.html" title="Software-RAID mit gmirror" class="sibling">03 Software-RAID</a></li>
+  	    	  		<li class="sibling"><a href="zeitsynchronisation-per-ntp.html" title="Zeitsynchronisation per NTP" class="sibling">04 Zeitsynchronisation</a></li>
+  	    	  		<li class="sibling"><a href="updates.html" title="Das System aktuell halten" class="sibling">05 Updates</a></li>
+  	    	  		<li class="sibling"><a href="systemsicherheit.html" title="Systemsicherheit" class="sibling">06 Systemsicherheit</a></li>
+  	    	  		<li class="active active submenu">07 Firewall	<ol class="level_2">
+  
+    	  		<li class="first"><a href="firewall/schutz-vor-bruteforce-angriffen.html" title="Schutz vor Bruteforce-Angriffen" class="first">Schutz vor Bruteforce-Angriffen</a></li>
+  	    	  		<li class="last"><a href="firewall/firewall-monitoring-mit-pftop.html" title="Firewall-Monitoring mit pftop" class="last">Firewall-Monitoring mit pftop</a></li>
+  	  
+  </ol></li>
+  	    	  		<li class="sibling"><a href="jails-mit-ezjail.html" title="Jails mit EzJail" class="sibling">08 Jails mit EzJail</a></li>
+  	    	  		<li class="sibling"><a href="datenbankserver.html" title="Datenbankserver" class="sibling">09 Datenbankserver</a></li>
+  	    	  		<li class="sibling"><a href="webserver.html" title="Webserver" class="sibling">10 Webserver</a></li>
+  	    	  		<li class="sibling"><a href="reverse-proxy.html" title="Reverse-Proxy" class="sibling">11 Reverse-Proxy</a></li>
+  	    	  		<li class="sibling"><a href="ftp-server.html" title="FTP-Server" class="sibling">12 FTP-Server</a></li>
+  	    	  		<li class="sibling"><a href="e-mailserver.html" title="E-Mailserver" class="sibling">13 E-Mailserver</a></li>
+  	    	  		<li class="sibling"><a href="dns-server.html" title="DNS-Server" class="sibling">14 DNS-Server</a></li>
+  	    	  		<li class="sibling"><a href="versionskontrolle.html" title="Versionskontrolle" class="sibling">15 Versionskontrolle</a></li>
+  	    	  		<li class="sibling"><a href="itunes-server.html" title="iTunes-Server" class="sibling">16 iTunes-Server</a></li>
+  	    	  		<li class="sibling"><a href="virtual-private-networks.html" title="Virtual Private Networks (VPN)" class="sibling">17 Virtual Private Networks</a></li>
+  	    	  		<li class="sibling"><a href="samba-freigaben.html" title="Samba-Freigaben" class="sibling">18 Samba-Freigaben</a></li>
+  	    	  		<li class="sibling"><a href="backup.html" title="Backup" class="sibling">19 Backup</a></li>
+  	    	  		<li class="sibling last"><a href="monitoring.html" title="Monitoring" class="sibling last">20 Monitoring</a></li>
+  	  
+  </ol><!-- indexer::continue -->
+      </aside>
+
+                </div>
+    
+    <div class="ribbon right red" style="visibility:hidden">
+      <a href="../das-ebook.html">Neue Auflage!</a>
+    </div>
+    
+        <footer id="footer-hidden"></footer>
+        
+    <!-- indexer::stop -->
+    <nav id="legal-links">
+      <ul>
+        <li><a href="../impressum.html" title="Impressum">Impressum</a></li>
+        <li><a href="../datenschutz.html" title="Datenschutz">Datenschutz</a></li>
+        <li><a href="../sitemap.html" title="Sitemap">Sitemap</a></li>
+      </ul>
+        
+      <div class="copyright"> ein Projekt von Benedikt Niessen <em>powered by <strong>B</strong>#</em></div>
+    </nav>
+    <!-- indexer::continue -->
+
+  </div>
+
+  
+<script>setTimeout(function(){var e=function(e,t){try{var n=new XMLHttpRequest}catch(r){return}n.open("GET",e,!0),n.onreadystatechange=function(){this.readyState==4&&this.status==200&&typeof t=="function"&&t(this.responseText)},n.send()},t="system/cron/cron.";e(t+"txt",function(n){parseInt(n||0)<Math.round(+(new Date)/1e3)-86400&&e(t+"php")})},5e3);</script>
+
+<!-- Masha -->  
+<!--[IF IE]> 
+  <script type="text/javascript" src="http://serverzeit.de/files/serverzeit_v2/js/ierange.js" async defer></script> 
+<![ENDIF]-->
+<script type="text/javascript" src="../files/serverzeit_v2/js/masha.min.js" async defer></script>
+<script type="text/javascript">
+  if(document.body.className.indexOf("mobile") == -1) {
+    if(window.addEventListener){     
+        window.addEventListener('load', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        }, false);
+    } else {
+        window.attachEvent('onload', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        });
+    }
+  }
+</script>
+  
+  <script>
+  new Request({
+    url:'system/html/cron.txt',
+    onComplete: function(txt) {
+      if (!txt) txt = 0;
+      if (parseInt(txt) < (Math.round(+new Date()/1000) - 300)) {
+        new Request({url:'cron.php'}).get();
+      }
+    }
+  }).get();
+  </script>
+
+    
+  <!-- Google Analytics --> 
+  <script type="text/javascript">
+    /*var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36693720-1']);
+    _gaq.push(['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();*/
+  </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+LogLevel        0
+Alive           5
+User            "nobody"
+Group           "nobody"
+###
+
+ListenHTTP
+    Address 123.123.123.123 //die externe IP des Servers
+    Port    80              //der Port auf dem der Webserver lauschen soll (default)
+    RewriteLocation 0
+    RewriteDestination 0
+
+    Service
+        HeadRequire "Host: .*<deine-Domain>.de.*" //mit HeadRequire und HeadDeny kannst du festlegen, dass bestimmte
+        HeadDeny    "Host: .*<deine-andere-Domain>.de.*"        //Adressen an bestimmte Backend-Server/Jails weitergeleitet werden
+
+        BackEnd
+            Address <IP-der-Webserver-Jail> //hier trägst du die IP/Hostnamen des Servers ein, der die Anfragen an die
+                                            //Adressen von HeadRequire bearbeiten soll/kann.
+            Port    80
+        End
+
+        BackEnd
+            Address <IP-der-anderen-Webserver-Jail> //hier trägst du die IP/Hostnamen des zweiten Servers ein, der die Anfragen an die
+                                                    //Adressen von HeadRequire auch bearbeiten soll/kann.
+            Port    80
+        End
+
+        Session
+            Type  IP
+            TTL  300
+        End
+    End
+
+    Service
+        HeadRequire "Host: .*<deine-andere-Domain>.de.*"
+        HeadDeny    "Host: .*<deine-Domain>.de.*"
+
+        BackEnd
+            Address <IP-der-Webserver-Jail>
+            Port    80
+        End
+
+        Session
+            Type    PARM
+            ID      "id"
+            TTL     300
+        End
+    End
+End

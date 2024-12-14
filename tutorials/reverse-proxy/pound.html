@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <title>Reverse-Proxy: pound - Tutorials und Anleitungen zu FreeBSD, Servern & Diensten :: serverzeit.de</title>
+  <base href="">
+
+  <meta charset="utf-8">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="">
+  <meta name="keywords" content="reverse proxy, proxy, firewall, connection, forward, loadbalancer, ssl, wrapper">
+  <meta name="google-site-verification" content="yghLhV7EXvN6dHIltCHFyKpGePQ033_oRI7eMxWbQbg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="../../files/serverzeit_v2/images/favicon.ico" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic%7CDroid+Sans:400%7CUbuntu:400,400italic,300,300italic,700,700italic%7CUbuntu+Mono">
+<link rel="stylesheet" href="../../assets/css/5ee243558dbc.css">
+    <!--[if (lt IE 9)]>
+   <script type="text/javascript" src="http://ie-print-protector.googlecode.com/svn/trunk/javascript/iepp.min.js"></script>
+<![endif]-->
+</head>
+
+<body id="top" class="unix other  print">  
+  <div id="wrapper">
+  
+        
+<!-- indexer::stop -->
+  <div id="searchbar-frame">
+    <div id="searchbar">        
+      
+
+      <div class="searchfield">
+        <form action="http://serverzeit.de/suche" method="get" id="search" enctype="application/x-www-form-urlencoded">
+          <label for="searchfield">Suche:</label>
+          <span><input type="text" name="keywords" id="searchfield" value="" required /></span>
+          <input type="submit" name="perform-search" value="GO" />
+          
+                    
+<input type="hidden" name="date" value="2024-12-12">
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<!-- indexer::continue -->
+
+<!-- indexer::stop -->
+  <!-- indexer::stop -->
+<header>
+  <a href="../../index.html"><img src="../../files/serverzeit_v2/images/logo.png" style="margin-top:-14px" alt="serverzeit.de - Logo" title="serverzeit.de - Logo" /></a>
+  <nav>
+    <ul class="level_1" id="main-navigation">
+              <li class="first"><a href="../../index.html" title="Startseite" class="first">Startseite</a></li>
+                  <li class="trail"><a href="../../tutorials.html" title="Tutorials" class="trail">Tutorials</a></li>
+                  <li><a href="../../das-ebook.html" title="Das Buch">Das Buch</a></li>
+                  <li class="last"><a href="../../aus-zweiter-hand.html" title="Aus zweiter Hand" class="last">Aus zweiter Hand</a></li>
+            </ul>
+  </nav>
+</header>
+<!-- indexer::continue --><!-- indexer::continue -->
+ 
+    
+    
+    <div id="main">    
+      <div id="content-wrapper">
+	    
+<article itemscope itemtype="http://schema.org/Article">
+
+
+<div class="article-header">
+  <div class="article-title">
+    <h1 class="ce_headline first">Reverse-Proxy: pound</h1>
+  </div>
+</div>
+
+<!-- indexer::continue -->
+<div class="article-text" itemprop="articleBody" id="article"><!-- indexer::continue -->
+<p>Pound ist ein Reverse Proxy, load balancer und HTTPS front-end für Webserver. Pound wurde entwickelt, um die Last unter mehreren Servern aufzuteilen. Wir nutzen Pound, um Anfragen auf verschiedene Jails zu verteilen.</p>
+<p>Wir haben auf dem Server bisher eine Jail mit einem Apache Webserver. Was passiert aber, wenn mal Wartungsarbeiten durchgeführt werden müssen oder mal etwas getestet werden soll? Auf einem Produktivsystem geht das nicht.</p>
+<p>Sicherlich könnte man eine zweite Jail erstellen und in dieser testen. Aber nicht immer will man alle Änderungen wiederholen, sondern ist froh wenn etwas funktioniert und dann will man es eigentlich auch einfach in Ruhe lassen.</p>
+<p>Ein anderes denkbares Szenario wäre, Anfragen gezielt nach im Browser eingetragener Adresse umzuleiten. So könnte man beispielsweise alle Domains die nur statisches HTML ausliefern an eine extra Jail leiten, auf der ein minimalistischer Webserver läuft, der nur genau dies kann.</p>
+<p>Oder wenn mehrere Server betrieben werden, kann&nbsp;<a href="http://www.apsis.ch/pound/" target="_blank">Pound</a>&nbsp;dafür genutzt werden, dass wenn ein Server ausfällt, ein anderer dafür einspringt. Du siehst, Pound kann so einiges und ist für vielerlei Szenarien einsetzbar. Und das gute, es ist ein sehr resourcensparendes Tool, was recht einfach und übersichtlich zu konfigurieren ist.</p>
+<ol>
+<li>Als erstes installieren wir Pound aus den Ports auf dem Hauptsystem (nicht in einer Jail!):<br><br><span class="code"># cd /usr/ports/www/pound &amp;&amp; make install clean<br></span></li>
+<li>Im aufscheinenden Konfigurationsmenü wählen wir die Optionen<br><br>[*] DAEMON<br>[*] LIBTHR<br>[*] LOG<br>[*] PCRE<br><br></li>
+<li>Nach einem kurzen Kompiliervorgang ist die Installation bereits abgeschlossen. Nun müssen wir in der '/etc/rc.conf' noch folgende Zeile eintragen:<br><br><span class="code">pound_enable="YES"<br></span></li>
+<li>Wenn du jetzt mit dem Befehl "/usr/local/etc/rc.d/pound start" Pound starten willst, erhälst du die Meldung, dass die Datei '/usr/local/etc/pound.cfg' nicht gefunden werden konnte. Wir müssen die Konfiguration also noch angeben.<br><br>Auf der Website von&nbsp;<a href="http://www.apsis.ch/pound/" target="_blank">Pound</a>&nbsp;findest du einige Informationen und Beispiele, wie du den reverse proxy konfigurieren kannst. Hier nur eine Beispielkonfiguration, die die wichtigsten Strukturen bereits erahnen lässt:&nbsp;<a href="../../files/serverzeit_v2/configs/pound.cfg.txt" target="_blank">pound.cfg</a><br><br>Wichtig sind die Direktiven 'RewriteLocation' und 'RewriteDestination'. Wenn du mod_rewrite-Regeln verwendest, musst du diese auf 0 setzen, sonst gibt es eine Endlosschleife und deine Seite ist nicht mehr erreichbar.<br><a href="http://serverzeit.de/FreeBSD/webserver-mit-apache/pound---reverse-proxy/uploads/files/pound.cfg.txt" target="_blank"><br><br></a></li>
+<li>Jetzt musst du noch deine Firewall-Regeln (pf.conf) anpassen.<br>
+<ul>
+<li>ändere die Weiterleitungsregeln für die Webserver-Jail so ab, dass die Anfragen an Port 80, dem Standard-Webserverport, nicht mehr an die Jail weitergeleitet werden, sondern am Basissystem ankommen (in unserem Beispiel in die Liste 'tcp_pass' und 'udp_pass' den Port '80' eintragen und aus dem Webjail-Pool rauslöschen)</li>
+<li>Firewallregeln neuladen</li>
+<li>Pound mit dem Befehl "/usr/local/etc/rc.d/pound start" starten<br><br></li>
+</ul>
+</li>
+<li>Wenn du jetzt die Adresse deines Webservers im Browser eingibst, sollte die Seite weiterhin erreichbar sein. In meiner Konfiguration habe ich den SSL-Port nicht weitergeleitet, da ich alle SSL-Bereiche (Adminbereiche) auf einem Server liegen haben und vom Load-Balancing ausschließen will).'<br><br></li>
+<li>Zum Testen, solltest du deine Webserverjail mal stoppen und die Adresse erneut in deinem Browser aufrufen. Jetzt solltest du die Meldung "The service is not available. Please try again later." erhalten. Das ist eine Systemmeldung von Pound und du siehst, es funktioniert.<br><br></li>
+<li>Hinweis: In der httpd.conf, der Konfiguration vom Apache Webserver, musst du für sinnvolles Logging in der Zeile "LogFormat" '%h' durch '<strong>%{X-Forwarded-for}i</strong>' ersetzen und den Apache neustarten.<br><br>Falls du lighttpd als Webserver einsetzt, dann musst du die folgende Zeile in die 'lighttpd.conf' einfügen:<br>
+<p class="code">accesslog.format = "%{X-Forwarded-For}i %V %u %t \"%r\" %&gt;s %b \"%{Referer}i\" \"%{User-Agent}i\""</p>
+</li>
+</ol><!-- indexer::stop -->
+  </div>
+</article>
+ 
+
+	          </div>
+        
+      
+      <aside id="sidebar">
+        
+<!-- indexer::stop -->
+    <nav id="sub-navigation">
+    <ol class="level_1" id="sub-navigation-items">
+  
+    	  		<li class="first"><a href="../admins-haften.html" title="Admins haften" class="first">» Das Risiko eines Administrators</a></li>
+  	    	  		<li><a href="../installation.html" title="Installation">01 Installation</a></li>
+  	    	  		<li><a href="../grundlegendes.html" title="Grundlegendes">02 Grundlegendes</a></li>
+  	    	  		<li><a href="../software-raid-mit-gmirror.html" title="Software-RAID mit gmirror">03 Software-RAID</a></li>
+  	    	  		<li><a href="../zeitsynchronisation-per-ntp.html" title="Zeitsynchronisation per NTP">04 Zeitsynchronisation</a></li>
+  	    	  		<li><a href="../updates.html" title="Das System aktuell halten">05 Updates</a></li>
+  	    	  		<li><a href="../systemsicherheit.html" title="Systemsicherheit">06 Systemsicherheit</a></li>
+  	    	  		<li><a href="../firewall.html" title="Firewall mit pf">07 Firewall</a></li>
+  	    	  		<li><a href="../jails-mit-ezjail.html" title="Jails mit EzJail">08 Jails mit EzJail</a></li>
+  	    	  		<li><a href="../datenbankserver.html" title="Datenbankserver">09 Datenbankserver</a></li>
+  	    	  		<li><a href="../webserver.html" title="Webserver">10 Webserver</a></li>
+  	    	  		<li class="submenu trail"><a href="../reverse-proxy.html" title="Reverse-Proxy" class="submenu trail">11 Reverse-Proxy</a>	<ol class="level_2">
+  
+    	  		<li class="active active first last">pound</li>
+  	  
+  </ol></li>
+  	    	  		<li><a href="../ftp-server.html" title="FTP-Server">12 FTP-Server</a></li>
+  	    	  		<li><a href="../e-mailserver.html" title="E-Mailserver">13 E-Mailserver</a></li>
+  	    	  		<li><a href="../dns-server.html" title="DNS-Server">14 DNS-Server</a></li>
+  	    	  		<li><a href="../versionskontrolle.html" title="Versionskontrolle">15 Versionskontrolle</a></li>
+  	    	  		<li><a href="../itunes-server.html" title="iTunes-Server">16 iTunes-Server</a></li>
+  	    	  		<li><a href="../virtual-private-networks.html" title="Virtual Private Networks (VPN)">17 Virtual Private Networks</a></li>
+  	    	  		<li><a href="../samba-freigaben.html" title="Samba-Freigaben">18 Samba-Freigaben</a></li>
+  	    	  		<li><a href="../backup.html" title="Backup">19 Backup</a></li>
+  	    	  		<li class="last"><a href="../monitoring.html" title="Monitoring" class="last">20 Monitoring</a></li>
+  	  
+  </ol><!-- indexer::continue -->
+      </aside>
+
+                </div>
+    
+    <div class="ribbon right red" style="visibility:hidden">
+      <a href="../../das-ebook.html">Neue Auflage!</a>
+    </div>
+    
+        <footer id="footer-hidden"></footer>
+        
+    <!-- indexer::stop -->
+    <nav id="legal-links">
+      <ul>
+        <li><a href="../../impressum.html" title="Impressum">Impressum</a></li>
+        <li><a href="../../datenschutz.html" title="Datenschutz">Datenschutz</a></li>
+        <li><a href="../../sitemap.html" title="Sitemap">Sitemap</a></li>
+      </ul>
+        
+      <div class="copyright"> ein Projekt von Benedikt Niessen <em>powered by <strong>B</strong>#</em></div>
+    </nav>
+    <!-- indexer::continue -->
+
+  </div>
+
+  
+<script>setTimeout(function(){var e=function(e,t){try{var n=new XMLHttpRequest}catch(r){return}n.open("GET",e,!0),n.onreadystatechange=function(){this.readyState==4&&this.status==200&&typeof t=="function"&&t(this.responseText)},n.send()},t="system/cron/cron.";e(t+"txt",function(n){parseInt(n||0)<Math.round(+(new Date)/1e3)-86400&&e(t+"php")})},5e3);</script>
+
+<!-- Masha -->  
+<!--[IF IE]> 
+  <script type="text/javascript" src="http://serverzeit.de/files/serverzeit_v2/js/ierange.js" async defer></script> 
+<![ENDIF]-->
+<script type="text/javascript" src="../../files/serverzeit_v2/js/masha.min.js" async defer></script>
+<script type="text/javascript">
+  if(document.body.className.indexOf("mobile") == -1) {
+    if(window.addEventListener){     
+        window.addEventListener('load', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        }, false);
+    } else {
+        window.attachEvent('onload', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        });
+    }
+  }
+</script>
+  
+  <script>
+  new Request({
+    url:'system/html/cron.txt',
+    onComplete: function(txt) {
+      if (!txt) txt = 0;
+      if (parseInt(txt) < (Math.round(+new Date()/1000) - 300)) {
+        new Request({url:'cron.php'}).get();
+      }
+    }
+  }).get();
+  </script>
+
+    
+  <!-- Google Analytics --> 
+  <script type="text/javascript">
+    /*var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36693720-1']);
+    _gaq.push(['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();*/
+  </script>
+</body>
+</html>

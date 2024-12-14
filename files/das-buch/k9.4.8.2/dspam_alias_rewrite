@@ -1,0 +1,3 @@
+/^(spam|nospam)-(.+)@.+$/ ${1}@${1}.${1} 
+/^spam@.+$/ spam@spam.spam
+/^nospam@.+$/ nospam@nospam.nospam

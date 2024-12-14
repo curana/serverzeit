@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <title>Antivirus: ClamAV - Tutorials und Anleitungen zu FreeBSD, Servern & Diensten :: serverzeit.de</title>
+  <base href="">
+
+  <meta charset="utf-8">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="">
+  <meta name="keywords" content="email, server, postfix, dovecot, ldap, clamav, smtp, pop3, imap, mime, tls, sendmail">
+  <meta name="google-site-verification" content="yghLhV7EXvN6dHIltCHFyKpGePQ033_oRI7eMxWbQbg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="../../files/serverzeit_v2/images/favicon.ico" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic%7CDroid+Sans:400%7CUbuntu:400,400italic,300,300italic,700,700italic%7CUbuntu+Mono">
+<link rel="stylesheet" href="../../assets/css/5ee243558dbc.css">
+    <!--[if (lt IE 9)]>
+   <script type="text/javascript" src="http://ie-print-protector.googlecode.com/svn/trunk/javascript/iepp.min.js"></script>
+<![endif]-->
+</head>
+
+<body id="top" class="unix other  print">  
+  <div id="wrapper">
+  
+        
+<!-- indexer::stop -->
+  <div id="searchbar-frame">
+    <div id="searchbar">        
+      
+
+      <div class="searchfield">
+        <form action="http://serverzeit.de/suche" method="get" id="search" enctype="application/x-www-form-urlencoded">
+          <label for="searchfield">Suche:</label>
+          <span><input type="text" name="keywords" id="searchfield" value="" required /></span>
+          <input type="submit" name="perform-search" value="GO" />
+          
+                    
+<input type="hidden" name="date" value="2024-12-12">
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<!-- indexer::continue -->
+
+<!-- indexer::stop -->
+  <!-- indexer::stop -->
+<header>
+  <a href="../../index.html"><img src="../../files/serverzeit_v2/images/logo.png" style="margin-top:-14px" alt="serverzeit.de - Logo" title="serverzeit.de - Logo" /></a>
+  <nav>
+    <ul class="level_1" id="main-navigation">
+              <li class="first"><a href="../../index.html" title="Startseite" class="first">Startseite</a></li>
+                  <li class="trail"><a href="../../tutorials.html" title="Tutorials" class="trail">Tutorials</a></li>
+                  <li><a href="../../das-ebook.html" title="Das Buch">Das Buch</a></li>
+                  <li class="last"><a href="../../aus-zweiter-hand.html" title="Aus zweiter Hand" class="last">Aus zweiter Hand</a></li>
+            </ul>
+  </nav>
+</header>
+<!-- indexer::continue --><!-- indexer::continue -->
+ 
+    
+    
+    <div id="main">    
+      <div id="content-wrapper">
+	    
+<article itemscope itemtype="http://schema.org/Article">
+
+
+<div class="article-header">
+  <div class="article-title">
+    <h1 class="ce_headline first">Antivirus: ClamAV</h1>
+  </div>
+</div>
+
+<!-- indexer::continue -->
+<div class="article-text" itemprop="articleBody" id="article"><!-- indexer::continue -->
+<p>Wir haben ja schon einiges gegen SPAM in den Postfix-Einstellungen getan, später werden wir noch was auf Firewall-Basis einbauen, sodass SPAM-Schleudern keine Chance haben.<br>Jetzt gehen wir aber erstmal noch einen Schritt weiter und filtern unsere E-Mails nach Viren. Wenn man kein Windows einsetzt, ist man zwar sowieso relativ sicher im Bezug auf Viren, aber wir wollen sicher gehen, dass wir keine verschicken und auch keine per Mail einfangen. Wir nutzen auch hier eine kleinere Software und nicht das aufgeblasene Amavis. Für uns gibts ClamSMTP mit ClamAV als Scanner.</p>
+<p>Aktueller Portstree? Gut, dann installieren wir mal ClamSMTP:</p>
+<pre><code># cd /usr/ports/security/clamsmtp/ &amp;&amp; make install clean</code></pre>
+<p>Nun müssen wir die Datei '<em>/usr/local/etc/postfix/main.cf</em>' wieder bearbeiten. Folgende Zeile tragen wir ein:</p>
+<pre><code>content_filter = scan:[&lt;MAIL-JAIL-IP&gt;]:10025</code></pre>
+<p>Das bewirkt, dass die Mails an den Dienst "<em>scan</em>", der auf Port 10025 hört, weitergeleitet werden. Richtig, wir werden ClamSMTP so konfigurieren, dass er auf diesen Port hört. <em>&lt;MAIL-JAIL-IP&gt;</em> musst du natürlich wieder durch die IP deiner Mail-Jail ersetzen.</p>
+<p>Jetzt müssen wir die Datei '<em>/usr/local/etc/postfix/master.cf</em>' bearbeiten, sodass der "<em>scan</em>"-Dienst konfiguriert ist. Folgende Zeilen musst dafür eintragen:</p>
+<pre><code>scan unix - - n - 16 smtp<br> -o smtp_send_xforward_command=yes<br> -o smtp_enforce_tls=no<br><br>&lt;MAIL-JAIL-IP&gt;:10026 inet n - n - 16 smtpd<br> -o content_filter=<br> -o receive_override_options=no_unknown_recipient_checks,no_header_body_checks<br> -o smtpd_helo_restrictions=<br> -o smtpd_client_restrictions=<br> -o smtpd_sender_restrictions=<br> -o smtpd_recipient_restrictions=permit_mynetworks,reject<br> -o mynetworks_style=host<br> -o smtpd_authorized_xforward_hosts=10.0.0.0/8</code></pre>
+<p>Wie du hier schön siehst, werden wir keine erneuten Restrictions aufnehmen, da hier nur Mails ankommen, die diesen Test bereits bestanden haben. Denn warum sollten wir SPAM auf Viren prüfen?<br><br> Jetzt aktivieren wir die entsprechenden Dienste in der '<em>/etc/rc.conf</em>' (siehe auch:&nbsp;<a title="Rootkithunter" href="http://serverzeit.de/FreeBSD/viren--rootkithunter">Viren- &amp; Rootkitscanner</a>):</p>
+<pre><code>clamav_clamd_enable="YES"<br>clamav_freshclam_enable="YES"<br>clamsmtpd_enable="YES"</code></pre>
+<p>Nun noch die '<em>/usr/local/etc/clamsmtpd.conf</em>' bearbeiten:</p>
+<ul>
+<li>OutAddress: &lt;MAIL-JAIL-IP&gt;:10026</li>
+<li>Listen: &lt;MAIL-JAIL-IP&gt;:10025</li>
+<li>ClamAddress: /var/run/clamav/clamd.sock</li>
+<li>Header: X-Virus-Scanned: ClamAV using ClamSMTP</li>
+<li>TempDirectory: /tmp</li>
+<li>Action: drop</li>
+<li>Quarantine: off</li>
+<li>TransparentProxy: off</li>
+<li>User: clamav</li>
+</ul>
+<p>Was die einzelnen Parameter bedeuten sollte halbwegs klar sein, Header, Action, Quarantine und TransparentProxy sind individuell einstellbar bzw. sind von deiner Server-Konfiguration abhängig.<br><br> Damit "<em>clamd</em>" starten kann, der ist erforderlich, müssen wir die Datei '<em>/usr/local/etc/clamd.conf</em>' noch bearbeiten, und zwar müssen wir das temporäre Verzeichnis festlegen:</p>
+<pre><code>TemporaryDirectory /tmp</code></pre>
+<p>Jetzt können wir die einzelnen Dienste starten und den Mailserver neustarten:</p>
+<pre><code># /usr/local/etc/rc.d/clamav-freshclam start
+# /usr/local/etc/rc.d/clamav-clamd start
+# /usr/local/etc/rc.d/clamsmtpd start</code></pre>
+<p><strong>Hinweis:</strong>&nbsp;Eventuell kann es sinnvoll sein, freshclam einmal von Hand zu starten, um initial die neuesten Files herunterzuladen. Dafür einfach "freshclam" auf der Shell eingeben.<br><br> Jetzt noch einmal Postfix neustarten und die Konfiguration einlesen:</p>
+<pre><code># postmap /usr/local/etc/postfix/main.cf<br># postmap /usr/local/etc/postfix/master.cf<br># /usr/local/etc/rc.d/postfix restart</code></pre>
+<p>Wenn jetzt alles glatt gelaufen ist, sollte in deinen E-Mails (ein- und ausgehend) im Header (meist über die Quelltextansicht sichtbar) "<em>X-Virus-Scanned: ClamAV using ClamSMTP</em>" stehen. Testen kannst du die Funktionalität beispielsweise von der Website&nbsp;<a href="http://www.aleph-tec.com/eicar/index.php">www.aleph-tec.com</a>.</p><!-- indexer::stop -->
+  </div>
+</article>
+ 
+
+	          </div>
+        
+      
+      <aside id="sidebar">
+        
+<!-- indexer::stop -->
+    <nav id="sub-navigation">
+    <ol class="level_1" id="sub-navigation-items">
+  
+    	  		<li class="first"><a href="../admins-haften.html" title="Admins haften" class="first">» Das Risiko eines Administrators</a></li>
+  	    	  		<li><a href="../installation.html" title="Installation">01 Installation</a></li>
+  	    	  		<li><a href="../grundlegendes.html" title="Grundlegendes">02 Grundlegendes</a></li>
+  	    	  		<li><a href="../software-raid-mit-gmirror.html" title="Software-RAID mit gmirror">03 Software-RAID</a></li>
+  	    	  		<li><a href="../zeitsynchronisation-per-ntp.html" title="Zeitsynchronisation per NTP">04 Zeitsynchronisation</a></li>
+  	    	  		<li><a href="../updates.html" title="Das System aktuell halten">05 Updates</a></li>
+  	    	  		<li><a href="../systemsicherheit.html" title="Systemsicherheit">06 Systemsicherheit</a></li>
+  	    	  		<li><a href="../firewall.html" title="Firewall mit pf">07 Firewall</a></li>
+  	    	  		<li><a href="../jails-mit-ezjail.html" title="Jails mit EzJail">08 Jails mit EzJail</a></li>
+  	    	  		<li><a href="../datenbankserver.html" title="Datenbankserver">09 Datenbankserver</a></li>
+  	    	  		<li><a href="../webserver.html" title="Webserver">10 Webserver</a></li>
+  	    	  		<li><a href="../reverse-proxy.html" title="Reverse-Proxy">11 Reverse-Proxy</a></li>
+  	    	  		<li><a href="../ftp-server.html" title="FTP-Server">12 FTP-Server</a></li>
+  	    	  		<li class="submenu trail"><a href="../e-mailserver.html" title="E-Mailserver" class="submenu trail">13 E-Mailserver</a>	<ol class="level_2">
+  
+    	  		<li class="sibling first"><a href="postfix.html" title="Mail Transfer Agent: Postfix" class="sibling first">Mail Transfer Agent: Postfix</a></li>
+  	    	  		<li class="sibling"><a href="dovecot.html" title="Mail Delivery Agent: Dovecot" class="sibling">Mail Delivery Agent: Dovecot</a></li>
+  	    	  		<li class="active active">Antivirus: ClamAV</li>
+  	    	  		<li class="sibling"><a href="antispam.html" title="Massnahmen gegen Spam" class="sibling">Massnahmen gegen Spam</a></li>
+  	    	  		<li class="sibling"><a href="jails-anpassen.html" title="Jails anpassen" class="sibling">Jails anpassen</a></li>
+  	    	  		<li class="sibling"><a href="domainkeys-mit-postfix-und-dkimproxy.html" title="DomainKeys mit Postfix und DKIMproxy" class="sibling">DKIM mit Postfix und DKIMproxy</a></li>
+  	    	  		<li class="sibling"><a href="emails-verschluesselt-uebertragen.html" title="Emails verschlüsselt übertragen" class="sibling">Emails verschlüsselt übertragen</a></li>
+  	    	  		<li class="sibling last"><a href="volltextsuche-fuer-dovecot.html" title="Volltextsuche für Dovecot" class="sibling last">Volltextsuche für Dovecot</a></li>
+  	  
+  </ol></li>
+  	    	  		<li><a href="../dns-server.html" title="DNS-Server">14 DNS-Server</a></li>
+  	    	  		<li><a href="../versionskontrolle.html" title="Versionskontrolle">15 Versionskontrolle</a></li>
+  	    	  		<li><a href="../itunes-server.html" title="iTunes-Server">16 iTunes-Server</a></li>
+  	    	  		<li><a href="../virtual-private-networks.html" title="Virtual Private Networks (VPN)">17 Virtual Private Networks</a></li>
+  	    	  		<li><a href="../samba-freigaben.html" title="Samba-Freigaben">18 Samba-Freigaben</a></li>
+  	    	  		<li><a href="../backup.html" title="Backup">19 Backup</a></li>
+  	    	  		<li class="last"><a href="../monitoring.html" title="Monitoring" class="last">20 Monitoring</a></li>
+  	  
+  </ol><!-- indexer::continue -->
+      </aside>
+
+                </div>
+    
+    <div class="ribbon right red" style="visibility:hidden">
+      <a href="../../das-ebook.html">Neue Auflage!</a>
+    </div>
+    
+        <footer id="footer-hidden"></footer>
+        
+    <!-- indexer::stop -->
+    <nav id="legal-links">
+      <ul>
+        <li><a href="../../impressum.html" title="Impressum">Impressum</a></li>
+        <li><a href="../../datenschutz.html" title="Datenschutz">Datenschutz</a></li>
+        <li><a href="../../sitemap.html" title="Sitemap">Sitemap</a></li>
+      </ul>
+        
+      <div class="copyright"> ein Projekt von Benedikt Niessen <em>powered by <strong>B</strong>#</em></div>
+    </nav>
+    <!-- indexer::continue -->
+
+  </div>
+
+  
+<script>setTimeout(function(){var e=function(e,t){try{var n=new XMLHttpRequest}catch(r){return}n.open("GET",e,!0),n.onreadystatechange=function(){this.readyState==4&&this.status==200&&typeof t=="function"&&t(this.responseText)},n.send()},t="system/cron/cron.";e(t+"txt",function(n){parseInt(n||0)<Math.round(+(new Date)/1e3)-86400&&e(t+"php")})},5e3);</script>
+
+<!-- Masha -->  
+<!--[IF IE]> 
+  <script type="text/javascript" src="http://serverzeit.de/files/serverzeit_v2/js/ierange.js" async defer></script> 
+<![ENDIF]-->
+<script type="text/javascript" src="../../files/serverzeit_v2/js/masha.min.js" async defer></script>
+<script type="text/javascript">
+  if(document.body.className.indexOf("mobile") == -1) {
+    if(window.addEventListener){     
+        window.addEventListener('load', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        }, false);
+    } else {
+        window.attachEvent('onload', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        });
+    }
+  }
+</script>
+  
+  <script>
+  new Request({
+    url:'system/html/cron.txt',
+    onComplete: function(txt) {
+      if (!txt) txt = 0;
+      if (parseInt(txt) < (Math.round(+new Date()/1000) - 300)) {
+        new Request({url:'cron.php'}).get();
+      }
+    }
+  }).get();
+  </script>
+
+    
+  <!-- Google Analytics --> 
+  <script type="text/javascript">
+    /*var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36693720-1']);
+    _gaq.push(['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();*/
+  </script>
+</body>
+</html>

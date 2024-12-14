@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <title>Mail Transfer Agent: Postfix - Tutorials und Anleitungen zu FreeBSD, Servern & Diensten :: serverzeit.de</title>
+  <base href="">
+
+  <meta charset="utf-8">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="">
+  <meta name="keywords" content="email, server, postfix, dovecot, ldap, clamav, smtp, pop3, imap, mime, tls, sendmail">
+  <meta name="google-site-verification" content="yghLhV7EXvN6dHIltCHFyKpGePQ033_oRI7eMxWbQbg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="../../files/serverzeit_v2/images/favicon.ico" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic%7CDroid+Sans:400%7CUbuntu:400,400italic,300,300italic,700,700italic%7CUbuntu+Mono">
+<link rel="stylesheet" href="../../assets/css/5ee243558dbc.css">
+    <!--[if (lt IE 9)]>
+   <script type="text/javascript" src="http://ie-print-protector.googlecode.com/svn/trunk/javascript/iepp.min.js"></script>
+<![endif]-->
+</head>
+
+<body id="top" class="unix other  print">  
+  <div id="wrapper">
+  
+        
+<!-- indexer::stop -->
+  <div id="searchbar-frame">
+    <div id="searchbar">        
+      
+
+      <div class="searchfield">
+        <form action="http://serverzeit.de/suche" method="get" id="search" enctype="application/x-www-form-urlencoded">
+          <label for="searchfield">Suche:</label>
+          <span><input type="text" name="keywords" id="searchfield" value="" required /></span>
+          <input type="submit" name="perform-search" value="GO" />
+          
+                    
+<input type="hidden" name="date" value="2024-12-12">
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<!-- indexer::continue -->
+
+<!-- indexer::stop -->
+  <!-- indexer::stop -->
+<header>
+  <a href="../../index.html"><img src="../../files/serverzeit_v2/images/logo.png" style="margin-top:-14px" alt="serverzeit.de - Logo" title="serverzeit.de - Logo" /></a>
+  <nav>
+    <ul class="level_1" id="main-navigation">
+              <li class="first"><a href="../../index.html" title="Startseite" class="first">Startseite</a></li>
+                  <li class="trail"><a href="../../tutorials.html" title="Tutorials" class="trail">Tutorials</a></li>
+                  <li><a href="../../das-ebook.html" title="Das Buch">Das Buch</a></li>
+                  <li class="last"><a href="../../aus-zweiter-hand.html" title="Aus zweiter Hand" class="last">Aus zweiter Hand</a></li>
+            </ul>
+  </nav>
+</header>
+<!-- indexer::continue --><!-- indexer::continue -->
+ 
+    
+    
+    <div id="main">    
+      <div id="content-wrapper">
+	    
+<article itemscope itemtype="http://schema.org/Article">
+
+
+<div class="article-header">
+  <div class="article-title">
+    <h1 class="ce_headline first">Mail Transfer Agent: Postfix</h1>
+  </div>
+</div>
+
+<!-- indexer::continue -->
+<div class="article-text" itemprop="articleBody" id="article"><!-- indexer::continue -->
+<p>Zunächst installieren wir "postfix". Da wir ein paar Compilerflags mitgeben müssen, installieren wir postfix aus den Ports. Da auch der Mailserver in seiner eigenen Jail läuft...</p>
+<ol>
+<li>Wir mounten das Verzeichnis '/usr/ports' in die Jail und wechseln in das Verzeichnis '/usr/ports/mail/postfix/'.<br><br><span class="code"># mount_nullfs -o rw /usr/ports /jails/mail/usr/ports</span><br><br></li>
+<li>Anschließend installieren wir postfix und wählen folgende Optionen aus:<br>
+<ul>
+<li>PCRE</li>
+<li>Dovecot</li>
+<li>TLS</li>
+<li>MYSQL</li>
+</ul>
+<br><span class="undefined"><span class="code"># make install clean</span><br><br></span></li>
+<li>Während des Installationsprozesses wirst du gefragt, ob du den Benutzer "postfix" hinzufügen willst, was du bestätigen solltest mit "yes". Die nächste Frage, ob 'postfix' in der Datei 'mailer.conf' aktiviert werden soll, was wir auch mit "yes" bestätigen.<br><br></li>
+<li>Anschließend deaktivieren wir 'sendmail' und aktivieren 'postfix' in der Datei "/etc/rc.conf", indem wir folgende Zeilen einfügen:<br>
+<p class="code">sendmail_enable="NO"<br>sendmail_submit_enable="NO"<br>sendmail_outbound_enable="NO"<br>sendmail_msp_queue_enable="NO"<br>postfix_enable=”YES”</p>
+</li>
+<li>Anschließend legen wir einen "Virtual Mailbox User" an:<br><br><span class="code"># adduser</span><br><br>Folgende Angaben sind zu machen:<br>
+<ul>
+<li>Username: vmail</li>
+<li>Fullname: Virtual Mailbox User</li>
+<li>UID: 150</li>
+<li>Shell: nologin</li>
+<li>Home-Directory: /var/mail/virtual</li>
+<li>Use password-based authentication? no</li>
+<li>Lock out: no<br><br></li>
+</ul>
+Jetzt fügen wir unseren neuen Benutzer der Gruppe "mail" hinzu.<br><br><span class="code"># pw groupmod mail -M vmail</span><br><br></li>
+<li>Dann deaktivieren wir noch ein paar Maintenance-Dienste von sendmail (sieh dir bitte erst die nachfolgende Alternative an und wähle aus, was dir angenehmer erscheint):<br><br><span class="code"># chmod –x /etc/periodic/daily/150.clean-hostat</span><br><br><span class="code"># chmod –x /etc/periodic/daily/440.status-mailq</span><br><br><span class="code"># chmod –x /etc/periodic/daily/460.status-mail-rejects</span><br><br><span class="code"># chmod –x /etc/periodic/daily/500.queuerun</span><br><br><hr noshade="noshade" width="80%"><strong><span style="color: #008000;">Alternative:</span></strong><span style="color: #000000;">&nbsp;Eleganter ist es, eine Datei '/etc/periodic.conf' anzulegen bzw. die Default-Version aus '/etc/defaults/' zu kopieren und folgende Zeilen einzufügen oder ggf. zu ändern:<br></span>
+<p class="code"><span style="color: #000000;">daily_clean_hoststat_enable="NO"</span><br>daily_status_mailq_enable="NO"<br>daily_status_mail_rejects_enable="NO"<br>daily_queuerun_enable="NO"</p>
+</li>
+<li>Jetzt legen wir noch das Verzeichnis für die mysql-Konfigurationen von postfix an:<br><br><span class="code"># mkdir /usr/local/etc/postfix/cf</span><br><br>Dort legen wir die Konfigurationsdateien ab, die du hier herunterladen kannst. Bitte entferne die Endung ".txt" und passe die Werte entsprechend an deine Konfiguration an. Siehe auch die Kommentare in den Dateien, sie erklären genug.<br>
+<blockquote><a href="../../files/serverzeit_v2/configs/mysql_relay_domains_maps.cf.txt" target="_blank">mysql_relay_domains_maps.cf</a>&nbsp;<br><a href="../../files/serverzeit_v2/configs/mysql_virtual_alias_maps.cf.txt" target="_blank">mysql_virtual_alias_maps.cf</a>&nbsp;<br><a href="../../files/serverzeit_v2/configs/mysql_virtual_domains_maps.cf.txt" target="_blank">mysql_virtual_domains_maps.cf</a>&nbsp;<br><a href="../../files/serverzeit_v2/configs/mysql_virtual_email2email.cf.txt" target="_blank">mysql_virtual_email2email.cf</a>&nbsp;<br><a href="../../files/serverzeit_v2/configs/mysql_virtual_mailbox_maps.cf.txt" target="_blank">mysql_virtual_mailbox_maps.cf</a></blockquote>
+</li>
+<li>Jetzt tragen wir in der Datei '<a href="../../files/serverzeit_v2/configs/master.cf.txt">/usr/local/etc/postfix/master.cf'</a> folgende Zeile ein:<br>
+<p class="code">dovecot&nbsp;&nbsp; unix&nbsp; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pipe<br>flags=DRhu user=vmail:mail argv=/usr/local/libexec/dovecot/deliver -d ${recipient}</p>
+</li>
+<li>Anschließend erstellen wir die Zertifikate für die Verschlüsselung:<br><br><span class="code"># mkdir /usr/local/etc/ssl/</span><br><br><span class="code"># cd /usr/local/etc/ssl/</span><br><br><span class="code"># openssl genrsa 1024 &gt; mail-key.pem</span><br><br><span class="code"># chmod 400 mail-key.pem</span><br>
+<p class="code"># openssl req -new -x509 -nodes -sha1 -days 3650 \<br>&nbsp;&nbsp; -key mail-key.pem &gt; mail-cert.pem</p>
+<strong><span style="color: #ff0000;">ACHTUNG:</span></strong>&nbsp;Common Name muss dem Hostnamen entsprechen, z.B. mail.domain.de<br><br></li>
+<li>Abschließend müssen wir noch einen Datenbank-User anlegen. Diesem gibst du alle Zugriffsrechte auf seine Datenbank. Zugriffsmöglichkeiten müssen von localhost und deinem Webserver aus zugänglich sein. Hierfür gib folgendes ein (du brauchst das Passwort des root-Datenbankusers):<br><br><span class="code"># mysql -h IP-DES-DB-SERVERS -u root -p</span><br>
+<p class="code">CREATE USER 'postfix'@'WWW-HOST' IDENTIFIED BY 'PASSWORT';<br>GRANT USAGE ON *.* TO 'postfix'@'WWW-HOST' IDENTIFIED BY 'PASSWORT';<br>GRANT USAGE ON *.* TO 'postfix'@'MAIL-HOST' IDENTIFIED BY 'PASSWORT';<br>CREATE DATABASE IF NOT EXISTS `postfix`;<br>GRANT ALL PRIVILEGES ON `postfix`.* TO 'postfix'@'WWW-HOST';<br>GRANT ALL PRIVILEGES ON `postfix`.* TO 'postfix'@'MAIL-HOST';<br>FLUSH PRIVILEGES;</p>
+Trage bitte statt "PASSWORT" ein Benutzerpasswort ein für den Benutzer "POSTFIX". Die Daten brauchen wir später wieder für die Konfiguration von Dovecot.<br>Anstelle von WWW-HOST und MAIL-HOST trägst du die Hostnames ein, oder, was sicherer ist, die IP-Adressen. Wenn du Jails einsetzt, dann sind das die internen IPs.<br><br></li>
+<li>Nachdem die Datenbank angelegt ist, importieren wir noch das folgende Skript (<a href="../../files/serverzeit_v2/configs/sql-postfix.txt" target="_blank">SQL-Skript</a>) um die Tabellen anzulegen. Lade es hier herunter und am einfachsten importierst du es über phpMyAdmin oder oder folgenden Befehl:<br>
+<p class="code"># mysql -u postfix -p &lt; sql-postfix.txt</p>
+</li>
+<li>Jetzt müssen wir noch die Postfix-Konfigurationsdatei 'main.cf' anlegen bzw. anpassen.<br>
+<blockquote><a href="../../files/serverzeit_v2/configs/main.cf.txt" target="_blank">main.cf</a></blockquote>
+</li>
+</ol><!-- indexer::stop -->
+  </div>
+</article>
+ 
+
+	          </div>
+        
+      
+      <aside id="sidebar">
+        
+<!-- indexer::stop -->
+    <nav id="sub-navigation">
+    <ol class="level_1" id="sub-navigation-items">
+  
+    	  		<li class="first"><a href="../admins-haften.html" title="Admins haften" class="first">» Das Risiko eines Administrators</a></li>
+  	    	  		<li><a href="../installation.html" title="Installation">01 Installation</a></li>
+  	    	  		<li><a href="../grundlegendes.html" title="Grundlegendes">02 Grundlegendes</a></li>
+  	    	  		<li><a href="../software-raid-mit-gmirror.html" title="Software-RAID mit gmirror">03 Software-RAID</a></li>
+  	    	  		<li><a href="../zeitsynchronisation-per-ntp.html" title="Zeitsynchronisation per NTP">04 Zeitsynchronisation</a></li>
+  	    	  		<li><a href="../updates.html" title="Das System aktuell halten">05 Updates</a></li>
+  	    	  		<li><a href="../systemsicherheit.html" title="Systemsicherheit">06 Systemsicherheit</a></li>
+  	    	  		<li><a href="../firewall.html" title="Firewall mit pf">07 Firewall</a></li>
+  	    	  		<li><a href="../jails-mit-ezjail.html" title="Jails mit EzJail">08 Jails mit EzJail</a></li>
+  	    	  		<li><a href="../datenbankserver.html" title="Datenbankserver">09 Datenbankserver</a></li>
+  	    	  		<li><a href="../webserver.html" title="Webserver">10 Webserver</a></li>
+  	    	  		<li><a href="../reverse-proxy.html" title="Reverse-Proxy">11 Reverse-Proxy</a></li>
+  	    	  		<li><a href="../ftp-server.html" title="FTP-Server">12 FTP-Server</a></li>
+  	    	  		<li class="submenu trail"><a href="../e-mailserver.html" title="E-Mailserver" class="submenu trail">13 E-Mailserver</a>	<ol class="level_2">
+  
+    	  		<li class="active active first">Mail Transfer Agent: Postfix</li>
+  	    	  		<li class="sibling"><a href="dovecot.html" title="Mail Delivery Agent: Dovecot" class="sibling">Mail Delivery Agent: Dovecot</a></li>
+  	    	  		<li class="sibling"><a href="antivirus.html" title="Antivirus: ClamAV" class="sibling">Antivirus: ClamAV</a></li>
+  	    	  		<li class="sibling"><a href="antispam.html" title="Massnahmen gegen Spam" class="sibling">Massnahmen gegen Spam</a></li>
+  	    	  		<li class="sibling"><a href="jails-anpassen.html" title="Jails anpassen" class="sibling">Jails anpassen</a></li>
+  	    	  		<li class="sibling"><a href="domainkeys-mit-postfix-und-dkimproxy.html" title="DomainKeys mit Postfix und DKIMproxy" class="sibling">DKIM mit Postfix und DKIMproxy</a></li>
+  	    	  		<li class="sibling"><a href="emails-verschluesselt-uebertragen.html" title="Emails verschlüsselt übertragen" class="sibling">Emails verschlüsselt übertragen</a></li>
+  	    	  		<li class="sibling last"><a href="volltextsuche-fuer-dovecot.html" title="Volltextsuche für Dovecot" class="sibling last">Volltextsuche für Dovecot</a></li>
+  	  
+  </ol></li>
+  	    	  		<li><a href="../dns-server.html" title="DNS-Server">14 DNS-Server</a></li>
+  	    	  		<li><a href="../versionskontrolle.html" title="Versionskontrolle">15 Versionskontrolle</a></li>
+  	    	  		<li><a href="../itunes-server.html" title="iTunes-Server">16 iTunes-Server</a></li>
+  	    	  		<li><a href="../virtual-private-networks.html" title="Virtual Private Networks (VPN)">17 Virtual Private Networks</a></li>
+  	    	  		<li><a href="../samba-freigaben.html" title="Samba-Freigaben">18 Samba-Freigaben</a></li>
+  	    	  		<li><a href="../backup.html" title="Backup">19 Backup</a></li>
+  	    	  		<li class="last"><a href="../monitoring.html" title="Monitoring" class="last">20 Monitoring</a></li>
+  	  
+  </ol><!-- indexer::continue -->
+      </aside>
+
+                </div>
+    
+    <div class="ribbon right red" style="visibility:hidden">
+      <a href="../../das-ebook.html">Neue Auflage!</a>
+    </div>
+    
+        <footer id="footer-hidden"></footer>
+        
+    <!-- indexer::stop -->
+    <nav id="legal-links">
+      <ul>
+        <li><a href="../../impressum.html" title="Impressum">Impressum</a></li>
+        <li><a href="../../datenschutz.html" title="Datenschutz">Datenschutz</a></li>
+        <li><a href="../../sitemap.html" title="Sitemap">Sitemap</a></li>
+      </ul>
+        
+      <div class="copyright"> ein Projekt von Benedikt Niessen <em>powered by <strong>B</strong>#</em></div>
+    </nav>
+    <!-- indexer::continue -->
+
+  </div>
+
+  
+<script>setTimeout(function(){var e=function(e,t){try{var n=new XMLHttpRequest}catch(r){return}n.open("GET",e,!0),n.onreadystatechange=function(){this.readyState==4&&this.status==200&&typeof t=="function"&&t(this.responseText)},n.send()},t="system/cron/cron.";e(t+"txt",function(n){parseInt(n||0)<Math.round(+(new Date)/1e3)-86400&&e(t+"php")})},5e3);</script>
+
+<!-- Masha -->  
+<!--[IF IE]> 
+  <script type="text/javascript" src="http://serverzeit.de/files/serverzeit_v2/js/ierange.js" async defer></script> 
+<![ENDIF]-->
+<script type="text/javascript" src="../../files/serverzeit_v2/js/masha.min.js" async defer></script>
+<script type="text/javascript">
+  if(document.body.className.indexOf("mobile") == -1) {
+    if(window.addEventListener){     
+        window.addEventListener('load', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        }, false);
+    } else {
+        window.attachEvent('onload', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        });
+    }
+  }
+</script>
+  
+  <script>
+  new Request({
+    url:'system/html/cron.txt',
+    onComplete: function(txt) {
+      if (!txt) txt = 0;
+      if (parseInt(txt) < (Math.round(+new Date()/1000) - 300)) {
+        new Request({url:'cron.php'}).get();
+      }
+    }
+  }).get();
+  </script>
+
+    
+  <!-- Google Analytics --> 
+  <script type="text/javascript">
+    /*var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36693720-1']);
+    _gaq.push(['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();*/
+  </script>
+</body>
+</html>

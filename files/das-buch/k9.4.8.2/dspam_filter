@@ -1,0 +1,3 @@
+/^(spam|nospam)-(.+)$/   PREPEND To: ${2}
+/^(spam|nospam)(.+)$/   OK
+/./   FILTER dspam-smtp:[10.0.0.3]:10025

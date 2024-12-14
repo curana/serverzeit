@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <title>Portknocking: knockd - Tutorials und Anleitungen zu FreeBSD, Servern & Diensten :: serverzeit.de</title>
+  <base href="">
+
+  <meta charset="utf-8">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="">
+  <meta name="keywords" content="Portknocking, knockd, TCP, UDP, Firewall, pf">
+  <meta name="google-site-verification" content="yghLhV7EXvN6dHIltCHFyKpGePQ033_oRI7eMxWbQbg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="../../files/serverzeit_v2/images/favicon.ico" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic%7CDroid+Sans:400%7CUbuntu:400,400italic,300,300italic,700,700italic%7CUbuntu+Mono">
+<link rel="stylesheet" href="../../assets/css/5ee243558dbc.css">
+    <!--[if (lt IE 9)]>
+   <script type="text/javascript" src="http://ie-print-protector.googlecode.com/svn/trunk/javascript/iepp.min.js"></script>
+<![endif]-->
+</head>
+
+<body id="top" class="unix other  print">  
+  <div id="wrapper">
+  
+        
+<!-- indexer::stop -->
+  <div id="searchbar-frame">
+    <div id="searchbar">        
+      
+
+      <div class="searchfield">
+        <form action="http://serverzeit.de/suche" method="get" id="search" enctype="application/x-www-form-urlencoded">
+          <label for="searchfield">Suche:</label>
+          <span><input type="text" name="keywords" id="searchfield" value="" required /></span>
+          <input type="submit" name="perform-search" value="GO" />
+          
+                    
+<input type="hidden" name="date" value="2024-12-12">
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<!-- indexer::continue -->
+
+<!-- indexer::stop -->
+  <!-- indexer::stop -->
+<header>
+  <a href="../../index.html"><img src="../../files/serverzeit_v2/images/logo.png" style="margin-top:-14px" alt="serverzeit.de - Logo" title="serverzeit.de - Logo" /></a>
+  <nav>
+    <ul class="level_1" id="main-navigation">
+              <li class="first"><a href="../../index.html" title="Startseite" class="first">Startseite</a></li>
+                  <li class="trail"><a href="../../tutorials.html" title="Tutorials" class="trail">Tutorials</a></li>
+                  <li><a href="../../das-ebook.html" title="Das Buch">Das Buch</a></li>
+                  <li class="last"><a href="../../aus-zweiter-hand.html" title="Aus zweiter Hand" class="last">Aus zweiter Hand</a></li>
+            </ul>
+  </nav>
+</header>
+<!-- indexer::continue --><!-- indexer::continue -->
+ 
+    
+    
+    <div id="main">    
+      <div id="content-wrapper">
+	    
+<article itemscope itemtype="http://schema.org/Article">
+
+
+<div class="article-header">
+  <div class="article-title">
+    <h1 class="ce_headline first">Portknocking: knockd</h1>
+  </div>
+</div>
+
+<!-- indexer::continue -->
+<div class="article-text" itemprop="articleBody" id="article"><!-- indexer::continue -->
+
+<h2>Installation</h2>
+<p>Zunächst müssen wir mal den Portknocking-Server installieren, das machen wir, wie fast immer, aus den Ports:</p>
+<pre><code># cd /usr/ports/security/knock/ &amp;&amp; make install clean</code></pre>
+<p>Bei der Konfiguration können wir den Client erstmal deaktivieren, da wir die Paketabfolge von unserem Client, und nicht vom Server direkt abschicken werden. Bevor wir uns aber an die Konfiguration machen, schauen wir uns erstmal die wichtigsten Konfigurationsparameter an, die wir in der '<em>/etc/rc.conf</em>' in den Parameter "<em>knockd_flags</em>" eintragen.</p>
+<ul>
+<li>-i: Damit legen wir fest auf welchem Interface der Server lauscht.</li>
+<li>-d: Startet den Dienst im Hintergrund als Daemon</li>
+<li>-v: Verbose-Mode für Status-Meldungen</li>
+</ul><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>Konfiguration</h2>
+<p>Um den Portknocking-Server starten zu können, tragen wir ihn in die '/etc/rc.conf' ein:</p>
+<pre><code>knockd_enable="YES"</code></pre>
+<p>Nachdem wir den Dienst grundsätzlich konfiguriert haben, können wir nun die verschiedenen Dienste bzw. Ports konfigurieren, die bei bestimmten Paketfolgen geöffnet werden sollen, bzw. Befehle die dann ausgeführt werden sollen.</p>
+<p>Die Konfigurationsdatei '<em>/usr/local/etc/knockd.conf</em>' besteht aus mindestens zwei Bereichen, die mit Überschriften in eckigen Klammern eingeleitet werden. In den Bereich "<em>[options]</em>" werden die globalen Einstellungen geschrieben, die für alle Bereiche gelten sollen. Bei uns sieht dieser so aus:</p>
+<pre><code>[options]<br>logfile = /var/log/knockd.log<br>interface = rl0</code></pre><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>Firewall anpassen</h2>
+<p>Um pf-Regeln dynamisch zu laden, denn das ist ja das Ziel unseres Portknocking-Servers, bedienen wir uns ANCHORS, die wir im <a title="Firewall mit pf" href="../firewall.html">pf-Tutorial</a> vorgestellt haben. Wie das genau funktioniert kannst du dort nachlesen, ich gehe davon aus, dass du verstanden hast wie ANCHORS funktionieren.</p>
+<p>Alternativ, und etwas sicherer, wäre der Einsatz von TABLES. Angenommen wir haben folgende Regel in unser '<em>/etc/pf.conf</em>':</p>
+<pre><code>table &lt;ssh_allowed&gt; persist<br>pass in on rl0 from &lt;ssh_allowed&gt; to any port 22 keep state</code></pre>
+<p>Dann könnten wir mit dem Befehl</p>
+<pre><code>pfctl -t ssh_allowed -T add %IP%</code></pre>
+<p>lediglich die eigene IP für den SSH-Port (hier: 22) freischalten. Diesen würden wir dann anstelle von "<em>/sbin/pfctl -a open_ssh (...)</em>" im unten gelisteten Beispiel eintragen.</p>
+<p>Mit dem Befehl</p>
+<pre><code>pfctl -t ssh_allowed -T delete %IP%</code></pre>
+<p>wird die IP dann wieder "gesperrt".</p><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>Knockd-Regeln erstellen</h2>
+<p>Jetzt schreiben wir unseren ersten Konfigurationsteil für unseren ersten Port mit unserer ersten eigenen Abfolge...</p>
+<pre><code>[openssh]<br>sequence = 2772:udp,25:tcp,8080:tcp,666:udp,3732:tcp,53:udp,997:tcp<br>seq_timeout = 15<br>tcpflags = syn<br>start_command = /sbin/pfctl -a open_ssh -f /etc/pf_files/open_ssh.knockd<br>cmd_timeout = 15<br>stop_command = /sbin/pfctl -a open_ssh -F all</code></pre>
+<p>Aber was bedeuten die Parameter jetzt? Also der Reihe nach:</p>
+<ul>
+<li><em>sequence</em>: Hier geben wir eine Abfolge von Ports und das zugehörige Protokoll an, die als Schlüssel dienen. Hier also Port 2772 (UDP), dann Port 25 (TCP) usw.</li>
+<li><em>seq_timeout</em>:&nbsp;Zeitspanne die zur Verfügung steht die gesamte Abfolge abzuspulen. Wird sie überschritten wird die bisher abgespielte Sequenz verworfen.</li>
+<li><em>tcpflags</em>:&nbsp;Die Pakete müssen diese Parameter gesetzt haben um akzeptiert zu werden.</li>
+<li><em>start_command</em>:&nbsp;Befehl der ausgeführt wird, wenn die Squenzen übereinstimmen, also hier PF-Regeln laden.</li>
+<li><em>cmd_timeout</em>:&nbsp;Zeitspanne bis der Befehl stop_command ausgeführt wird. Dieser ist nur dann erforderlich, wenn der Parameter stop_command gesetzt ist.</li>
+<li><em>stop_command</em>:&nbsp;Befehl der ausgeführt wird, nachdem die Zeitspanne cmd_timeout abgelaufen ist.</li>
+</ul><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>Handhabung</h2>
+<p>Jetzt müssen wir uns vor dem Start des Daemons noch den knockd-Client besorgen und richtig konfigurieren. Dann kann es losgehen. Den Client kriegst du auf der&nbsp;<a title="Knockd-Webseite" href="http://www.zeroflux.org/cgi-bin/cvstrac.cgi/knock/wiki">knockd-Website</a>. Der Aufruf ist ganz einfach. Du lädst dir die richtige Version für dein Betriebssystem herunter und rufst die Datei mit dem Zielhost und deiner gewählte "sequence" als Parameter auf, wobei du jedes ',' (Komma) durch eine Leerstelle ersetzt.</p>
+<p>Wenn du jetzt den Daemon aktivierst und mit dem Client die Sequenz an deinen Server schickst, wird "start_command" ausgeführt. Die Einsatzmöglichkeiten sind somit sehr vielfältig...</p><!-- indexer::stop -->
+  </div>
+</article>
+ 
+
+	          </div>
+        
+      
+      <aside id="sidebar">
+        
+<!-- indexer::stop -->
+    <nav id="sub-navigation">
+    <ol class="level_1" id="sub-navigation-items">
+  
+    	  		<li class="first"><a href="../admins-haften.html" title="Admins haften" class="first">» Das Risiko eines Administrators</a></li>
+  	    	  		<li><a href="../installation.html" title="Installation">01 Installation</a></li>
+  	    	  		<li><a href="../grundlegendes.html" title="Grundlegendes">02 Grundlegendes</a></li>
+  	    	  		<li><a href="../software-raid-mit-gmirror.html" title="Software-RAID mit gmirror">03 Software-RAID</a></li>
+  	    	  		<li><a href="../zeitsynchronisation-per-ntp.html" title="Zeitsynchronisation per NTP">04 Zeitsynchronisation</a></li>
+  	    	  		<li><a href="../updates.html" title="Das System aktuell halten">05 Updates</a></li>
+  	    	  		<li class="submenu trail"><a href="../systemsicherheit.html" title="Systemsicherheit" class="submenu trail">06 Systemsicherheit</a>	<ol class="level_2">
+  
+    	  		<li class="sibling first"><a href="ssh-konfigurieren-und-absichern.html" title="SSH konfigurieren &amp; absichern" class="sibling first">SSH konfigurieren & absichern</a></li>
+  	    	  		<li class="sibling"><a href="rootkit-scanner-installieren.html" title="Rootkit-Scanner installieren" class="sibling">Rootkit-Scanner installieren</a></li>
+  	    	  		<li class="active active">Portknocking: knockd</li>
+  	    	  		<li class="sibling"><a href="ids-snort.html" title="IDS: Snort" class="sibling">IDS: Snort</a></li>
+  	    	  		<li class="sibling"><a href="portscans-erkennen.html" title="Portscans erkennen" class="sibling">Portscans erkennen</a></li>
+  	    	  		<li class="sibling last"><a href="ids-mit-freebsd-update.html" title="IDS mit freebsd-update" class="sibling last">IDS mit freebsd-update</a></li>
+  	  
+  </ol></li>
+  	    	  		<li><a href="../firewall.html" title="Firewall mit pf">07 Firewall</a></li>
+  	    	  		<li><a href="../jails-mit-ezjail.html" title="Jails mit EzJail">08 Jails mit EzJail</a></li>
+  	    	  		<li><a href="../datenbankserver.html" title="Datenbankserver">09 Datenbankserver</a></li>
+  	    	  		<li><a href="../webserver.html" title="Webserver">10 Webserver</a></li>
+  	    	  		<li><a href="../reverse-proxy.html" title="Reverse-Proxy">11 Reverse-Proxy</a></li>
+  	    	  		<li><a href="../ftp-server.html" title="FTP-Server">12 FTP-Server</a></li>
+  	    	  		<li><a href="../e-mailserver.html" title="E-Mailserver">13 E-Mailserver</a></li>
+  	    	  		<li><a href="../dns-server.html" title="DNS-Server">14 DNS-Server</a></li>
+  	    	  		<li><a href="../versionskontrolle.html" title="Versionskontrolle">15 Versionskontrolle</a></li>
+  	    	  		<li><a href="../itunes-server.html" title="iTunes-Server">16 iTunes-Server</a></li>
+  	    	  		<li><a href="../virtual-private-networks.html" title="Virtual Private Networks (VPN)">17 Virtual Private Networks</a></li>
+  	    	  		<li><a href="../samba-freigaben.html" title="Samba-Freigaben">18 Samba-Freigaben</a></li>
+  	    	  		<li><a href="../backup.html" title="Backup">19 Backup</a></li>
+  	    	  		<li class="last"><a href="../monitoring.html" title="Monitoring" class="last">20 Monitoring</a></li>
+  	  
+  </ol><!-- indexer::continue -->
+      </aside>
+
+                </div>
+    
+    <div class="ribbon right red" style="visibility:hidden">
+      <a href="../../das-ebook.html">Neue Auflage!</a>
+    </div>
+    
+        <footer id="footer-hidden"></footer>
+        
+    <!-- indexer::stop -->
+    <nav id="legal-links">
+      <ul>
+        <li><a href="../../impressum.html" title="Impressum">Impressum</a></li>
+        <li><a href="../../datenschutz.html" title="Datenschutz">Datenschutz</a></li>
+        <li><a href="../../sitemap.html" title="Sitemap">Sitemap</a></li>
+      </ul>
+        
+      <div class="copyright"> ein Projekt von Benedikt Niessen <em>powered by <strong>B</strong>#</em></div>
+    </nav>
+    <!-- indexer::continue -->
+
+  </div>
+
+  
+<script>setTimeout(function(){var e=function(e,t){try{var n=new XMLHttpRequest}catch(r){return}n.open("GET",e,!0),n.onreadystatechange=function(){this.readyState==4&&this.status==200&&typeof t=="function"&&t(this.responseText)},n.send()},t="system/cron/cron.";e(t+"txt",function(n){parseInt(n||0)<Math.round(+(new Date)/1e3)-86400&&e(t+"php")})},5e3);</script>
+
+<!-- Masha -->  
+<!--[IF IE]> 
+  <script type="text/javascript" src="http://serverzeit.de/files/serverzeit_v2/js/ierange.js" async defer></script> 
+<![ENDIF]-->
+<script type="text/javascript" src="../../files/serverzeit_v2/js/masha.min.js" async defer></script>
+<script type="text/javascript">
+  if(document.body.className.indexOf("mobile") == -1) {
+    if(window.addEventListener){     
+        window.addEventListener('load', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        }, false);
+    } else {
+        window.attachEvent('onload', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        });
+    }
+  }
+</script>
+  
+  <script>
+  new Request({
+    url:'system/html/cron.txt',
+    onComplete: function(txt) {
+      if (!txt) txt = 0;
+      if (parseInt(txt) < (Math.round(+new Date()/1000) - 300)) {
+        new Request({url:'cron.php'}).get();
+      }
+    }
+  }).get();
+  </script>
+
+    
+  <!-- Google Analytics --> 
+  <script type="text/javascript">
+    /*var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36693720-1']);
+    _gaq.push(['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();*/
+  </script>
+</body>
+</html>

@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <title>Neuigkeiten-Archiv - Tutorials und Anleitungen zu FreeBSD, Servern & Diensten :: serverzeit.de</title>
+  <base href="">
+
+  <meta charset="utf-8">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="Dies ist das Nachrichtenarchiv von serverzeit.de">
+  <meta name="keywords" content="Archiv, FreeBSD, News, Nachrichten, Neuigkeiten, serverzeit.de, Blog, Freshports, Ports">
+  <meta name="google-site-verification" content="yghLhV7EXvN6dHIltCHFyKpGePQ033_oRI7eMxWbQbg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="files/serverzeit_v2/images/favicon.ico" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic%7CDroid+Sans:400%7CUbuntu:400,400italic,300,300italic,700,700italic%7CUbuntu+Mono">
+<link rel="stylesheet" href="assets/css/5ee243558dbc.css">
+    <!--[if (lt IE 9)]>
+   <script type="text/javascript" src="http://ie-print-protector.googlecode.com/svn/trunk/javascript/iepp.min.js"></script>
+<![endif]-->
+</head>
+
+<body id="top" class="unix other  print">  
+  <div id="wrapper">
+  
+        
+<!-- indexer::stop -->
+  <div id="searchbar-frame">
+    <div id="searchbar">        
+      
+
+      <div class="searchfield">
+        <form action="http://serverzeit.de/suche" method="get" id="search" enctype="application/x-www-form-urlencoded">
+          <label for="searchfield">Suche:</label>
+          <span><input type="text" name="keywords" id="searchfield" value="" required /></span>
+          <input type="submit" name="perform-search" value="GO" />
+          
+                    
+<input type="hidden" name="date" value="2024-12-12">
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<!-- indexer::continue -->
+
+<!-- indexer::stop -->
+  <!-- indexer::stop -->
+<header>
+  <a href="index.html"><img src="files/serverzeit_v2/images/logo.png" style="margin-top:-14px" alt="serverzeit.de - Logo" title="serverzeit.de - Logo" /></a>
+  <nav>
+    <ul class="level_1" id="main-navigation">
+              <li class="trail first"><a href="index.html" title="Startseite" class="trail first">Startseite</a></li>
+                  <li><a href="tutorials.html" title="Tutorials">Tutorials</a></li>
+                  <li><a href="das-ebook.html" title="Das Buch">Das Buch</a></li>
+                  <li class="last"><a href="aus-zweiter-hand.html" title="Aus zweiter Hand" class="last">Aus zweiter Hand</a></li>
+            </ul>
+  </nav>
+</header>
+<!-- indexer::continue --><!-- indexer::continue -->
+ 
+    
+    
+    <div id="main">    
+      <div id="content-wrapper">
+	    
+<article itemscope itemtype="http://schema.org/Article">
+
+
+<div class="article-header">
+  <div class="article-title">
+          <h1 itemprop="headline">Neuigkeiten aus 2012</h1>
+      </div>
+</div>
+
+<div class="article-text" itemprop="articleBody" id="article">
+  <!-- indexer::continue -->
+  <!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/kvm-turboboost-dank-virtio.html" class="news-h2"><span class="news_date">20. Dez.</span> KVM-Turboboost dank Virtio</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-12-20T10:41:00+01:00">2012-12-20</time></p>
+    
+    
+  <p>Heute habe ich testweise einen vServer der EDIS GmbH auf Virtio umgestellt. Das Ergebnis ist beeindruckend, aber seht selbst. Das Virtio-Kernelmodul kann sehr einfach über den Port&nbsp;<em>emulators/virtio-kmod</em> installiert werden. Wie das Modul konfiguriert werden muss, wird während der Installation angezeigt.</p>
+<p><strong>ACHTUNG:</strong> Euer Provider muss Virtio auf dem Host-System unterstützen und das Backup nicht vergessen!</p>
+<p><strong>FreeBSD 9.0-RELEASE AMD64 ohne Virtio</strong></p>
+<pre><code>Seek times:
+	Full stroke:	  250 iter in   0.089266 sec =    0.357 msec
+	Half stroke:	  250 iter in   0.081558 sec =    0.326 msec
+	Quarter stroke:	  500 iter in   0.137294 sec =    0.275 msec
+	Short forward:	  400 iter in   0.079227 sec =    0.198 msec
+	Short backward:	  400 iter in   0.083293 sec =    0.208 msec
+	Seq outer:	 2048 iter in   0.398710 sec =    0.195 msec
+	Seq inner:	 2048 iter in   0.482524 sec =    0.236 msec
+Transfer rates:
+	outside:       102400 kbytes in   0.308563 sec =   331861 kbytes/sec
+	middle:        102400 kbytes in   0.301678 sec =   339435 kbytes/sec
+	inside:        102400 kbytes in   0.294822 sec =   347328 kbytes/sec</code></pre>
+<p><strong>FreeBSD 9.0-RELEASE AMD64 mit Virtio</strong></p>
+<pre><code>Seek times:
+	Full stroke:	  250 iter in   0.021244 sec =    0.085 msec
+	Half stroke:	  250 iter in   0.020751 sec =    0.083 msec
+	Quarter stroke:	  500 iter in   0.047370 sec =    0.095 msec
+	Short forward:	  400 iter in   0.039110 sec =    0.098 msec
+	Short backward:	  400 iter in   0.046626 sec =    0.117 msec
+	Seq outer:	 2048 iter in   0.222976 sec =    0.109 msec
+	Seq inner:	 2048 iter in   0.209125 sec =    0.102 msec
+Transfer rates:
+	outside:       102400 kbytes in   0.127705 sec =   801848 kbytes/sec
+	middle:        102400 kbytes in   0.146982 sec =   696684 kbytes/sec
+	inside:        102400 kbytes in   0.087290 sec =  1173101 kbytes/sec</code></pre></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/ab-sofort-auch-als-epubmobi-erhaeltlich.html" class="news-h2"><span class="news_date">06. Dez.</span> Ab sofort auch als EPub/Mobi erhältlich</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-12-06T09:28:00+01:00">2012-12-06</time></p>
+    
+    
+  <p>Ab sofort ist das E-Book "Der eigene Server mit FreeBSD 9 - Konfiguration, Sicherheit und Pflege" auch im EPub und Mobi-Format erhältlich.</p>
+<p>Wer das Buch bereits im PDF-Format erstanden hat und die EPub-Version wünscht, möchte mich bitte per Email kontaktieren.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/ifconfig_lo_alias0-syntax-ersetzen.html" class="news-h2"><span class="news_date">04. Dez.</span> ifconfig_lo_alias0-Syntax ersetzen</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-12-04T10:01:00+01:00">2012-12-04</time></p>
+    
+    
+  <p>Wer mehrere IP-Adressen (so genannte Aliase) unter FreeBSD für ein Interface konfigurieren möchte, der hat bisher meist die Syntax <em>ifconfig_&lt;Interface&gt;_alias&lt;n&gt;</em> verwendet. Diese funktioniert und ist für wenige Aliase auch übersichtlich genug.</p>
+<p>Das Problem ist allerdings, wenn viele IP-Adressen genutzt werden. Hier wird die Verwaltung dann erheblich aufwendiger, da der Zähler <em>&lt;n&gt;</em> keine Lücken erlaubt. Gibt es demnach folgende Zeilen in der Konfiguration, so werden nur die ersten beiden Aliase angelegt:</p>
+<pre><code>ifconfig_lo0_alias<strong>0</strong>="inet 127.0.0.2/32"<br>ifconfig_lo0_alias<strong>1</strong>="inet 127.0.0.3/32"<br>ifconfig_lo0_alias<strong>3</strong>="inet 127.0.0.4/32"<br>ifconfig_lo0_alias<strong>4</strong>="inet 127.0.0.5/32"</code></pre>
+<p>Es gibt daher eine alternative Syntax, die das Verwalten von Aliasen stark vereinfacht:</p>
+<pre><code>ipv4_addrs_lo0="127.0.0.2-5/32 127.0.0.10/32"</code></pre></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/willkommen-bei-host-europe.html" class="news-h2"><span class="news_date">27. Nov.</span> Willkommen bei Host Europe</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-11-27T11:33:00+01:00">2012-11-27</time></p>
+    
+    
+  <p>Mein Test-Zeitraum zum <a title="Host Europe: Rootserver M" href="aus-zweiter-hand/hosteurope-de.html">Rootserver M von Host Europe</a> ist beendet. Meine Eindrücke und Testergebnisse habe ich einem kurzen Review dazu festgehalten</p>
+<p>Aktuell erlässt <a title="Host Europe" href="http://www.hosteurope.de/">Host Europe</a> die Einrichtungsgebühr von 99 Euro, daher solltet ihr euch das genauer anschauen und gut überlegen. Diese Aktion gilt meines Wissens nach noch bis zum 31.12.2012.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/kommentarfunktion-in-den-news-voruebergehend-aus.html" class="news-h2"><span class="news_date">26. Nov.</span> Kommentarfunktion in den News vorübergehend aus</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-11-26T10:02:00+01:00">2012-11-26</time></p>
+    
+    
+  <p>Die Kommentarfunktion in den News musste ich vorübergehend abschalten, da mein CMS durcheinander kommt und dann unter allen News im Detail sämtliche Kommentare zu News anzeigt.</p>
+<p>Solange ich hierzu keine Lösung habe, schalte ich die Funktion ab. Ich arbeite aber daran. Versprochen.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/http-strict-transport-security-hsts-in-nginx.html" class="news-h2"><span class="news_date">21. Nov.</span> HTTP-Strict Transport Security &#40;HSTS&#41; in nginx</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-11-21T22:37:00+01:00">2012-11-21</time></p>
+    
+    
+  <p>Heute habe ich einen Artikel auf <a title="Heise.de" href="http://www.heise.de/netze/meldung/HTTP-Strict-Transport-Security-als-Internet-Standard-1754184.html">heise.de</a> gelesen, der ein paar Informationen zu HTTP-Strict Transport Security gibt. Da ich es schon seit längerem unterstütze, habe ich nun diesen Artikel zum Anlass genommen, ein kleines Tutorial dazu zu schreiben.</p>
+<p>Die Umsetzung in nginx ist wirklich einfach. Zwar braucht nicht jeder diese HSTS-Unterstützung (sie macht auch nicht für alle Sinn), dennoch sollte sich jeder kurz überlegen, ob es für seine Domain Sinn macht und ggf. aktivieren. Wie das geht zeige ich euch hier: <a href="tutorials/webserver/nginx/hsts-mit-nginx.html">HTTP-Strict Transport Security unter nginx</a>.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/server-der-freebsd-foundation-kompromittiert.html" class="news-h2"><span class="news_date">18. Nov.</span> Server der FreeBSD Foundation "kompromittiert"</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-11-18T23:38:00+01:00">2012-11-18</time></p>
+    
+    
+  <p>Am vergangenen Freitag wurde bekannt, dass Unbefugte <a title="FreeBSD.org" href="http://www.freebsd.org/news/2012-compromise.html">Zugriff auf zwei Server der FreeBSD Foundation</a> hatten, und zwar im Zeitraum vom 19. September bis zum 11. November 2012. Die beiden betroffenen Server waren Bestandteil des Clusters, welches sich um die Paketierung von Ports kümmert.</p>
+<p>Der Zugriff war nicht etwa aufgrund einer Sicherheitslücke in FreeBSD möglich, sondern über den Zugriffsschlüssel eines Entwicklers, der für den Zugriff auf diese Server berechtigt war.&nbsp;Im Zuge der Untersuchungen wurden alle Server, Pakete, Ports, das Basissystem etc. analysiert und keine Veränderungen oder Manipulationen festgestellt.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/dkim-unterstuetzung-fuer-postfix.html" class="news-h2"><span class="news_date">17. Nov.</span> DKIM-Unterstützung für Postfix</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-11-17T19:50:00+01:00">2012-11-17</time></p>
+    
+    
+  <p>Angekündigt hatte ich es bereits, nun ist es so weit. Das "fehlende" Tutorial, dass <a href="tutorials/e-mailserver/domainkeys-mit-postfix-und-dkimproxy/dkim-signierung.html">DKIM- und Domainkey-Unterstützung in Postfix</a> integriert, ist online. Es ist nicht ganz leicht zu verstehen und durchaus anspruchsvoll, aber ich denke, dass es halbwegs verständlich ist.</p>
+<p>Bei Unklarheiten bitte über die Kommentarfunktion die richtigen Fragen stellen&nbsp;<img title="Lächelnd" src="http://serverzeit.de/plugins/tinyMCE/plugins/emotions/img/smiley-smile.gif" alt="Lächelnd"></p>
+<p><strong>UPDATE:</strong> Und weils so schön war, hier noch ein <a href="tutorials/e-mailserver/emails-verschluesselt-uebertragen.html">Kurztutorial zur Aktivierung von ESMTPS</a>, einer SMTP-Erweiterung zur verschlüsselten Übertragung von Emails zwischen Servern.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/root-server-von-host-europe.html" class="news-h2"><span class="news_date">15. Nov.</span> Root-Server von Host Europe</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-11-15T17:18:00+01:00">2012-11-15</time></p>
+    
+    
+  <p>Für ein Review habe ich mir einen Root-Server M bei Host Europe bestellt. Die haben derzeit eine Aktion, dass sie die Einrichtungsgebühr erlassen.</p>
+<p>Insgesamt wirkt das ganze sehr professionell bisher, aber es dauert ewig bis der Server bereit steht. Vor drei Tagen habe ich den Server bestellt. Dann kam erst ein Aktivierungscode per Post, um meine Adresse zu prüfen (gute Idee). Dann habe ich meinen Account aktiviert und jetzt dauert es ca. 4-5 Werktage, bis mein Server aktiv ist.</p>
+<p>Ich habe hierfür ehrlich gesagt wenig Verständnis (nicht für die Aktivierungscode-Geschichte), denn es handelt sich um einen vollvirtualisierten Server. Warum braucht der 4-5 Werktage, bis er eingerichtet ist?</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/dkim-validierung-fuer-postfix-mit-dspam.html" class="news-h2"><span class="news_date">14. Nov.</span> DKIM-Validierung für Postfix mit DSPAM</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-11-14T23:22:00+01:00">2012-11-14</time></p>
+    
+    
+  <p>Vor wenigen Tagen hatte ich bereits ein neues Tutorial zum Thema Email-Server angekündigt. Hier ist es nun: <a href="tutorials/e-mailserver/domainkeys-mit-postfix-und-dkimproxy.html">DKIM-Validierung für Postfix</a> in Verbindung mit DSPAM und DKIMproxy.</p>
+<p>Die Anleitung zur DKIM-Signierung von Nachricht auf dem Server werde ich in den nächsten Tagen noch veröffentlichen, es ist aber noch nicht ganz fertig.</p>
+<p>Viel Spass beim Lesen und Umsetzen.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/dkim-domainkey-validierung-mit-postfix-in-kuerze.html" class="news-h2"><span class="news_date">12. Nov.</span> DKIM: DomainKey-Validierung mit Postfix in Kürze</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-11-12T14:49:00+01:00">2012-11-12</time></p>
+    
+    
+  <p>In letzter Zeit beschäftige ich mich intensiver mit Emails, Sendability und dem SMTP-Protokoll. Diesen Umstand habe ich zum Anlass genommen ein Ergänzungstutorial für <a href="das-ebook.html">mein Buch</a> zu verfassen. Der erste Teil dieses Kapitels wird sich mit der reinen Validierung von <a title="Wikipedia: DomainKeys" href="http://de.wikipedia.org/wiki/Domainkeys">DomainKeys</a> (DKIM) befassen. Etwas später folgt dann noch die Signierung in Postfix.</p>
+<p>Das Tutorials wird sicherlich hier frei veröffentlicht, baut allerdings auf den Gegebenheiten auf, die im Buch beschrieben sind. Im Klartext bedeutet das: aus "Postfix + DSPAM + ClamAV" wird "Postfix + DSPAM + DKIM + ClamAV".</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/es-ist-zeit-fuer-ipv6.html" class="news-h2"><span class="news_date">06. Nov.</span> Es ist Zeit für IPv6</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-11-06T22:03:00+01:00">2012-11-06</time></p>
+    
+    
+  <p>Es ist soweit. Die Zeit ist reif für IPv6. Aus diesem Anlass habe ich ein Tutorial verfasst, welches die <a title="IPv6 unter FreeBSD" href="tutorials/installation/ipv6-unter-freebsd.html">Konfiguration von IPv6 unter FreeBSD</a> beschreibt. Anhand dieser Anleitung sollte es jedem möglich sein IPv6 auf seinem Server zu konfigurieren.&nbsp;Geh diesen Schritt, bevor es zu spät ist!</p>
+<p>Welche Hürden musstest du bei der IPv6-Einführung nehmen? Teile deine Erfahrungen in über die Kommentar-Funktion im Tutorial.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/freebsd-8x-upgrade-auf-9x-mit-gmirror.html" class="news-h2"><span class="news_date">02. Nov.</span> FreeBSD 8.x Upgrade auf 9.x mit gmirror</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-11-02T20:33:00+01:00">2012-11-02</time></p>
+    
+    
+  <p>Heute hat mich ein dringender Supportfall erreicht. Es ging darum, dass ein FreeBSD 8.3, das auf zwei per gmirror gespiegelten Festplatten installiert war, auf FreeBSD 9.0 upgegradet werden sollte. Wer mein Buch gelesen hat weiss es, dieser Versuch wird zu 99% schiefgehen.</p>
+<p>Wenn solch eine Konstellation besteht und auf FreeBSD 9.0 aktualisiert werden soll, dann unbedingt vorher das Software-RAID sauber auflösen und anschliessend neu aufbauen, allerdings nicht für die gesamte Festplatte, sondern für die einzelnen Partitionen getrennt.</p>
+<p>Ein paar mehr Details und Infos wie ihr das System dennoch booten könnt findet ihr in den <a title="FreeBSD 9.0 Release-Notes" href="http://www.freebsd.org/releases/9.0R/relnotes-detailed.html#AEN1277">Release-Notes</a>. Der Integritycheck kann auch dauerhaft deaktiviert werden, ist aber eher als Notlösung für den Moment zu sehen und nicht als dauerhafte Korrektur. Das Lesen der Release-Notes <strong>VOR</strong> dem Umstieg lohnt sich immer.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/webtropia-wirklich-interessante-angebote.html" class="news-h2"><span class="news_date">31. Okt.</span> Webtropia: Wirklich interessante Angebote</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-10-31T13:30:00+01:00">2012-10-31</time></p>
+    
+    
+  <p><a title="Webtropia" href="http://www.webtropia.com/">Webtropia</a> arbeitet momentan stark am Produktportfolio und bietet aktuell wirklich interessante Produkte zu fairen Preisen an. Zwar muss man drauf achten welche Laufzeit gewählt wird (aufpreispflichtig), aber die Hardware überzeugt.</p>
+<p>Die Erfahrungen die ich bislang mit den Webtropia Dedicated Servern gemacht habe sind wirklich gut. Das iLo-Interface ist wirklich sehr komfortabel. Einfach mal vorbeischauen und vergleichen.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/unbound-ein-eigener-nameserver.html" class="news-h2"><span class="news_date">28. Okt.</span> Unbound: Ein eigener Nameserver</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-10-28T05:17:00+01:00">2012-10-28</time></p>
+    
+    
+  <p>Heute habe ich einen Artikel fertiggestellt, den ich schon seit Längerem veröffentlichen wollte: "<a title="Unbound: Der eigene DNS-Server" href="tutorials/dns-server.html">Unbound: Der eigene DNS-Server</a>". Und zwar geht es hierbei um die Installation und Konfiguration eines eigenen Nameservers, der es erlaubt aus einem <em>10.0.0.1</em> ein <em>mysql.local</em> zu machen.</p>
+<p>Der Artikel beschreibt recht knapp, wie der Nameserver Unbound lokal auf dem eigenen Server betrieben werden kann. Ich kann diese Lösung nur jedem empfehlen, da aus eigener Erfahrung das Kopieren von hosts-Dateien fehleranfällig ist.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/bsd-magazine-der-jahresrueckblick.html" class="news-h2"><span class="news_date">27. Sep.</span> BSD Magazine - Der Jahresrückblick</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-09-27T15:25:00+02:00">2012-09-27</time></p>
+    
+    
+  <p>Heute hat mir&nbsp;Patrycja vom <a title="BSD Magazine" href="http://bsdmag.org">BSD Magazine</a> geschrieben und mich darauf hingewiesen, dass mein Artikel über <a title="NAXSI" href="http://code.google.com/p/naxsi/">NAXSI</a>, einer Web Application Firewall für nginx, im Jahresrückblick "Last Year of BSD Security" enthalten ist. Das freut mich natürlich sehr.</p>
+<p>Falls du den Artikel noch nicht gelesen hast, solltest du das unbedingt tun&nbsp;<img title="Lächelnd" src="http://serverzeit.de/plugins/tinyMCE/plugins/emotions/img/smiley-smile.gif" alt="Lächelnd">. Der Rückblick des <a title="BSD Magazine" href="http://bsdmag.org">BSD Magazine</a> enthält zahlreiche Tutorials und interessante Berichte über Sicherheit unter BSD. Somit zählt es fast zur Pflichtlektüre.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/online-backup-ein-paar-anbieter-im-vergleich.html" class="news-h2"><span class="news_date">26. Sep.</span> Online-Backup: Ein paar Anbieter im Vergleich</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-09-26T12:41:00+02:00">2012-09-26</time></p>
+    
+    
+  <p>Datensicherung ist wichtig, das wissen heute glaube ich alle. Das gilt aber nicht nur für deine Server, sondern auch für dein Notebook, dein Smartphone usw. Für das iPhone bietet Apple eine Backuplösung via iCloud an, wie es bei Android aussieht weiss ich leider nicht.</p>
+<p>Für den Mac gibt es das berühmte Timemachine, welches wirklich einfach in der Handhabung ist und ausgezeichnete Dienste verrichtet. Timemachine gibt es allerdings nur für den Mac und sichert nur auf USB-Festplatten oder NAS-Systeme. Was also tun, wenn kein Zugriff auf das NAS-System möglich ist? Was ist, wenn die USB-Festplatte kaputt geht oder samt Notebook geklaut wird?</p>
+<p>Interessante Alternative ist ein Online-Backup. Welche grossen Anbieter es gibt und welchen Eindruck ich habe, möchte ich dir in diesem Beitrag vermitteln.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/mein-gastartikel-auf-codegefluesterde.html" class="news-h2"><span class="news_date">12. Sep.</span> Mein Gastartikel auf codegefluester.de</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-09-12T10:54:00+02:00">2012-09-12</time></p>
+    
+    
+  <p>Heute hat Björn Kaiser meinen Gastartikel "<a title="Codegefluester.de" href="http://www.codegefluester.de/blog/2012/09/10-gruende-warum-freebsd-das-bessere-server-betriebssystem-ist/" target="_blank">10 Gründe, warum FreeBSD das bessere Server-Betriebssystem ist</a>" in seinem Blog auf <a title="Björn Kaiser" href="http://codegefluester.de" target="_blank">codegefluester.de</a> veröffentlicht. Björn ist iOS- und Web-Entwickler und bloggt regelmässig über seinen Arbeitsalltag, Neuigkeiten im Bereich Web-Geschehen und verwandte Themen.</p>
+<p>Danke Björn für die Gelegenheit&nbsp;<img title="Lächelnd" src="http://serverzeit.de/plugins/tinyMCE/plugins/emotions/img/smiley-smile.gif" alt="Lächelnd"></p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/endlich-spricht-einer-aus-was-alle-denken.html" class="news-h2"><span class="news_date">30. Aug.</span> Endlich spricht einer aus was alle denken.</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-08-30T17:27:00+02:00">2012-08-30</time></p>
+    
+    
+  <p>Endlich spricht einer aus was alle denken. Was passiert mit den Daten in der Cloud wenn es regnet? Ja was passiert dann? Dieses Youtube Video gibt Auskunft von jemandem, der es wissen muss:&nbsp;<a href="http://youtu.be/AnxrJiS5uKU">http://youtu.be/AnxrJiS5uKU</a></p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/literaturempfehlungen-auf-serverzeitde.html" class="news-h2"><span class="news_date">30. Aug.</span> Literaturempfehlungen auf serverzeit.de</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-08-30T11:05:00+02:00">2012-08-30</time></p>
+    
+    
+  <p>Mir ist beim Aufräumen in den letzten Tagen klar geworden, wie viele Bücher und Artikel ich zu FreeBSD, Servern und Serverdiensten besitze und auch bereits gelesen habe. Daher habe ich mich entschlossen meine Eindrücke von Büchern zu veröffentlichen, sodass anderen die Kaufentscheidung evtl. leichter fällt.</p>
+<p>Vielleicht ist ja auch ein Buch für euch dabei? <a title="Literatur" href="aus-zweiter-hand/literatur.html">Der Bereich Literatur</a> ist unter "<a title="Aus zweiter Hand" href="aus-zweiter-hand.html">Aus zweiter Hand</a>" aufgeführt und ist nach Themen sortiert und kategorisiert, sodass ihr euch dort schnell zurecht findet. Anfänglich ist der Umfang natürlich noch nicht so gross, aber das wird schon.</p>
+<p>Solltet ihr Buchempfehlungen haben, schickt mir den Titel des Buchs und ich versuche ein Rezensionsexemplar zu erhalten.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/ssds-im-raid-was-muss-ich-beachten.html" class="news-h2"><span class="news_date">22. Aug.</span> SSDs im RAID. Was muss ich beachten?</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-08-22T23:03:00+02:00">2012-08-22</time></p>
+    
+    
+  <p>SSDs werden grösser, zuverlässiger und günstiger. Damit wird es auch interessanter über den Einsatz von SSDs in Servern nachzudenken. Natürlich möchte ich als Betreiber kein Ausfallrisiko in Kauf nehmen.</p>
+<p>Heute gibt es allerdings noch keine RAID-Controller&nbsp;(mir sind zumindest keine bekannt), die den bekannten TRIM-Befehl unterstützen. Bedeutet das nun, dass ich zwar SSDs im RAID einsetzen kann, diese auf absehbare Zeit aber langsamer werden?</p>
+<p>Nein, das bedeutet es nicht. Es gibt Möglichkeiten und Wege dies zu verhindern. Wie das geht schauen wir uns in diesem neuen Tutorial an: <a title="SSDs im RAID richtig konfigurieren" href="tutorials/software-raid-mit-gmirror/ssds-im-raid-richtig-konfigurieren.html">SSDs im RAID richtig konfigurieren</a></p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/leser-feedback-erwuenscht.html" class="news-h2"><span class="news_date">13. Aug.</span> Leser-Feedback erwünscht</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-08-13T16:34:00+02:00">2012-08-13</time></p>
+    
+    
+  <p>Seit der Veröffentlichung meines Buches habe ich bereits einiges Feedback erhalten, was mich sehr gefreut hat. Auch weiterhin ermutige ich meine Leser mir zu schreiben und ihre Kritik bzw. ihr Lob an mich zu richten.&nbsp;Interessante Fragen und meine Antworten darauf veröffentliche ich ab sofort unter "<a title="Feedback" href="das-buch/feedback.html">Feedback</a>".</p>
+<p>Ich arbeite auch an einer Art Mailingliste, sodass Interessierte sich über Neuerungen auch per E-Mail informieren lassen können.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/datafabrikde-im-test.html" class="news-h2"><span class="news_date">03. Aug.</span> datafabrik.de im Test</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-08-03T11:12:00+02:00">2012-08-03</time></p>
+    
+    
+  <p>Heute habe ich meinen Testbericht zu <a title="datafabrik.de im Test" href="aus-zweiter-hand/datafabrik-de.html">datafabrik.de</a> veröffentlicht. Mir gefällt das Angebot sehr gut und auch der Eindruck, den Systemlandschaft und Mitarbeiter auf mich machen, sind sehr gut. Auf jeden Fall einen Blick wert.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/hetzner-bietet-freebsd-90-als-image.html" class="news-h2"><span class="news_date">31. Juli</span> Hetzner bietet FreeBSD 9.0 als Image</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-07-31T13:24:00+02:00">2012-07-31</time></p>
+    
+    
+  <p>Lange habe ich nicht mehr reingeschaut, aber heute war es mal wieder so weit. Hetzner bietet ein FreeBSD 9.0 Image im FreeBSD Rescue-System an. Das ist mir persönlich sehr wichtig, da die aktuelle ZFS-Version von FreeBSD 8.x nicht unterstützt wird.</p>
+<p>Bald gibt es dann noch einen neuen Test des EX8S von Hetzner, allerdings sind die Tests hier schwer vergleichbar, da es sich um Individualsysteme handelt. Ich habe einen mit zwei Intel SSDs. Aber dazu dann bald mehr.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/commit-des-tages.html" class="news-h2"><span class="news_date">30. Juli</span> Commit des Tages</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-07-30T17:48:00+02:00">2012-07-30</time></p>
+    
+    
+  <p>"Ohne Worte." - <a href="https://github.com/felixge/node-mysql/commit/0cb9fe41339706ce9e20da56d1bf97ca188862fb">node-mysql</a></p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/kaufen-statt-bestellung-abschicken.html" class="news-h2"><span class="news_date">30. Juli</span> "Kaufen" statt "Bestellung abschicken"</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-07-30T16:57:00+02:00">2012-07-30</time></p>
+    
+    
+  <p>Zum 1. August 2012 tritt ein neues Gesetz in Deutschland in Kraft, welches die Beschriftung von Bestell-Buttons vorschreibt. Aus diesem Grunde habe ich die Beschriftung des Bestell-Buttons von "Bestellung abschicken" in "Kaufen" geändert. Ich bin mir allerdings nicht sicher, ob das überhaupt nötig war, da ich nur gegen Vorkasse liefere. Aber sicher ist sicher&nbsp;<img title="Zwinkernd" src="http://serverzeit.de/plugins/tinyMCE/plugins/emotions/img/smiley-wink.gif" alt="Zwinkernd"></p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/kernel-panic-unter-freebsd-9-mit-pf.html" class="news-h2"><span class="news_date">06. Juli</span> Kernel Panic unter FreeBSD 9 mit PF</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-07-06T14:05:00+02:00">2012-07-06</time></p>
+    
+    
+  <p>Anscheinend kommt es zu einer Kernel Panic, wenn versucht wird eine PF-Table mit mehr Adressen zu befüllen, als mit dem Parameter <em>table-entries</em> festgelegt wurde. Dieser Wert liegt standardmässig bei 200.000. Die folgende Zeile in der <em>/etc/pf.conf</em> setzt das Limit auf 500.000.</p>
+<pre><code>set limit table-entries 500000</code></pre></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/beastiecloud-gibt-auf.html" class="news-h2"><span class="news_date">03. Juli</span> BeastieCloud gibt auf :&#40;</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-07-03T09:00:00+02:00">2012-07-03</time></p>
+    
+    
+  <p><a title="BeastieCloud" href="http://www.beastiecloud.de">BeastieCloud</a>&nbsp;war ein Cloud-Service, der virtuelle Server mit FreeBSD als Betriebssystem anbietet anbot. Heute habe ich leider die Nachricht erhalten, dass der Dienst aus wirtschaftlichen Gründen eingestellt wird. Das ist sehr schade, zeigt aber wie schwierig es heute ist, diese Art der Dienstleistung gewinnbringend anzubieten.</p>
+<p><a title="Aus zweiter Hand: BeastieCloud" href="http://serverzeit.de/aus-zweiter-hand/beastiecloud-de">Mein Test zu BeastieCloud</a> war durchaus positiv, aber das ist die Marktwirtschaft. Ich wünsche dem BeastieCloud-Team jedenfalls alles Gute für die Zukunft. Hoffentlich bringen Sie irgendwann andere tolle Dienste mit FreeBSD auf den Markt.</p>
+<p><strong>UPDATE:</strong> Zwar liegt mir die E-Mail vor, auf der Webseite ist davon allerdings (noch) nicht die Rede.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/hetzner-verlost-mein-buch.html" class="news-h2"><span class="news_date">02. Juli</span> Hetzner verlost mein Buch</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-07-02T15:55:00+02:00">2012-07-02</time></p>
+    
+    
+  <p>Die <a title="Hetzner AG" href="http://www.hetzner.de">Hetzner AG</a> verlost über ihre <a title="Hetzner AG bei Facebook" href="http://www.facebook.com/HetznerOnline">Facebook-Seite</a> mein Buch. Teilnahmeschluss ist der 31. Juli 2012. Wer bei Facebook unterwegs ist und das Buch haben möchte, der sollte sich beeilen.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/ovh-eg-ssd-server-im-kurztest.html" class="news-h2"><span class="news_date">28. Juni</span> OVH EG SSD-Server im Kurztest</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-06-28T11:27:00+02:00">2012-06-28</time></p>
+    
+    
+  <p>Mir wurde (nicht von OVH selbst) für kurze Zeit ein <a title="OVH: EG SSD Server" href="https://www.ovh.de/rootserver/eg_ssd.xml">OVH EG SSD-Server</a> zur Verfügung gestellt, sodass ich einige Tests machen konnte. Das Ergebnis und meine ersten Erfahrungen mit OVH habe ich in einem <a title="OVH: Aus zweiter Hand" href="aus-zweiter-hand/ovh-de.html">"Aus zweiter Hand"-Artikel</a> zusammengefasst.</p>
+<p>Oft höre ich, dass die Entscheidung zwischen den drei grossen fallen soll: <a title="Hetzner AG" href="http://www.hetzner.de">Hetzner</a>, <a title="OVH" href="http://www.ovh.de">OVH</a> und <a title="Webtropia" href="http://www.webtropia.com">Webtropia</a>. Hetzner kenne ich sehr, sehr gut und habe beste Erfahrungen gemacht (bis auf eine Ausnahme). OVH hatte einen holprigen Start in meine Erfahrungswelt, der Eindruck ist aber dennoch positiv. Mit Webtropia hatte ich bisher auch keine Schwierigkeiten, hier gibt es wirklich attraktive Angebote derzeit (Professional-Serie...). Wer sich momentan entscheiden muss, darf sich einfach vom Bauchgefühl leiten lassen, oder von den Eckdaten der Server.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/lieferbar-ab-sofort-ist-das-e-book-erhaeltlich.html" class="news-h2"><span class="news_date">22. Juni</span> "Lieferbar." Ab sofort ist das E-Book erhältlich.</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-06-22T14:22:00+02:00">2012-06-22</time></p>
+    
+    
+  <p>Ab sofort ist das <a href="das-ebook.html">E-Book</a> erhältlich.</p>
+<p>Vielen Dank an die grossartige Unterstützung, die ich von meinem <a title="dpunkt.verlag" href="http://dpunkt.de">Verlag</a> erfahren habe, insbesondere an Herrn Dr. M. Barabas und Herrn Heidt.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/id-20-vor-11-das-neue-logo.html" class="news-h2"><span class="news_date">22. Juni</span> "20 vor 11". Das neue Logo.</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-06-22T13:18:00+02:00">2012-06-22</time></p>
+    
+    
+  <p>Ich hatte gehofft, dass das neue Logo selbsterklärend ist und die Verbindung aus <em>Server</em> und <em>Zeit</em> jedem klar wird, anscheinend ist das aber gar nicht so klar. Daher erkläre ich es kurz:</p>
+<p>Der "Pfeil" ist eine sehr, sehr minimalistische Uhr, deren Zeiger ca. "20 vor 11" anzeigen. "Warum denn 20 vor 10?" Ganz einfach: Es ist nicht "Kurz vor 12". Das ist die "geniale" Antwort auf die Frage, die logische ist allerdings, dass ich nur so die Uhrzeit und die für die Konsole übliche "spitze Klammer" (&gt;) kombinieren konnte, um damit die Verbindung aus Server und Zeit herzustellen.</p>
+<p>Vielleicht habe ich irgendwann noch mal Lust auf eine Überarbeitung des Logos, sodass dieser Zusammenhang deutlicher wird. Wenn unter den Lesern ein ambitionierter Grafiker ist, so darf er mir gerne seine Entwürfe und Ideen vorstellen&nbsp;<img title="Lächelnd" src="http://serverzeit.de/plugins/tinyMCE/plugins/emotions/img/smiley-smile.gif" alt="Lächelnd">.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/release-des-buchs-steht-kurz-bevor.html" class="news-h2"><span class="news_date">20. Juni</span> Release des Buchs steht kurz bevor</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-06-20T15:39:00+02:00">2012-06-20</time></p>
+    
+    
+  <p>Die Veröffentlichung des Buchs "<a title="Der eigene Server mit FreeBSD 9 - Konfiguration, Sicherheit und Pflege" href="http://amzn.to/serverzeit-das-buch">Der eigene Server mit FreeBSD 9 - Konfiguration, Sicherheit und Pflege</a>" steht kurz bevor. Der Preis steht jetzt fest und der <a title="dpunkt.verlag" href="http://dpunkt.de/buecher/3820/der-eigene-server-mit-freebsd-9.html" target="_blank">dpunkt.verlag</a> hat ein paar <a title="Leseprobe" href="das-buch/leseprobe.html">Leseproben</a> veröffentlicht.</p>
+<p>Leider haben sich ein paar kleinere Fehler eingeschlichen. Diese sind hier auf der Webseite <a title="Errata" href="das-buch/errata.html">benannt und korrigiert</a>. Das E-Book wird noch korrigiert und ist zum Verkaufsstart dann hoffentlich perfekt.</p>
+<p>Zwar ist die Veröffentlichung nicht so spannend wie der Börsengang von Facebook, für mich persönlich ist es allerdings eine riesen Sache auf die ich sehr stolz bin. Ich freue mich auf zahlreiches Feedback, positiv wie negativ (bitte mehr Positives&nbsp;<img title="Küssend" src="http://serverzeit.de/plugins/tinyMCE/plugins/emotions/img/smiley-kiss.gif" alt="Küssend">).</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/remote-execution-mit-salt.html" class="news-h2"><span class="news_date">13. Juni</span> Remote execution mit Salt</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-06-13T22:18:00+02:00">2012-06-13</time></p>
+    
+    
+  <p>Wenn man viele Server zu verwalten hat oder einfach eine Vielzahl an Jails betreut, ist es durchaus interessant ein Framework zu nutzen, dass es ermöglicht immer wiederkehrende Befehle auf mehreren System gleichzeitig auszuführen.</p>
+<p>Am bekanntesten dürfte wohl <a title="Puppet" href="http://puppetlabs.com/">Puppet</a> sein. Dieses ist ein kommerzielles Framework, das aber auch einen OpenSource-Ableger hat. Mir persönlich gefällt Puppet nicht, aber das ist Geschmacksache. Vielleicht liegt es auch daran, dass es nur in der Bezahl-Version für mich interessant ist, ich es mir dann aber nicht mehr leisten kann.</p>
+<p>Mein Favorit ist <a title="Salt: Remote Execution Manager" href="http://saltstack.org/">Salt</a>. Es ist in Python geschrieben (Yeah!) und kann sehr viel. Zudem gibt es einen Port für FreeBSD, Skripte können in YAML, Python, JSON u. v. a. geschrieben werden. In der nächsten Zeit werde ich mich erneut eingehender damit beschäftigen und meine Erfahrungen hier teilen. Wer es nicht erwarten kann, sollte auf jeden Fall mal einen Blick darauf werfen.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/links-gefixt-weitere-aenderungen-stehen-an.html" class="news-h2"><span class="news_date">11. Juni</span> Links gefixt. Weitere Änderungen stehen an.</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-06-11T23:27:00+02:00">2012-06-11</time></p>
+    
+    
+  <p>Die Links zu den Skripten und Beispiel-Konfigurationen sind nun alle gefixt. Sollte noch irgendwo ein verwaister Link auftauchen, dann bitte eine kurze Email an mich oder einen Kommentar auf der Seite hinterlassen. Ich kann das dann direkt korrigieren.</p>
+<p>Ansonsten stehen noch die Formatierungen an. Langsam geht es vorwärts und alle Tutorials werden neu formatiert sein.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/webtropia-und-stand-der-dinge.html" class="news-h2"><span class="news_date">04. Juni</span> Webtropia und Stand der Dinge</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-06-04T14:10:00+02:00">2012-06-04</time></p>
+    
+    
+  <p>Webtropia hat seine Server der Reihe "Economy Dedicated"-Reihe überarbeitet. Die Preise beginnen bei 19,99 Euro im Monat für ein System mit Intel Atom-CPU und gehen hoch bis zum i7 für ca. 59,99 Euro. Auf die Einrichtungsgebühr wird verzichtet.</p>
+<p>Was den Stand des Buchs angeht darf ich sagen, dass es sich derzeit in Produktion befindet und zum 20. Juni hin lieferbar sein sollte. Zu diesem Zeitpunkt wird dann auch der Verkauf des E-Books über die Webseite starten.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/neues-layout-neue-struktur-neu-neu-neu.html" class="news-h2"><span class="news_date">23. Mai</span> Neues Layout, neue Struktur, neu, neu, neu</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-05-23T09:05:00+02:00">2012-05-23</time></p>
+    
+    
+  <p>Lange hat es gedauert, oft habe ich davon gesprochen, doch heute, am 23. Mai 2012 ist es endlich so weit. serverzeit.de erstrahlt im neuen Glanz, selbst wenn noch der ein oder andere Schatten darauf liegt.</p>
+<p>Aber was hat sich denn nun alles geändert?</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/spam-spammer-turbosmtp.html" class="news-h2"><span class="news_date">09. Mai</span> Spam, Spammer, TurboSMTP</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-05-09T23:14:00+02:00">2012-05-09</time></p>
+    
+    
+  <p>Heute habe ich erneut&nbsp;<a href="http://serversmtp.com/" target="_blank">SPAM</a>&nbsp;von&nbsp;<a href="http://en.wikipedia.org/wiki/Spam" target="_blank">TurboSMTP</a>&nbsp;erhalten. Es gibt zwar eine Abuse-Adresse, aber darauf reagiert niemand. Super Sache. Was also tun gegen einen Dienstleister, der sich als "Email-Engel" darstellt, dabei aber nichts gegen Spam-Versand unternimmt? IP-Bereich in SPAMD gesperrt und gut ist.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/neues-layout-und-dann.html" class="news-h2"><span class="news_date">08. Mai</span> Neues Layout. Und dann?</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-05-08T23:13:00+02:00">2012-05-08</time></p>
+    
+    
+  <p>Die Arbeiten am neuen Layout sind fast abgeschlossen, wobei es wohl vorerst ein "Work in Progress" bleibt. Das CMS, mit dem ich serverzeit.de in der neuen Version umsetze, ist mir noch nicht so vertraut. Da braucht es wohl noch einiges an Arbeit bis das alles funktioniert.</p>
+<p>Da der 23. Mai für mich ein grosser Tag ist, versuche ich am 23. Mai die neue Seite online zu schalten. Bis dahin habe ich hoffentlich die Datenmigration vollzogen. Die Artikelstruktur wird sich wohl auch etwas ändern, um mehr Übersichtlichkeit zu erschaffen. Aber seht selbst. Am 23. Mai&nbsp;<img title="Lächelnd" src="http://serverzeit.de/plugins/tinyMCE/plugins/emotions/img/smiley-smile.gif" alt="Lächelnd"></p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/themenlinks-zfs-und-mysql.html" class="news-h2"><span class="news_date">01. Mai</span> Themenlinks: ZFS und MySQL</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-05-01T23:13:00+02:00">2012-05-01</time></p>
+    
+    
+  <p>Aus anderen Blogs kennt man ja die Themenlinks. Hierbei werden einfach ein paar Links zu einem gewissen Thema gepostet, ohne weiter darauf einzugehen. Das möchte ich heute auch einmal probieren, und zwar habe ich mich mit ZFS-Tuning für MySQL/Percona-Datenbanken beschäftigt. Folgende Links haben mir dabei interessante Hinweise auf dem Weg zum Ziel gegeben.</p>
+<ul>
+<li><a href="http://www.azedo.at/2011/05/mysql-performance-zfs-freebsd/">http://www.azedo.at/2011/05/mysql-performance-zfs-freebsd/</a></li>
+<li><a href="https://blogs.oracle.com/realneel/entry/mysql_innodb_zfs_best_practices">https://blogs.oracle.com/realneel/entry/mysql_innodb_zfs_best_practices</a></li>
+<li><a href="http://www.solarisinternals.com/wiki/index.php/ZFS_Evil_Tuning_Guide">http://www.solarisinternals.com/wiki/index.php/ZFS_Evil_Tuning_Guide</a></li>
+<li><a href="http://www.solarisinternals.com/wiki/index.php/ZFS_for_Databases">http://www.solarisinternals.com/wiki/index.php/ZFS_for_Databases</a></li>
+</ul></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/buch-korrekturen-sind-abgeschlossen.html" class="news-h2"><span class="news_date">24. Apr.</span> Buch-Korrekturen sind abgeschlossen</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-04-24T23:12:00+02:00">2012-04-24</time></p>
+    
+    
+  <p>Heute gebe ich euch erneut einen Zwischenstand bzgl. des Buchprojekts. Die Korrekturen, die mir die Lektorin zurückgeschickt hat, sind nun umgesetzt. Jetzt befindet sich das Buch beim Setzer. Sobald das abgeschlossen ist, gibt es erneut ein Review durch mich und dann geht es in den Druck.</p>
+<p>Korrekturen einzubauen ist viel Arbeit, aber ich habe auch einiges gelernt und diverse Rechtschreibhürden zu nehmen gelernt. Super Sache!</p>
+<p>Oh, und noch was:&nbsp;Mein Artikel über NAXSI – eine low-maintenance, high-performance Webapplication Firewall – erscheint in der Mai-Ausgabe des&nbsp;<a href="http://bsdmag.org/">BSD Magazine</a>.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/beastiecloud-im-test-und-ein-link.html" class="news-h2"><span class="news_date">31. März</span> BeastieCloud im Test und ein Link</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-03-31T23:12:00+02:00">2012-03-31</time></p>
+    
+    
+  <p>Heute habe ich meinen Test von BeastieCloud abgeschlossen. Ich hatte für einen Testzeitraum einen BeastieServer Stratus zur Verfügung, der mir gut gefallen hat. Zum Test geht es&nbsp;<a title="BeastieCloud - Das Monster in der Wolke?" href="http://serverzeit.de/FreeBSD/x-aus-zweiter-hand/beastiecloud-de">hier</a>.</p>
+<p>Falls ihr einen Server dort gemietet habt, würde ich mich über eure Eindrücke freuen.</p>
+<p>Hier noch ein sehr guter Link zur Erklärung der durchschnittlichen Auslastung eines Systems:&nbsp;<a href="http://blog.scoutapp.com/articles/2009/07/31/understanding-load-averages">http://blog.scoutapp.com/articles/2009/07/31/understanding-load-averages</a></p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/preise-bekannt.html" class="news-h2"><span class="news_date">30. März</span> Preise bekannt</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-03-30T23:11:00+02:00">2012-03-30</time></p>
+    
+    
+  <p>Die Preise der neuen Professional Server stehen fest.</p>
+<ul>
+<li>Professional Server S: 59.99 Euro / Monat&nbsp;<strong>ohne Einrichtungsgebühr</strong></li>
+<li>Professional Server M: 79.99 Euro / Monat&nbsp;<strong>ohne Einrichtungsgebühr</strong></li>
+<li>Professional Server L: 99.99 Euro / Monat&nbsp;<strong>ohne Einrichtungsgebühr</strong></li>
+</ul>
+<div>Wenn eine 24-monatige Laufzeit gewählt wird, reduziert sich der Preis um 5 Euro pro Monat, wobei ich so lange Verträge nie empfehle. In zwei Jahren gibt es bereits neue Systeme zu besseren Konditionen.</div></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/kurztest-neue-webtropia-server.html" class="news-h2"><span class="news_date">27. März</span> Kurztest: Neue Webtropia-Server</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-03-27T23:10:00+02:00">2012-03-27</time></p>
+    
+    
+  <p>Gestern habe ich die neuen Produkte von Webtropia bereits angekündigt, heute folgt vermutlich bereits der erste Kurztest. Heute soll mir noch einer der neuen Server zur Verfügung gestellt werden, dann gibt es einen kurzen Ubench-Test und einen ersten Eindruck.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/neue-dedicated-root-server-bei-webtropia.html" class="news-h2"><span class="news_date">26. März</span> Neue dedicated Root-Server bei Webtropia</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-03-26T23:10:00+02:00">2012-03-26</time></p>
+    
+    
+  <p>Webtropia wird in den nächsten Tagen neue Server ins Angebot aufnehmen. Die Rede ist von HP ProLiant DL120 Systemen in unterschiedlichen Ausstattungsvarianten.&nbsp;Die&nbsp;Intel XEON E3 Quad-Core CPUs können laut Webtropia auf 16 bis 32 GB DDR3 ECC-RAM zurückgreifen.</p>
+<p>Ein wirkliches Highlight dieses Angebots wird allerdings der Preis in Verbindung mit der Anbindung sein. So gibt es eine 1GBit-Flatrate(!) und das HP Remote-Management ILO dazu. Preislich sollen sich die Systeme unter 100 Euro bewegen. Wenn die noch unbekannten Eckdaten stimmen, dann wäre das ein beinahe unschlagbares Angebot für bandbreitenintensive Anwendungen.</p>
+<p>Einen Testserver werde ich vermutlich nach dem Relaunch von serverzeit.de beantragen. Schauen wir mal ob das System dann hält was es verspricht. Auf den ersten Blick sieht es jedenfalls sehr gut aus.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/hetzner-ex4-performance.html" class="news-h2"><span class="news_date">23. März</span> Hetzner EX4-Performance</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-03-23T23:09:00+01:00">2012-03-23</time></p>
+    
+    
+  <p>Heute habe ich meinen EX4 von Hetzner erhalten. Ubench-Werte sind beeindruckend.</p>
+<p>Ubench CPU: &nbsp;1874682<br>Ubench MEM: &nbsp; 409891<br>--------------------<br>Ubench AVG: &nbsp;<strong>1142286</strong></p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/re-launch-rueckt-naeher.html" class="news-h2"><span class="news_date">22. März</span> Re-Launch rückt näher</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-03-22T23:09:00+01:00">2012-03-22</time></p>
+    
+    
+  <p>Seit das Buch fast fertig ist (ich muss nun das Feedback des ersten Review-Laufs einarbeiten) arbeite ich fieberhaft am Re-Launch von serverzeit.de. Das Design wird sich ändern, das CMS und mit der Zeit auch der Funktionsumfang sowie der Server. Jaja, Martha geht bald in den Ruhestand und muss aus ihrer jetzigen Wohnung raus. Vermutlich wird sie dann von Neustadt in die Gegend um Nürnberg ziehen, mal sehen.</p>
+<p>Was das Logo betrifft habe ich mich noch nicht entschieden. Im Moment neige ich dazu einfach einen Schriftzug zu verwenden. Alles was mit Grafik zu tun hatte gefiel mir nicht gut genug. Wenn jemand eine Idee hat darf er mir gerne einen Entwurf schicken&nbsp;<img title="Lächelnd" src="http://serverzeit.de/plugins/tinyMCE/plugins/emotions/img/smiley-smile.gif" alt="Lächelnd"></p>
+<p>Schauen wir mal wo uns die Reise hin führt. Ich bin jedenfalls schon sehr gespannt wie all das neue wohl ankommen wird. Ich bin jedenfalls schon gespannt.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/wind-of-change.html" class="news-h2"><span class="news_date">22. Feb.</span> Wind of change</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-02-22T23:08:00+01:00">2012-02-22</time></p>
+    
+    
+  <p>Der Wind des Wechselgelds wirkt sich auch langsam auf serverzeit.de aus. Im Rahmen der Überarbeitung von serverzeit.de hat sich der Untertitel der Seite geändert.</p>
+<p><strong>Vorher:</strong>&nbsp;Schritt für Schritt zum eigenen Server</p>
+<p><strong>Nachher:</strong>&nbsp;Der eigene Server mit FreeBSD</p>
+<p>Dieser Schritt war für mich notwendig (SEO) und auch logisch, da das Buch diesen Namen trägt und so klarer wird, dass wir hier von FreeBSD-Servern sprechen. Hoffentlich kommt diese Änderung gut an.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/neuer-vserver-anbieter-im-test.html" class="news-h2"><span class="news_date">20. Feb.</span> Neuer vServer-Anbieter im Test</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-02-20T23:08:00+01:00">2012-02-20</time></p>
+    
+    
+  <p>Ab heute habe ich einen neuen vServer-Anbieter im Test:&nbsp;<a href="http://www.beastiecloud.de/" target="_blank">BeastieCloud</a>&nbsp;Das noch recht junge Angebot der&nbsp;<a href="http://astuteq.de/" target="_blank">ASTUTEQ GmbH</a>&nbsp;bietet FreeBSD-Server auf XEN-Basis in drei Grössen an: Cirrus, Cumulus und Stratus, was allesamt lateinische Bezeichnungen für Wolkenformen sind was ich persönlich sehr originell finde.</p>
+<p>Mir steht ein Stratus, also das Flagschiff, zur Verfügung, schauen wir mal wie sich das System bewährt. Ein ausführlicher Testbericht mit Zwischenbilanzen folgt über die nächsten drei Monate hinweg.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/was-nun.html" class="news-h2"><span class="news_date">09. Feb.</span> Was nun?</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2012-02-09T23:07:00+01:00">2012-02-09</time></p>
+    
+    
+  <p>Das Buch wurde jetzt in die Produktion entlassen und kann bei&nbsp;<a class="vglnk" title="Link added by VigLink" href="http://www.amazon.com/" rel="nofollow" target="_blank"><span>Amazon</span></a>&nbsp;bereits vorbestellt werden. Nun geht es daran die Webseite auf Vordermann zu bringen und Stück für Stück zu aktualisieren. Ich muss allerdings sagen, dass das Buch erheblich umfangreicher ist als serverzeit.de je sein wird, denn Webseiten zu lesen ist nicht so angenehm wie ein Buch zu lesen. Hier noch ein Link:&nbsp;<a href="http://dpunkt.de/buecher/3820.html">http://dpunkt.de/buecher/3820.html</a></p>
+<p>Ansonsten stehen neue Tutorials an:</p>
+<ul>
+<li>Varnish</li>
+<li>HAST</li>
+</ul>
+<p>Diese werden allerdings erst veröffentlicht wenn das Redesign soweit ist. Denn ohne Redesign kein neues Tutorial&nbsp;<img title="Lächelnd" src="http://serverzeit.de/plugins/tinyMCE/plugins/emotions/img/smiley-smile.gif" alt="Lächelnd"></p></section>
+<!-- indexer::continue
+  <!-- indexer::stop -->
+  
+  
+<!-- indexer::stop -->
+<div class="pagination">
+
+<ul>
+  <li><span class="current">1</span></li>
+  <li><a href="neuigkeiten-archiv@year=2012&amp;page_a35=2.html" class="link" title="Gehe zu Seite 2">2</a></li> 
+  <li class="next"><a href="neuigkeiten-archiv@year=2012&amp;page_a35=2.html" class="next" title="Gehe zu Seite 2">Vorwärts</a></li>
+</ul>
+<!-- indexer::continue -->
+
+</div>
+
+  </div>
+</article>
+ 
+
+	          </div>
+        
+      
+      <aside id="sidebar">
+        <!-- indexer::stop -->
+<nav id="sub-navigation">
+	<ul id="news-archive">
+					  <li><a href="neuigkeiten-archiv@year=2016.html" title="2016 (1 Eintrag)">2016</a></li>
+							  <li><a href="neuigkeiten-archiv@year=2015.html" title="2015 (6 Einträge)">2015</a></li>
+							  <li><a href="neuigkeiten-archiv@year=2014.html" title="2014 (16 Einträge)">2014</a></li>
+							  <li><a href="neuigkeiten-archiv@year=2013.html" title="2013 (26 Einträge)">2013</a></li>
+							  <li class="active">2012</li>
+							  <li><a href="neuigkeiten-archiv@year=2011.html" title="2011 (31 Einträge)">2011</a></li>
+							  <li><a href="neuigkeiten-archiv@year=2010.html" title="2010 (20 Einträge)">2010</a></li>
+							  <li><a href="neuigkeiten-archiv@year=2009.html" title="2009 (44 Einträge)">2009</a></li>
+							  <li><a href="neuigkeiten-archiv@year=2008.html" title="2008 (39 Einträge)">2008</a></li>
+							  <li><a href="neuigkeiten-archiv@year=2007.html" title="2007 (71 Einträge)">2007</a></li>
+				</ul>
+</nav>
+<!-- indexer::continue -->      </aside>
+
+                </div>
+    
+    <div class="ribbon right red" style="visibility:hidden">
+      <a href="das-ebook.html">Neue Auflage!</a>
+    </div>
+    
+        <footer id="footer-hidden"></footer>
+        
+    <!-- indexer::stop -->
+    <nav id="legal-links">
+      <ul>
+        <li><a href="impressum.html" title="Impressum">Impressum</a></li>
+        <li><a href="datenschutz.html" title="Datenschutz">Datenschutz</a></li>
+        <li><a href="sitemap.html" title="Sitemap">Sitemap</a></li>
+      </ul>
+        
+      <div class="copyright"> ein Projekt von Benedikt Niessen <em>powered by <strong>B</strong>#</em></div>
+    </nav>
+    <!-- indexer::continue -->
+
+  </div>
+
+  
+<script>setTimeout(function(){var e=function(e,t){try{var n=new XMLHttpRequest}catch(r){return}n.open("GET",e,!0),n.onreadystatechange=function(){this.readyState==4&&this.status==200&&typeof t=="function"&&t(this.responseText)},n.send()},t="system/cron/cron.";e(t+"txt",function(n){parseInt(n||0)<Math.round(+(new Date)/1e3)-86400&&e(t+"php")})},5e3);</script>
+
+<!-- Masha -->  
+<!--[IF IE]> 
+  <script type="text/javascript" src="http://serverzeit.de/files/serverzeit_v2/js/ierange.js" async defer></script> 
+<![ENDIF]-->
+<script type="text/javascript" src="files/serverzeit_v2/js/masha.min.js" async defer></script>
+<script type="text/javascript">
+  if(document.body.className.indexOf("mobile") == -1) {
+    if(window.addEventListener){     
+        window.addEventListener('load', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        }, false);
+    } else {
+        window.attachEvent('onload', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        });
+    }
+  }
+</script>
+  
+  <script>
+  new Request({
+    url:'system/html/cron.txt',
+    onComplete: function(txt) {
+      if (!txt) txt = 0;
+      if (parseInt(txt) < (Math.round(+new Date()/1000) - 300)) {
+        new Request({url:'cron.php'}).get();
+      }
+    }
+  }).get();
+  </script>
+
+    
+  <!-- Google Analytics --> 
+  <script type="text/javascript">
+    /*var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36693720-1']);
+    _gaq.push(['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();*/
+  </script>
+</body>
+</html>

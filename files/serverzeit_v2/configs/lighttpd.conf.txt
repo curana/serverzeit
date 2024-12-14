@@ -1,0 +1,94 @@
+# lighttpd configuration file
+
+### MODULE ###
+server.modules = (
+  "mod_rewrite",
+  "mod_redirect",
+  "mod_proxy",
+  "mod_access",
+  "mod_cml",
+  "mod_auth",
+  "mod_status",
+  "mod_fastcgi",
+  "mod_simple_vhost",
+  "mod_compress",
+  "mod_expire",
+  "mod_accesslog" )
+
+### LOG-FILES ###
+server.errorlog    = "/var/log/lighttpd.error.log"
+accesslog.filename = "/var/log/lighttpd.access.log"
+accesslog.format   = "%{X-Forwarded-For}i %V %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\""
+# accesslog.format ist umformatiert, da lighttpd hinter pound zum Einsatz kommt, weshalb die IP des Hostsystems eingetragen wuerde.
+
+### GENERAL SERVER-CONFIGURATION ###
+include "lighttpd/mimetype.conf"
+index-file.names               = ( "index.php", "index.html", "index.htm", "default.htm", "index.cml" )
+server.document-root           = "/www/vhosts/"
+server.event-handler           = "freebsd-kqueue"
+mimetype.use-xattr             = "enable"
+server.tag                     = "lighttpd"
+url.access-deny                = ( "~", ".inc", ".conf", ".bak", ".old", ".htaccess", ".htpasswd" )
+static-file.exclude-extensions = ( ".php", ".pl", ".fcgi" )
+server.port                    = 80
+server.bind                    = "10.0.0.123"
+# Bei server.bind die Jail-IP eintragen
+
+server.pid-file                = "/var/run/lighttpd.pid"
+dir-listing.activate           = "disable"
+#server.chroot                 = "/"
+# lighttpd bietet ein eigenes Chroot-Verfahren an, allerdings ist das innerhalb einer Jail vielleicht etwas übertrieben.
+
+server.username                = "www"
+server.groupname               = "www"
+
+$HTTP["url"] =~ "\.pdf$" {
+  server.range-requests = "disable"
+}
+
+### ERROR-HANDLER FOR STATUS 404 ###
+#server.error-handler-404   = "/error-handler.html"
+#server.error-handler-404   = "/error-handler.php"
+## Format: <errorfile-prefix><status-code>.html
+## -> ..../status-404.html for 'File not found'
+#server.errorfile-prefix    = "/usr/share/lighttpd/errors/status-"
+#server.errorfile-prefix    = "/srv/www/errors/status-"
+
+### ENABLE DEBUGGING ###
+#debug.log-request-header   = "enable"
+#debug.log-response-header  = "enable"
+#debug.log-request-handling = "enable"
+#debug.log-file-not-found   = "enable"
+
+### SSL ###
+#ssl.engine                 = "enable"
+#ssl.pemfile                = "/etc/ssl/private/lighttpd.pem"
+
+##        ##
+## MODULE ##
+##        ##
+
+### MODUL: mod_compress ###
+compress.cache-dir         = "/tmp/eaccelerator/"
+compress.filetype          = ("text/plain", "text/html")
+
+### PREVENT HOTLINKING ###
+$HTTP["referer"] !~ "^($|http|https)://(
+                                niessen.in|
+                                serverzeit.de|
+                                blog.niessen.in|
+                                typo.niessen.in
+                      )*" {
+  url.access-deny = ( ".jpg", ".jpeg", ".png", ".wmv", ".avi", ".mpeg", ".mpg", ".gif", ".mp3", ".mp4", ".mov", ".wma", ".iso" )
+}
+
+### KEIN WWW BEI DOMAINS ###
+$HTTP["host"] =~ "^www\.(.*)$" {
+  url.redirect = ( "^/(.*)" => "http://%1/$1" )
+}
+
+### VIRTUAL HOSTS ###
+
+# serverzeit.de
+include_shell "cat /www/vhosts/config/serverzeit.de"
+# Mit diesem Befehl werden externe vhost-Konfigurationen geladen.

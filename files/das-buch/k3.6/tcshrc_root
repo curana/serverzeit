@@ -1,0 +1,34 @@
+alias h         history 25
+alias j         jobs -l
+alias la        ls -a
+alias lf        ls -FA
+alias ll        ls -lA
+alias ls        ls -G
+alias nano      nano -w -c
+
+# A righteous umask
+umask 22
+
+set path = (/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/bin /usr/X11R6/bin $HOME/bin)
+
+setenv  EDITOR          vi
+setenv  PAGER           more
+setenv  BLOCKSIZE       K
+
+if ($?prompt) then
+        set prompt = "%B[R] %m:%~ %# "
+        set filec
+        set history = 100
+        set savehist = 0
+        set mail = (/var/mail/$USER)
+        set autolist
+        set color
+        set colorcat
+
+        if ( $?tcsh ) then
+                bindkey "^W" backward-delete-word
+                bindkey -k up history-search-backward
+                bindkey -k down history-search-forward
+                bindkey ^[[3~ delete-char
+        endif
+endif

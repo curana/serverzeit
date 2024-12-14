@@ -1,0 +1,25 @@
+server:
+	verbosity: 1
+	interface: 127.0.0.2
+	outgoing-interface: 127.0.0.2
+	access-control: 10.0.0.0/8 allow
+        access-control: 127.0.0.0/8 allow
+	root-hints: "/usr/local/etc/unbound/root.hints"
+        pidfile: "/var/run/unbound.pid"
+	hide-identity: yes
+	hide-version: yes
+	use-caps-for-id: yes
+	prefetch: yes
+        val-clean-additional: yes
+        num-threads: 4
+        outgoing-range: 4096
+        num-queries-per-thread: 2048
+
+        private-address: 10.0.0.0/8
+        private-address: 172.16.0.0/12
+        private-address: 192.168.0.0/16
+        private-address: 224.0.0.0/5
+        
+        private-domain: "local"
+                
+        include: "/usr/local/etc/unbound/zones.conf"

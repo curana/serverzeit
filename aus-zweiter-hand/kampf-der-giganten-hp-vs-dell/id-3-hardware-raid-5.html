@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <title>Hardware-RAID 5 - Tutorials und Anleitungen zu FreeBSD, Servern & Diensten :: serverzeit.de</title>
+  <base href="">
+
+  <meta charset="utf-8">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="google-site-verification" content="yghLhV7EXvN6dHIltCHFyKpGePQ033_oRI7eMxWbQbg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="../../files/serverzeit_v2/images/favicon.ico" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic%7CDroid+Sans:400%7CUbuntu:400,400italic,300,300italic,700,700italic%7CUbuntu+Mono">
+<link rel="stylesheet" href="../../assets/css/5ee243558dbc.css">
+    <!--[if (lt IE 9)]>
+   <script type="text/javascript" src="http://ie-print-protector.googlecode.com/svn/trunk/javascript/iepp.min.js"></script>
+<![endif]-->
+</head>
+
+<body id="top" class="unix other  print">  
+  <div id="wrapper">
+  
+        
+<!-- indexer::stop -->
+  <div id="searchbar-frame">
+    <div id="searchbar">        
+      
+
+      <div class="searchfield">
+        <form action="http://serverzeit.de/suche" method="get" id="search" enctype="application/x-www-form-urlencoded">
+          <label for="searchfield">Suche:</label>
+          <span><input type="text" name="keywords" id="searchfield" value="" required /></span>
+          <input type="submit" name="perform-search" value="GO" />
+          
+                    
+<input type="hidden" name="date" value="2024-12-12">
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<!-- indexer::continue -->
+
+<!-- indexer::stop -->
+  <!-- indexer::stop -->
+<header>
+  <a href="../../index.html"><img src="../../files/serverzeit_v2/images/logo.png" style="margin-top:-14px" alt="serverzeit.de - Logo" title="serverzeit.de - Logo" /></a>
+  <nav>
+    <ul class="level_1" id="main-navigation">
+              <li class="first"><a href="../../index.html" title="Startseite" class="first">Startseite</a></li>
+                  <li><a href="../../tutorials.html" title="Tutorials">Tutorials</a></li>
+                  <li><a href="../../das-ebook.html" title="Das Buch">Das Buch</a></li>
+                  <li class="trail last"><a href="../../aus-zweiter-hand.html" title="Aus zweiter Hand" class="trail last">Aus zweiter Hand</a></li>
+            </ul>
+  </nav>
+</header>
+<!-- indexer::continue --><!-- indexer::continue -->
+ 
+    
+    
+    <div id="main">    
+      <div id="content-wrapper">
+	    
+<article itemscope itemtype="http://schema.org/Article">
+
+
+<div class="article-header">
+  <div class="article-title">
+    <h1 class="ce_headline first">Hardware-RAID5</h1>
+  </div>
+</div>
+
+<!-- indexer::continue -->
+<div class="article-text" itemprop="articleBody" id="article"><!-- indexer::continue -->
+<p>Im Servereinsatz und dank weiter sinkender Gigabyte-Preise wird das RAID5 immer interessanter. Für meine Tests habe ich ein Hardware-RAID5 aus SAS-Festplatten mit UFS als Dateisystem erstellt. Zum Vergleich schauen wir uns dann auch noch das ganze mit ZFS als Dateisystem an.</p><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>Webtropia Enterprise Server 2.0 L</h2>
+<p>Im RAID5-Verbund erzielt der HP-Server in Verbindung mit dem verbauten Hardware-RAID-Controller folgende Werte:</p>
+<pre><code>     512              # sectorsize
+     798342119424     # mediasize in bytes (743G)
+     1559261952       # mediasize in sectors
+     0                # stripesize
+     3145744384       # stripeoffset
+
+Seek times:
+     Full stroke:       250 iter in   2.287333 sec =    9.149 msec
+     Half stroke:       250 iter in   2.386580 sec =    9.546 msec
+     Quarter stroke:    500 iter in   2.798629 sec =    5.597 msec
+     Short forward:     400 iter in   0.982750 sec =    2.457 msec
+     Short backward:    400 iter in   2.125169 sec =    5.313 msec
+     Seq outer:        2048 iter in   0.157278 sec =    0.077 msec
+     Seq inner:        2048 iter in   0.241591 sec =    0.118 msec
+Transfer rates:
+     outside:       102400 kbytes in   1.037246 sec =    98723 kbytes/sec
+     middle:        102400 kbytes in   1.060689 sec =    96541 kbytes/sec
+     inside:        102400 kbytes in   0.918567 sec =   111478 kbytes/sec
+</code></pre>
+<p>Mit Geschwindigkeiten zwischen <strong>97 und 111 MB/s</strong> liegt diese Kombination in etwa gleich auf mit der RAID1-Konstellation, die Werte zwischen 67 und 110 MB/s erzielte.</p><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>Hetzner DELL DX290</h2>
+<p>Schauen wir uns an, wie der DELL-Server abschneidet. Im Hardware-RAID5 kann der DX290 mit folgenden Werte aufwarten:</p>
+<pre><code>     512              # sectorsize
+     1794222522368    # mediasize in bytes (1.6T)
+     3504340864       # mediasize in sectors
+     0                # stripesize
+     82944            # stripeoffset
+
+Seek times:
+     Full stroke:       250 iter in   0.802026 sec =    3.208 msec
+     Half stroke:       250 iter in   0.777078 sec =    3.108 msec
+     Quarter stroke:    500 iter in   1.481849 sec =    2.964 msec
+     Short forward:     400 iter in   1.441260 sec =    3.603 msec
+     Short backward:    400 iter in   1.160908 sec =    2.902 msec
+     Seq outer:        2048 iter in   0.140745 sec =    0.069 msec
+     Seq inner:        2048 iter in   0.150905 sec =    0.074 msec
+Transfer rates:
+     outside:       102400 kbytes in   0.191675 sec =   534238 kbytes/sec
+     middle:        102400 kbytes in   0.207471 sec =   493563 kbytes/sec
+     inside:        102400 kbytes in   0.287619 sec =   356027 kbytes/sec
+</code></pre>
+<p>Ebenfalls auf einem UFS-Dateisystem erzielt das Flagschiff von Hetzner beachtliche Werte zwischen <strong>356 und 534 MB/s</strong>. Das ist etwa eine Verdreifachung der Geschwindigkeit im Vergleich zur RAID1-Konfiguration.</p><!-- indexer::stop -->
+  </div>
+</article>
+ 
+
+	          </div>
+        
+      
+      <aside id="sidebar">
+        
+<!-- indexer::stop -->
+    <nav id="sub-navigation">
+    <ol class="level_1" id="sub-navigation-items">
+  
+    	  		<li class="submenu trail first"><a href="../kampf-der-giganten-hp-vs-dell.html" title="Kampf der Giganten: HP-Server gegen Dell-Server" class="submenu trail first">Kampf der Giganten: HP vs. Dell</a>	<ol class="level_2">
+  
+    	  		<li class="sibling first"><a href="die-hardware.html" title="Kampf der Giganten: Die Hardware" class="sibling first">Die Hardware</a></li>
+  	    	  		<li class="sibling"><a href="die-disziplinen.html" title="Die Disziplinen" class="sibling">Die Disziplinen</a></li>
+  	    	  		<li class="sibling"><a href="id-1-performance-vergleich.html" title="Performance-Vergleich" class="sibling">1. Performance-Vergleich</a></li>
+  	    	  		<li class="sibling"><a href="software-raid-1-vs-hardware-raid-1.html" title="Software-RAID 1 vs Hardware-RAID 1" class="sibling">2. Software- vs Hardware-RAID1</a></li>
+  	    	  		<li class="active active">3. Hardware-RAID 5</li>
+  	    	  		<li class="sibling"><a href="id-4-fuer-speed-junkies.html" title="Für Speed-Junkies" class="sibling">4. Für Speed-Junkies</a></li>
+  	    	  		<li class="sibling"><a href="handhabung.html" title="Handhabung" class="sibling">5. Handhabung</a></li>
+  	    	  		<li class="sibling last"><a href="id-5-fazit.html" title="Fazit" class="sibling last">6. Fazit</a></li>
+  	  
+  </ol></li>
+  	    	  		<li><a href="../provider-und-dienstleister.html" title="Provider &amp; Dienstleister">Provider & Dienstleister</a></li>
+  	    	  		<li class="last"><a href="../literatur.html" title="Literatur" class="last">Literatur</a></li>
+  	  
+  </ol><!-- indexer::continue -->
+      </aside>
+
+                </div>
+    
+    <div class="ribbon right red" style="visibility:hidden">
+      <a href="../../das-ebook.html">Neue Auflage!</a>
+    </div>
+    
+        <footer id="footer-hidden"></footer>
+        
+    <!-- indexer::stop -->
+    <nav id="legal-links">
+      <ul>
+        <li><a href="../../impressum.html" title="Impressum">Impressum</a></li>
+        <li><a href="../../datenschutz.html" title="Datenschutz">Datenschutz</a></li>
+        <li><a href="../../sitemap.html" title="Sitemap">Sitemap</a></li>
+      </ul>
+        
+      <div class="copyright"> ein Projekt von Benedikt Niessen <em>powered by <strong>B</strong>#</em></div>
+    </nav>
+    <!-- indexer::continue -->
+
+  </div>
+
+  
+<script>setTimeout(function(){var e=function(e,t){try{var n=new XMLHttpRequest}catch(r){return}n.open("GET",e,!0),n.onreadystatechange=function(){this.readyState==4&&this.status==200&&typeof t=="function"&&t(this.responseText)},n.send()},t="system/cron/cron.";e(t+"txt",function(n){parseInt(n||0)<Math.round(+(new Date)/1e3)-86400&&e(t+"php")})},5e3);</script>
+
+<!-- Masha -->  
+<!--[IF IE]> 
+  <script type="text/javascript" src="http://serverzeit.de/files/serverzeit_v2/js/ierange.js" async defer></script> 
+<![ENDIF]-->
+<script type="text/javascript" src="../../files/serverzeit_v2/js/masha.min.js" async defer></script>
+<script type="text/javascript">
+  if(document.body.className.indexOf("mobile") == -1) {
+    if(window.addEventListener){     
+        window.addEventListener('load', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        }, false);
+    } else {
+        window.attachEvent('onload', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        });
+    }
+  }
+</script>
+  
+  <script>
+  new Request({
+    url:'system/html/cron.txt',
+    onComplete: function(txt) {
+      if (!txt) txt = 0;
+      if (parseInt(txt) < (Math.round(+new Date()/1000) - 300)) {
+        new Request({url:'cron.php'}).get();
+      }
+    }
+  }).get();
+  </script>
+
+    
+  <!-- Google Analytics --> 
+  <script type="text/javascript">
+    /*var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36693720-1']);
+    _gaq.push(['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();*/
+  </script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <title>TransIP: BladeVPS X4 - Tutorials und Anleitungen zu FreeBSD, Servern & Diensten :: serverzeit.de</title>
+  <base href="">
+
+  <meta charset="utf-8">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="google-site-verification" content="yghLhV7EXvN6dHIltCHFyKpGePQ033_oRI7eMxWbQbg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="../../files/serverzeit_v2/images/favicon.ico" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic%7CDroid+Sans:400%7CUbuntu:400,400italic,300,300italic,700,700italic%7CUbuntu+Mono">
+<link rel="stylesheet" href="../../assets/css/5ee243558dbc.css">
+    <!--[if (lt IE 9)]>
+   <script type="text/javascript" src="http://ie-print-protector.googlecode.com/svn/trunk/javascript/iepp.min.js"></script>
+<![endif]-->
+</head>
+
+<body id="top" class="unix other  print">  
+  <div id="wrapper">
+  
+        
+<!-- indexer::stop -->
+  <div id="searchbar-frame">
+    <div id="searchbar">        
+      
+
+      <div class="searchfield">
+        <form action="http://serverzeit.de/suche" method="get" id="search" enctype="application/x-www-form-urlencoded">
+          <label for="searchfield">Suche:</label>
+          <span><input type="text" name="keywords" id="searchfield" value="" required /></span>
+          <input type="submit" name="perform-search" value="GO" />
+          
+                    
+<input type="hidden" name="date" value="2024-12-12">
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<!-- indexer::continue -->
+
+<!-- indexer::stop -->
+  <!-- indexer::stop -->
+<header>
+  <a href="../../index.html"><img src="../../files/serverzeit_v2/images/logo.png" style="margin-top:-14px" alt="serverzeit.de - Logo" title="serverzeit.de - Logo" /></a>
+  <nav>
+    <ul class="level_1" id="main-navigation">
+              <li class="first"><a href="../../index.html" title="Startseite" class="first">Startseite</a></li>
+                  <li><a href="../../tutorials.html" title="Tutorials">Tutorials</a></li>
+                  <li><a href="../../das-ebook.html" title="Das Buch">Das Buch</a></li>
+                  <li class="trail last"><a href="../../aus-zweiter-hand.html" title="Aus zweiter Hand" class="trail last">Aus zweiter Hand</a></li>
+            </ul>
+  </nav>
+</header>
+<!-- indexer::continue --><!-- indexer::continue -->
+ 
+    
+    
+    <div id="main">    
+      <div id="content-wrapper">
+	    
+<article itemscope itemtype="http://schema.org/Article">
+
+
+<div class="article-header">
+  <div class="article-title">
+    <h1 class="ce_headline first">TransIP: BladeVPS X4</h1>
+  </div>
+</div>
+
+<!-- indexer::continue -->
+<div class="article-text" itemprop="articleBody" id="article"><!-- indexer::continue -->
+<p>In den letzten Wochen habe ich mir den BladeVPS X4 von <a title="TransIP" href="https://www.transip.eu/">TransIP</a> genauer angesehen. Für aktuell 10 Euro im Monat erhält der Kunde 4 GB RAM, 300 GB Festplatte, 10 GB Inklusivtraffic und eine IP-Adresse bei 99.99% garantierter Uptime. Das klingt sehr gut, aber ist der Server auch gut?</p>
+<p>Das Webinterface ist relativ übersichtlich und bietet die Möglichkeit via virtueller KVM (JAVA) FreeBSD vom ISO aus zu installieren. Aber schauen wir uns die Testergebnisse näher an.</p><!-- indexer::stop --><!-- indexer::continue -->
+<p>Die Festplatten-Performance ist sicherlich nicht auf dem Niveau eines dedizierten Servers, aber durchaus ok. Es ist entscheidend sich vor der Bestellung den Einsatzzweck klar zu machen. Das gilt übrigens nicht nur für vServer.</p>
+<p>Aber schauen wir uns die Zahlen mal an.</p>
+<pre><code>/dev/vtbd0
+	512         	# sectorsize
+	161061273600	# mediasize in bytes (150G)
+	314572800   	# mediasize in sectors
+	0           	# stripesize
+	0           	# stripeoffset
+	312076      	# Cylinders according to firmware.
+	16          	# Heads according to firmware.
+	63          	# Sectors according to firmware.
+	            	# Disk ident.
+
+Seek times:
+	Full stroke:	  250 iter in   0.499192 sec =    1.997 msec
+	Half stroke:	  250 iter in   0.898858 sec =    3.595 msec
+	Quarter stroke:	  500 iter in   1.494553 sec =    2.989 msec
+	Short forward:	  400 iter in   0.941870 sec =    2.355 msec
+	Short backward:	  400 iter in   1.401337 sec =    3.503 msec
+	Seq outer:	 2048 iter in   3.354808 sec =    1.638 msec
+	Seq inner:	 2048 iter in   3.474019 sec =    1.696 msec
+Transfer rates:
+	outside:       102400 kbytes in   3.986834 sec =    25685 kbytes/sec
+	middle:        102400 kbytes in   4.001523 sec =    25590 kbytes/sec
+	inside:        102400 kbytes in   3.045028 sec =    33629 kbytes/sec</code></pre><!-- indexer::stop --><!-- indexer::continue -->
+<p>Zu guter Letzt spielt auch die CPU und RAM-Performance bei einem Server eine Rolle. Wie immer habe ich die folgenden Werte mit Ubench ermittelt und bin durchaus zufrieden.</p>
+<pre><code>Ubench CPU: 256976<br>Ubench MEM: 106581<br>--------------------<br>Ubench AVG: 181778</code></pre>
+<p>Im Ranking liegt er mit diesen Werten am unteren Ende der Tabelle.</p><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>Fazit</h2>
+<p><a title="TransIP" href="https://www.transip.eu/">TransIP</a> hat laut eigener Aussage viel Erfahrung und bereits einige Markterfahrung, allerdings ausserhalb Deutschlands. Der deutsche Markt ist hart umkämpft, daher ist es für neue Anbieter nicht immer einfach hier Fuss zu fassen.</p>
+<p>Mein Eindruck vom Server, dem Backend und dem Support des Anbieters war sehr gut. Klar, dieser vServer ist kein dedizierter DELL oder HP Server, sondern nur ein virtuelles System im mittleren Preissegment. Das Gesamtpaket überzeugt. Guter Service, fairer Preis (wenn es beim Angebotspreis bleibt) und ein halbwegs übersichtliches Webinterface mit vielen Funktionen und der Freiheit FreeBSD NICHT über ein Image zu installieren.</p><!-- indexer::stop -->
+  </div>
+</article>
+ 
+
+	          </div>
+        
+      
+      <aside id="sidebar">
+        
+<!-- indexer::stop -->
+    <nav id="sub-navigation">
+    <ol class="level_1" id="sub-navigation-items">
+  
+    	  		<li class="first"><a href="../kampf-der-giganten-hp-vs-dell.html" title="Kampf der Giganten: HP-Server gegen Dell-Server" class="first">Kampf der Giganten: HP vs. Dell</a></li>
+  	    	  		<li class="submenu trail"><a href="../provider-und-dienstleister.html" title="Provider &amp; Dienstleister" class="submenu trail">Provider & Dienstleister</a>	<ol class="level_2">
+  
+    	  		<li class="sibling first"><a href="performance-ranking.html" title="Performance Ranking" class="sibling first">» Performance-Ranking</a></li>
+  	    	  		<li class="sibling"><a href="../edis-at.html" title="EDIS GmbH" class="sibling">EDIS GmbH: Server für unter 1 Euro</a></li>
+  	    	  		<li class="sibling"><a href="../hetzner-de.html" title="Virtuelle Server mit FreeBSD von Hetzner" class="sibling">Hetzner AG: vServer mit FreeBSD</a></li>
+  	    	  		<li class="sibling"><a href="../tralios-hosting-de.html" title="Individuelle vServer von Tralios" class="sibling">Tralios IT GmbH: Individuelle vServer</a></li>
+  	    	  		<li class="sibling"><a href="../syscentral-de.html" title="SysCentral HVM-Server" class="sibling">SysCentral: HVM-Server</a></li>
+  	    	  		<li class="sibling"><a href="../webtropia-com.html" title="Professional Server-Reihe von Webtropia" class="sibling">Webtropia: Professional Server</a></li>
+  	    	  		<li class="sibling"><a href="../ovh-de.html" title="Hardware top, Service flop?" class="sibling">OVH: EG SSD</a></li>
+  	    	  		<li class="sibling"><a href="../datafabrik-de.html" title="datafabrik: E3-1240" class="sibling">datafabrik: E3-1240</a></li>
+  	    	  		<li class="sibling"><a href="../hetzner-de-ex8s-mit-intel-ssds.html" title="Virtuelle Server mit FreeBSD von Hetzner" class="sibling">Hetzner AG: EX8S mit Intel SSDs</a></li>
+  	    	  		<li class="sibling"><a href="../hosteurope-de.html" title="Host Europe GmbH: Rootserver M" class="sibling">Host Europe GmbH: Rootserver M</a></li>
+  	    	  		<li class="sibling"><a href="../webtropia-com-hp-microserver-s.html" title="Professional Server-Reihe von Webtropia" class="sibling">Webtropia: HP MicroServer S</a></li>
+  	    	  		<li class="sibling"><a href="webtropia-hp-enterprise-server-20-l.html" title="Professional Server-Reihe von Webtropia" class="sibling">Webtropia: HP Enterprise Server 2.0 L</a></li>
+  	    	  		<li class="active active">TransIP: BladeVPS X4</li>
+  	    	  		<li class="sibling last"><a href="ovh-isgenug-ks-2g.html" title="Der 3,99-Euro-Server im Test" class="sibling last">OVH: Isgenug KS 2G</a></li>
+  	  
+  </ol></li>
+  	    	  		<li class="last"><a href="../literatur.html" title="Literatur" class="last">Literatur</a></li>
+  	  
+  </ol><!-- indexer::continue -->
+      </aside>
+
+                </div>
+    
+    <div class="ribbon right red" style="visibility:hidden">
+      <a href="../../das-ebook.html">Neue Auflage!</a>
+    </div>
+    
+        <footer id="footer-hidden"></footer>
+        
+    <!-- indexer::stop -->
+    <nav id="legal-links">
+      <ul>
+        <li><a href="../../impressum.html" title="Impressum">Impressum</a></li>
+        <li><a href="../../datenschutz.html" title="Datenschutz">Datenschutz</a></li>
+        <li><a href="../../sitemap.html" title="Sitemap">Sitemap</a></li>
+      </ul>
+        
+      <div class="copyright"> ein Projekt von Benedikt Niessen <em>powered by <strong>B</strong>#</em></div>
+    </nav>
+    <!-- indexer::continue -->
+
+  </div>
+
+  
+<script>setTimeout(function(){var e=function(e,t){try{var n=new XMLHttpRequest}catch(r){return}n.open("GET",e,!0),n.onreadystatechange=function(){this.readyState==4&&this.status==200&&typeof t=="function"&&t(this.responseText)},n.send()},t="system/cron/cron.";e(t+"txt",function(n){parseInt(n||0)<Math.round(+(new Date)/1e3)-86400&&e(t+"php")})},5e3);</script>
+
+<!-- Masha -->  
+<!--[IF IE]> 
+  <script type="text/javascript" src="http://serverzeit.de/files/serverzeit_v2/js/ierange.js" async defer></script> 
+<![ENDIF]-->
+<script type="text/javascript" src="../../files/serverzeit_v2/js/masha.min.js" async defer></script>
+<script type="text/javascript">
+  if(document.body.className.indexOf("mobile") == -1) {
+    if(window.addEventListener){     
+        window.addEventListener('load', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        }, false);
+    } else {
+        window.attachEvent('onload', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        });
+    }
+  }
+</script>
+  
+  <script>
+  new Request({
+    url:'system/html/cron.txt',
+    onComplete: function(txt) {
+      if (!txt) txt = 0;
+      if (parseInt(txt) < (Math.round(+new Date()/1000) - 300)) {
+        new Request({url:'cron.php'}).get();
+      }
+    }
+  }).get();
+  </script>
+
+    
+  <!-- Google Analytics --> 
+  <script type="text/javascript">
+    /*var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36693720-1']);
+    _gaq.push(['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();*/
+  </script>
+</body>
+</html>

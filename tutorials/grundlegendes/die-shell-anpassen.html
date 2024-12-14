@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <title>Die Shell anpassen - Tutorials und Anleitungen zu FreeBSD, Servern & Diensten :: serverzeit.de</title>
+  <base href="">
+
+  <meta charset="utf-8">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="">
+  <meta name="keywords" content="Shell, sh, tcsh, anpassen, Konsole">
+  <meta name="google-site-verification" content="yghLhV7EXvN6dHIltCHFyKpGePQ033_oRI7eMxWbQbg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="../../files/serverzeit_v2/images/favicon.ico" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic%7CDroid+Sans:400%7CUbuntu:400,400italic,300,300italic,700,700italic%7CUbuntu+Mono">
+<link rel="stylesheet" href="../../assets/css/5ee243558dbc.css">
+    <!--[if (lt IE 9)]>
+   <script type="text/javascript" src="http://ie-print-protector.googlecode.com/svn/trunk/javascript/iepp.min.js"></script>
+<![endif]-->
+</head>
+
+<body id="top" class="unix other  print">  
+  <div id="wrapper">
+  
+        
+<!-- indexer::stop -->
+  <div id="searchbar-frame">
+    <div id="searchbar">        
+      
+
+      <div class="searchfield">
+        <form action="http://serverzeit.de/suche" method="get" id="search" enctype="application/x-www-form-urlencoded">
+          <label for="searchfield">Suche:</label>
+          <span><input type="text" name="keywords" id="searchfield" value="" required /></span>
+          <input type="submit" name="perform-search" value="GO" />
+          
+                    
+<input type="hidden" name="date" value="2024-12-12">
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<!-- indexer::continue -->
+
+<!-- indexer::stop -->
+  <!-- indexer::stop -->
+<header>
+  <a href="../../index.html"><img src="../../files/serverzeit_v2/images/logo.png" style="margin-top:-14px" alt="serverzeit.de - Logo" title="serverzeit.de - Logo" /></a>
+  <nav>
+    <ul class="level_1" id="main-navigation">
+              <li class="first"><a href="../../index.html" title="Startseite" class="first">Startseite</a></li>
+                  <li class="trail"><a href="../../tutorials.html" title="Tutorials" class="trail">Tutorials</a></li>
+                  <li><a href="../../das-ebook.html" title="Das Buch">Das Buch</a></li>
+                  <li class="last"><a href="../../aus-zweiter-hand.html" title="Aus zweiter Hand" class="last">Aus zweiter Hand</a></li>
+            </ul>
+  </nav>
+</header>
+<!-- indexer::continue --><!-- indexer::continue -->
+ 
+    
+    
+    <div id="main">    
+      <div id="content-wrapper">
+	    
+<article itemscope itemtype="http://schema.org/Article">
+
+
+<div class="article-header">
+  <div class="article-title">
+    <h1 class="ce_headline first">Die Shell anpassen</h1>
+  </div>
+</div>
+
+<!-- indexer::continue -->
+<div class="article-text" itemprop="articleBody" id="article"><!-- indexer::continue -->
+<p>Wir wollen nun unsere Shell etwas anpassen und übersichtlicher zu machen. Ich verwende hierfür die tcsh-Shell:</p>
+<p>Wir öffnen zum Anpassen die Datei .cshrc in unserem Home-Verzeichnis und suchen nach der Zeile&nbsp;<em>„if ($?prompt) then“</em>&nbsp;und schreiben in die nachfolgende Zeile diese Zeichenfolge:</p>
+<pre><code>set prompt = „%h %t %~ %# "</code></pre>
+<p><span>Wichtig:</span>&nbsp;Nicht das Leerzeichen nach der Raute vergessen!!!</p>
+<p>Unsere Shell wird uns dann die Anzahl der eingegebenen Befehle, das aktuelle Verzeichnis sowie die aktuelle Uhrzeit anzeigen.</p>
+<p>Desweiteren tragen wir folgendes bei den Aliasen in der Datei&nbsp;<span>.cshrc</span>&nbsp;ein:</p>
+<div>
+<pre><code>alias ls ls –G</code></pre>
+</div>
+<p>Dadurch werden die Dateien und Verzeichnisse farbig dargestellt wenn wir ein einfaches „ls“ eingeben.</p>
+<p>Einen weiteren Alias würde ich dir empfehlen, wenn du "nano" als Editor einsetzen willst. "Nano" bricht von Hause aus Zeilen um, die über das Konsolenfenster hinaus gehen. Das kann sehr nervig sein und bei Konfigurationsdateien zu Fehlern führen, die man dann ewig suchen muss. Das '-c' zeigt die Zeilen- / Zeichennummer an.</p>
+<pre><code>alias nano nano -w -c</code></pre>
+<p>In der Grundeinstellung der Shell wird die Entfernen-Taste (ENTF) nicht unterstützt und erstellt lediglich eine Tilde (~). Will man diese Taste trotzdem nutzen, so muss man einfach folgende Zeile zu den key-bindings schreiben:</p>
+<div>
+<pre><code>bindkey ^[[3~ delete-char</code></pre>
+</div>
+<p>Um die unser Benutzerprofil auf die tcsh-Shell zu ändern, geben wir folgenden Befehl ein:</p>
+<div>
+<pre><code># chsh -s tcsh</code></pre>
+</div>
+<p>Unsere Anpassungen sind damit erstmal abgeschlossen. Wenn ihr euch dann das nächste mal einloggt, habt ihr eure neue Shell</p><!-- indexer::stop -->
+  </div>
+</article>
+ 
+
+	          </div>
+        
+      
+      <aside id="sidebar">
+        
+<!-- indexer::stop -->
+    <nav id="sub-navigation">
+    <ol class="level_1" id="sub-navigation-items">
+  
+    	  		<li class="first"><a href="../admins-haften.html" title="Admins haften" class="first">» Das Risiko eines Administrators</a></li>
+  	    	  		<li><a href="../installation.html" title="Installation">01 Installation</a></li>
+  	    	  		<li class="submenu trail"><a href="../grundlegendes.html" title="Grundlegendes" class="submenu trail">02 Grundlegendes</a>	<ol class="level_2">
+  
+    	  		<li class="sibling first"><a href="das-szenario.html" title="Das Szenario" class="sibling first">Das Szenario</a></li>
+  	    	  		<li class="sibling"><a href="kurzeinfuehrng-in-vi.html" title="Kurzeinführung in vi" class="sibling">Kurzeinführung in vi</a></li>
+  	    	  		<li class="sibling"><a href="software-installieren.html" title="Software installieren aus den Ports" class="sibling">Software installieren</a></li>
+  	    	  		<li class="sibling"><a href="sudo-root-rechte-fuer-alle.html" title="sudo: root-Rechte für alle" class="sibling">sudo: root-Rechte für alle</a></li>
+  	    	  		<li class="sibling"><a href="sichere-passwoerter-leicht-gemacht.html" title="Sichere Passwörter leicht gemacht" class="sibling">Sichere Passwörter leicht gemacht</a></li>
+  	    	  		<li class="sibling"><a href="verzeichnisstruktur-von-freebsd.html" title="Die Verzeichnisstruktur von FreeBSD" class="sibling">Die Verzeichnisstruktur von FreeBSD</a></li>
+  	    	  		<li class="active active">Die Shell anpassen</li>
+  	    	  		<li class="sibling last"><a href="das-handbuch.html" title="Das FreeBSD-Handbuch" class="sibling last">Das FreeBSD-Handbuch</a></li>
+  	  
+  </ol></li>
+  	    	  		<li><a href="../software-raid-mit-gmirror.html" title="Software-RAID mit gmirror">03 Software-RAID</a></li>
+  	    	  		<li><a href="../zeitsynchronisation-per-ntp.html" title="Zeitsynchronisation per NTP">04 Zeitsynchronisation</a></li>
+  	    	  		<li><a href="../updates.html" title="Das System aktuell halten">05 Updates</a></li>
+  	    	  		<li><a href="../systemsicherheit.html" title="Systemsicherheit">06 Systemsicherheit</a></li>
+  	    	  		<li><a href="../firewall.html" title="Firewall mit pf">07 Firewall</a></li>
+  	    	  		<li><a href="../jails-mit-ezjail.html" title="Jails mit EzJail">08 Jails mit EzJail</a></li>
+  	    	  		<li><a href="../datenbankserver.html" title="Datenbankserver">09 Datenbankserver</a></li>
+  	    	  		<li><a href="../webserver.html" title="Webserver">10 Webserver</a></li>
+  	    	  		<li><a href="../reverse-proxy.html" title="Reverse-Proxy">11 Reverse-Proxy</a></li>
+  	    	  		<li><a href="../ftp-server.html" title="FTP-Server">12 FTP-Server</a></li>
+  	    	  		<li><a href="../e-mailserver.html" title="E-Mailserver">13 E-Mailserver</a></li>
+  	    	  		<li><a href="../dns-server.html" title="DNS-Server">14 DNS-Server</a></li>
+  	    	  		<li><a href="../versionskontrolle.html" title="Versionskontrolle">15 Versionskontrolle</a></li>
+  	    	  		<li><a href="../itunes-server.html" title="iTunes-Server">16 iTunes-Server</a></li>
+  	    	  		<li><a href="../virtual-private-networks.html" title="Virtual Private Networks (VPN)">17 Virtual Private Networks</a></li>
+  	    	  		<li><a href="../samba-freigaben.html" title="Samba-Freigaben">18 Samba-Freigaben</a></li>
+  	    	  		<li><a href="../backup.html" title="Backup">19 Backup</a></li>
+  	    	  		<li class="last"><a href="../monitoring.html" title="Monitoring" class="last">20 Monitoring</a></li>
+  	  
+  </ol><!-- indexer::continue -->
+      </aside>
+
+                </div>
+    
+    <div class="ribbon right red" style="visibility:hidden">
+      <a href="../../das-ebook.html">Neue Auflage!</a>
+    </div>
+    
+        <footer id="footer-hidden"></footer>
+        
+    <!-- indexer::stop -->
+    <nav id="legal-links">
+      <ul>
+        <li><a href="../../impressum.html" title="Impressum">Impressum</a></li>
+        <li><a href="../../datenschutz.html" title="Datenschutz">Datenschutz</a></li>
+        <li><a href="../../sitemap.html" title="Sitemap">Sitemap</a></li>
+      </ul>
+        
+      <div class="copyright"> ein Projekt von Benedikt Niessen <em>powered by <strong>B</strong>#</em></div>
+    </nav>
+    <!-- indexer::continue -->
+
+  </div>
+
+  
+<script>setTimeout(function(){var e=function(e,t){try{var n=new XMLHttpRequest}catch(r){return}n.open("GET",e,!0),n.onreadystatechange=function(){this.readyState==4&&this.status==200&&typeof t=="function"&&t(this.responseText)},n.send()},t="system/cron/cron.";e(t+"txt",function(n){parseInt(n||0)<Math.round(+(new Date)/1e3)-86400&&e(t+"php")})},5e3);</script>
+
+<!-- Masha -->  
+<!--[IF IE]> 
+  <script type="text/javascript" src="http://serverzeit.de/files/serverzeit_v2/js/ierange.js" async defer></script> 
+<![ENDIF]-->
+<script type="text/javascript" src="../../files/serverzeit_v2/js/masha.min.js" async defer></script>
+<script type="text/javascript">
+  if(document.body.className.indexOf("mobile") == -1) {
+    if(window.addEventListener){     
+        window.addEventListener('load', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        }, false);
+    } else {
+        window.attachEvent('onload', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        });
+    }
+  }
+</script>
+  
+  <script>
+  new Request({
+    url:'system/html/cron.txt',
+    onComplete: function(txt) {
+      if (!txt) txt = 0;
+      if (parseInt(txt) < (Math.round(+new Date()/1000) - 300)) {
+        new Request({url:'cron.php'}).get();
+      }
+    }
+  }).get();
+  </script>
+
+    
+  <!-- Google Analytics --> 
+  <script type="text/javascript">
+    /*var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36693720-1']);
+    _gaq.push(['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();*/
+  </script>
+</body>
+</html>

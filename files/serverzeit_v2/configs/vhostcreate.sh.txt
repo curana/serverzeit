@@ -1,0 +1,110 @@
+#!/bin/sh
+# vhost create 4 lighttpd
+# Author: Benedikt Niessen
+# Copyright 2008
+# Version 1.0
+
+# Configuration:
+#
+# Path where anchor-files are located (no terminating '/')
+PATH_FCGI=/www/fastcgi
+PATH_VHOSTS=/www/vhosts
+WWWUSER=www
+
+# Variables
+HOST=$2
+
+echo -n " Creates filestructure for new lighttpd-vhost"
+echo ""
+
+case "$1" in
+  create)
+    pw user add $HOST
+    pw group mod $HOST -M $WWWUSER
+
+        echo "#!/bin/sh" >> $PATH_FCGI/startup/$HOST.sh
+        echo "SPAWNFCGI=\"/usr/local/bin/spawn-fcgi\"" >> $PATH_FCGI/startup/$HOST.sh
+        echo "FCGIPROGRAM=\"/usr/local/bin/php-cgi\"" >> $PATH_FCGI/startup/$HOST.sh
+        echo "FCGISOCKET=\"$PATH_FCGI/${HOST}/${HOST}.socket\"" >> $PATH_FCGI/startup/$HOST.sh
+        echo "" >> $PATH_FCGI/startup/$HOST.sh
+        echo "## uncomment the PHPRC line, if you want to have an extra php.ini for this user" >> $PATH_FCGI/startup/$HOST.sh
+        echo "#PHPRC=\"/www/fastcgi/${HOST}/\"" >> $PATH_FCGI/startup/$HOST.sh
+        ###
+        ### PHP_FCGI_CHILDREN evtl. anpassen
+        ###
+        echo "PHP_FCGI_CHILDREN=2" >> $PATH_FCGI/startup/$HOST.sh
+        echo "PHP_FCGI_MAX_REQUESTS=1000" >> $PATH_FCGI/startup/$HOST.sh
+        ###
+        ### UNBEDINGT DIE JAIL-IP ANPASSEN
+        ###
+        echo "FCGI_WEB_SERVER_ADDRS="10.0.0.X"" >> $PATH_FCGI/startup/$HOST.sh
+        echo "ALLOWED_ENV=\"PATH USER\"" >> $PATH_FCGI/startup/$HOST.sh
+        echo "USERID=${HOST}" >> $PATH_FCGI/startup/$HOST.sh
+        echo "GROUPID=${HOST}" >> $PATH_FCGI/startup/$HOST.sh
+        echo "" >> $PATH_FCGI/startup/$HOST.sh
+        echo "if test x\$PHP_FCGI_CHILDREN = x; then" >> $PATH_FCGI/startup/$HOST.sh
+        echo "  PHP_FCGI_CHILDREN=5" >> $PATH_FCGI/startup/$HOST.sh
+        echo "fi" >> $PATH_FCGI/startup/$HOST.sh
+        echo "" >> $PATH_FCGI/startup/$HOST.sh
+        echo "export PHP_FCGI_MAX_REQUESTS" >> $PATH_FCGI/startup/$HOST.sh
+        echo "export FCGI_WEB_SERVER_ADDRS" >> $PATH_FCGI/startup/$HOST.sh
+        echo "export PHPRC" >> $PATH_FCGI/startup/$HOST.sh
+        echo "" >> $PATH_FCGI/startup/$HOST.sh
+        echo "ALLOWED_ENV=\"\$ALLOWED_ENV PHP_FCGI_MAX_REQUESTS FCGI_WEB_SERVER_ADDRS PHPRC\"" >> $PATH_FCGI/startup/$HOST.sh
+        echo "" >> $PATH_FCGI/startup/$HOST.sh
+        echo "E=" >> $PATH_FCGI/startup/$HOST.sh
+        echo "" >> $PATH_FCGI/startup/$HOST.sh
+        echo "for i in \$ALLOWED_ENV; do" >> $PATH_FCGI/startup/$HOST.sh
+        echo "  E=\"\$E \$i=\$(eval echo \"\\$\$i\")\"" >> $PATH_FCGI/startup/$HOST.sh
+        echo "done" >> $PATH_FCGI/startup/$HOST.sh
+        echo "" >> $PATH_FCGI/startup/$HOST.sh
+        echo "env - \$E \$SPAWNFCGI -s \$FCGISOCKET -f \$FCGIPROGRAM -u \$USERID -g \$GROUPID -C \$PHP_FCGI_CHILDREN" >> $PATH_FCGI/startup/$HOST.sh
+        echo "" >> $PATH_FCGI/startup/$HOST.sh
+        echo "chmod 770 \$FCGISOCKET" >> $PATH_FCGI/startup/$HOST.sh
+
+    cd $PATH_FCGI/startup && chown root:wheel $HOST.sh
+    chmod 750 $HOST.sh
+    mkdir $PATH_FCGI/$HOST && cd $PATH_FCGI
+    chown $HOST:$HOST $HOST && chmod 750 $HOST
+    mkdir $PATH_VHOSTS/$HOST && cd $PATH_VHOSTS
+    chown $HOST:$HOST $HOST
+    chmod 550 $HOST
+    mkdir $PATH_VHOSTS/$HOST/.session
+    mkdir $PATH_VHOSTS/$HOST/htdocs
+    mkdir $PATH_VHOSTS/$HOST/.tmp && cd $PATH_VHOSTS/$HOST
+    chown $HOST:$HOST .session
+    chown $HOST:$HOST htdocs
+    chown $HOST:$HOST .tmp
+    chmod 750 .session
+    chmod 550 htdocs
+    chmod 750 .tmp
+    mkdir $PATH_VHOSTS/$HOST/.logs
+    chown $WWWUSER:$HOST .logs
+    chmod 750 .logs
+
+        echo "\$HTTP[\"host\"] == \"${HOST}\" {" >> $PATH_VHOSTS/config/$HOST
+        echo "  simple-vhost.server-root   = \"/www/vhosts/\"" >> $PATH_VHOSTS/config/$HOST
+        echo "  simple-vhost.default-host  = \"${HOST}\"" >> $PATH_VHOSTS/config/$HOST
+        echo "  simple-vhost.document-root = \"/htdocs\"" >> $PATH_VHOSTS/config/$HOST
+        echo "" >> $PATH_VHOSTS/config/$HOST
+        echo "  accesslog.filename         = \"/www/vhosts/${HOST}/.logs/${HOST}.access.log\"" >> $PATH_VHOSTS/config/$HOST
+        echo "" >> $PATH_VHOSTS/config/$HOST
+        echo "  fastcgi.server = ( \".php\" =>" >> $PATH_VHOSTS/config/$HOST
+        echo "                      (" >> $PATH_VHOSTS/config/$HOST
+        echo "                        (" >> $PATH_VHOSTS/config/$HOST
+        echo "                         \"socket\" => \"/www/fastcgi/${HOST}/${HOST}.socket\"," >> $PATH_VHOSTS/config/$HOST
+        echo "                         \"broken-scriptfilename\" => \"enable\"" >> $PATH_VHOSTS/config/$HOST
+        echo "                        )" >> $PATH_VHOSTS/config/$HOST
+        echo "                      )" >> $PATH_VHOSTS/config/$HOST
+        echo "                   )" >> $PATH_VHOSTS/config/$HOST
+        echo "}" >> $PATH_VHOSTS/config/$HOST
+
+  ;;
+
+  *)
+    echo ""
+    echo " ==> Usage: `basename $0` {create} HOSTNAME" >&2
+    exit 64
+  ;;
+esac
+exit 0

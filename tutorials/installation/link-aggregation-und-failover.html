@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <title>Link-Aggregation und Failover - Tutorials und Anleitungen zu FreeBSD, Servern & Diensten :: serverzeit.de</title>
+  <base href="">
+
+  <meta charset="utf-8">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="Link-Aggregation unter FreeBSD. So geht's.">
+  <meta name="keywords" content="Link Aggregation, lagg0, lagg1, IEEE 802.3ad, Kanalbündelung, Failover, Bandbreite, Performance, igb">
+  <meta name="google-site-verification" content="yghLhV7EXvN6dHIltCHFyKpGePQ033_oRI7eMxWbQbg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="../../files/serverzeit_v2/images/favicon.ico" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic%7CDroid+Sans:400%7CUbuntu:400,400italic,300,300italic,700,700italic%7CUbuntu+Mono">
+<link rel="stylesheet" href="../../assets/css/5ee243558dbc.css">
+    <!--[if (lt IE 9)]>
+   <script type="text/javascript" src="http://ie-print-protector.googlecode.com/svn/trunk/javascript/iepp.min.js"></script>
+<![endif]-->
+</head>
+
+<body id="top" class="unix other  print">  
+  <div id="wrapper">
+  
+        
+<!-- indexer::stop -->
+  <div id="searchbar-frame">
+    <div id="searchbar">        
+      
+
+      <div class="searchfield">
+        <form action="http://serverzeit.de/suche" method="get" id="search" enctype="application/x-www-form-urlencoded">
+          <label for="searchfield">Suche:</label>
+          <span><input type="text" name="keywords" id="searchfield" value="" required /></span>
+          <input type="submit" name="perform-search" value="GO" />
+          
+                    
+<input type="hidden" name="date" value="2024-12-12">
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<!-- indexer::continue -->
+
+<!-- indexer::stop -->
+  <!-- indexer::stop -->
+<header>
+  <a href="../../index.html"><img src="../../files/serverzeit_v2/images/logo.png" style="margin-top:-14px" alt="serverzeit.de - Logo" title="serverzeit.de - Logo" /></a>
+  <nav>
+    <ul class="level_1" id="main-navigation">
+              <li class="first"><a href="../../index.html" title="Startseite" class="first">Startseite</a></li>
+                  <li class="trail"><a href="../../tutorials.html" title="Tutorials" class="trail">Tutorials</a></li>
+                  <li><a href="../../das-ebook.html" title="Das Buch">Das Buch</a></li>
+                  <li class="last"><a href="../../aus-zweiter-hand.html" title="Aus zweiter Hand" class="last">Aus zweiter Hand</a></li>
+            </ul>
+  </nav>
+</header>
+<!-- indexer::continue --><!-- indexer::continue -->
+ 
+    
+    
+    <div id="main">    
+      <div id="content-wrapper">
+	    
+<article itemscope itemtype="http://schema.org/Article">
+
+
+<div class="article-header">
+  <div class="article-title">
+    <h1 class="ce_headline first">Link-Aggregation und Failover</h1>
+  </div>
+</div>
+
+<!-- indexer::continue -->
+<div class="article-text" itemprop="articleBody" id="article"><!-- indexer::continue -->
+
+<h2>Grundlagen</h2>
+<p>Unter "<a href="https://www.freebsd.org/doc/de/books/handbook/network-aggregation.html">Link Aggregation</a>" verstehen wir die gemeinsame Nutzung von Netzwerk-Schnittstellen. Im Klartext bedeutet das, dass zwei oder mehr Netzwerkschnittstellen softwareseitig so kombiniert werden, dass das Betriebssystem diese möglichst transparent gleichmässig auslasten und/oder als Fallback bei einer Störung nutzen kann.</p>
+<p>FreeBSD unterstützt verschiedene Modi der Link Aggregation, wobei die folgenden die wohl wichtigsten sind:</p>
+<ul>
+<li><em>Failover-Modus:</em>&nbsp;Hierbei wird eine Schnittstelle aktiv genutzt. Fällt diese aus, wird versucht den Datenverkehr über die zweite zu leiten. Hier steht uns die Bandbreite des aktiven Ports zur Verfügung.</li>
+<li><em>Aggregations-Modus:</em>&nbsp;Hier wird versucht mehrere Kanäle zu bündeln. Stehen beide Schnittstellen zur Verfügung, können wir die summierte Bandbreite nutzen. Fällt eine Schnittstelle aus, reduziert sich die Bandbreite auf die der verbleibenden Schnittstelle.</li>
+</ul>
+<p>Der Loadbalance-Modus klingt am besten, höchste Geschwindigkeit bei gleichzeitiger Ausfallsicherheit. Allerdings setzt dieser Modus auch eine entsprechende Unterstützung auf Seite des Switches voraus. Der zu unterstützende Standard heisst IEEE 802.3ad und ist meist nur bei hochpreisigem Qualitätsequipment verfügbar, es gibt aber auch ein paar wenige Ausnahmen.</p><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>Failover-Konfiguration</h2>
+<p>In diesem Beispiel gehe ich davon aus, dass wir über zwei Schnittstellen verfügen, <em>igb0</em> und <em>igb1</em>. Diese werden wir nun zu einem Interface lagg0 verbinden. Das Umschalten zwischen den aktiven Kanälen erfolgt dann automatisch und für unsere Applikationen transparent.</p>
+<p>Wichtig ist, dass wir in einem ersten Schritt die Schnittstellen aktivieren.</p>
+<pre><code># ifconfig igb0 up<br># ifconfig igb1 up</code></pre>
+<p>Nun erstellen wir die <em>lagg0</em>-Schnittstelle und weisen ihr die beiden oben erwähnten Schnittstellen <em>igb0</em> und <em>igb1</em> zu. Anschliessend ist das Interface auch über den Befehl <em>ifconfig</em> ersichtlich. Die IP-Adresse weisen wir auch gleich noch zu.</p>
+<pre><code># ifconfig lagg0 create<br># ifconfig lagg0 up laggproto failover laggport igb0 laggport igb1<br># ifconfig lagg0 192.168.0.100</code></pre>
+<p>Wollen wir diese Konfiguration nun dauerhaft erhalten, müssen wir folgendes in unsere <em>/etc/rc.conf</em> eintragen:</p>
+<pre><code>ifconfig_igb0="up"<br>ifconfig_igb1="up"<br>cloned_interfaces="lagg0"<br>ifconfig_lagg0="laggproto failover laggport igb0 laggport igb1 192.168.0.100/24"</code></pre><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>Aggregations-Konfiguration</h2>
+<p>Schauen wir uns nun an wie wir eine Aggregation unserer Schnittstellen erreichen. Auch hier haben wir zwei Schnittstellen zur Verfügung, diesmal <em>igb2</em> und <em>igb3</em>. Diese werden wir nun zu einem Interface <em>lagg1</em> verbinden.</p>
+<p>Auch hier müssen wir die Schnittstellen aktivieren.</p>
+<pre><code># ifconfig igb2 up<br># ifconfig igb3 up</code></pre>
+<p>Nun erstellen wir wieder eine Schnittstelle, <em>lagg1.</em> Diesmal verwenden wir&nbsp;die beiden oben erwähnten Schnittstellen <em>igb2</em> und <em>igb3</em>. Anschliessend ist das Interface auch über den Befehl <em>ifconfig</em> ersichtlich. Diesmal verwenden wir DHCP für die Zuweisung der IP-Adresse.</p>
+<pre><code># ifconfig lagg1 create<br># ifconfig lagg1 up laggproto lacp laggport igb2 laggport igb3<br># ifconfig lagg1 dhcp</code></pre>
+<p>Wollen wir diese Konfiguration nun dauerhaft erhalten, müssen wir folgendes in unsere <em>/etc/rc.conf</em> eintragen:</p>
+<pre><code>ifconfig_igb3="up"<br>ifconfig_igb4="up"<br>cloned_interfaces="lagg1"<br>ifconfig_lagg1="laggproto lacp laggport igb3 laggport igb4 dhcp"<br></code></pre>
+<p>Die Ausgabe von <em>ifconfig</em> sieht dann beispielsweise so aus:</p>
+<pre><code>lagg1: flags=8843&lt;UP,BROADCAST,RUNNING,SIMPLEX,MULTICAST&gt; metric 0 mtu 1500
+        options=401bb&lt;RXCSUM,TXCSUM,VLAN_MTU,VLAN_HWTAGGING,JUMBO_MTU,VLAN_HWCSUM,TSO4,VLAN_HWTSO&gt;
+        ether 00:25:90:d9:60:70
+        inet 192.168.0.100 netmask 0xffffffff broadcast 192.168.0.254
+        nd6 options=29&lt;PERFORMNUD,IFDISABLED,AUTO_LINKLOCAL&gt;
+        media: Ethernet autoselect
+        status: active
+        laggproto lacp lagghash l2,l3,l4
+        laggport: igb3 flags=1c&lt;ACTIVE,COLLECTING,DISTRIBUTING&gt;
+        laggport: igb2 flags=1c&lt;ACTIVE,COLLECTING,DISTRIBUTING&gt;
+</code></pre><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>Notlösung</h2>
+<p>Aber wie sieht das ganze nun aus, wenn wir keinen Switch mit Link Aggregations-Unterstützung haben, aber zwei Netzwerkkarten nutzen können und die komplette Bandbreite ausnutzen wollen? In diesem Fall könnten wir immernoch hergehen und die Netzwerkkarten auf die Jails verteilen, sodass in etwa eine lastverteilte Nutzung entsteht. Ein Failover-Szenario ist hier dann allerdings nicht integriert.</p><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>1 GBit + 1 GBit != 2 GBit</h2>
+<p>Wichtig ist zu verstehen, wie die Link Aggregation funktioniert, um enttäuschten Gesichtern vorzubeugen. Gehen wir beispielsweise davon aus, dass wir zwei Server miteinander verbunden haben, die jeweils beide im Aggregationsmodus betrieben werden.</p>
+<p>Kopieren wir nun eine Datei via SCP auf das jeweils andere System, erfolgt dies in der selben Geschwindigkeit, in der sie auch ohne die Link Aggregation übertragen worden wäre. Woran liegt das?</p>
+<p>Bei der Link Aggregation wird ein Hash-Wert der Gegenstelle erstellt. Anhand dieses Schlüssels wird die Verbindung dann fix einem Interface (bei uns <em>igb2</em> oder <em>igb3</em>) zugewiesen. Das ist erforderlich, um die Datenkonsistenz zu bewahren, da es sonst bspw. zu Paketüberholungen kommen könnte.</p>
+<p>Wenn wir nun aber parallel noch eine Datei auf ein weitere System kopieren, wird dieses über die nicht ausgelastete Schnittstelle verarbeitet. So haben wir dann gebündelt "2 GBit".</p><!-- indexer::stop -->
+  </div>
+</article>
+ 
+
+	          </div>
+        
+      
+      <aside id="sidebar">
+        
+<!-- indexer::stop -->
+    <nav id="sub-navigation">
+    <ol class="level_1" id="sub-navigation-items">
+  
+    	  		<li class="first"><a href="../admins-haften.html" title="Admins haften" class="first">» Das Risiko eines Administrators</a></li>
+  	    	  		<li class="submenu trail"><a href="../installation.html" title="Installation" class="submenu trail">01 Installation</a>	<ol class="level_2">
+  
+    	  		<li class="sibling first"><a href="../../das-buch/feedback/zfs-vs-ufs2.html" title="ZFS oder UFS2?" class="sibling first">ZFS oder UFS2?</a></li>
+  	    	  		<li class="sibling"><a href="ipv6-unter-freebsd.html" title="IPv6 unter FreeBSD" class="sibling">IPv6 unter FreeBSD</a></li>
+  	    	  		<li class="active active last">Link-Aggregation und Failover</li>
+  	  
+  </ol></li>
+  	    	  		<li><a href="../grundlegendes.html" title="Grundlegendes">02 Grundlegendes</a></li>
+  	    	  		<li><a href="../software-raid-mit-gmirror.html" title="Software-RAID mit gmirror">03 Software-RAID</a></li>
+  	    	  		<li><a href="../zeitsynchronisation-per-ntp.html" title="Zeitsynchronisation per NTP">04 Zeitsynchronisation</a></li>
+  	    	  		<li><a href="../updates.html" title="Das System aktuell halten">05 Updates</a></li>
+  	    	  		<li><a href="../systemsicherheit.html" title="Systemsicherheit">06 Systemsicherheit</a></li>
+  	    	  		<li><a href="../firewall.html" title="Firewall mit pf">07 Firewall</a></li>
+  	    	  		<li><a href="../jails-mit-ezjail.html" title="Jails mit EzJail">08 Jails mit EzJail</a></li>
+  	    	  		<li><a href="../datenbankserver.html" title="Datenbankserver">09 Datenbankserver</a></li>
+  	    	  		<li><a href="../webserver.html" title="Webserver">10 Webserver</a></li>
+  	    	  		<li><a href="../reverse-proxy.html" title="Reverse-Proxy">11 Reverse-Proxy</a></li>
+  	    	  		<li><a href="../ftp-server.html" title="FTP-Server">12 FTP-Server</a></li>
+  	    	  		<li><a href="../e-mailserver.html" title="E-Mailserver">13 E-Mailserver</a></li>
+  	    	  		<li><a href="../dns-server.html" title="DNS-Server">14 DNS-Server</a></li>
+  	    	  		<li><a href="../versionskontrolle.html" title="Versionskontrolle">15 Versionskontrolle</a></li>
+  	    	  		<li><a href="../itunes-server.html" title="iTunes-Server">16 iTunes-Server</a></li>
+  	    	  		<li><a href="../virtual-private-networks.html" title="Virtual Private Networks (VPN)">17 Virtual Private Networks</a></li>
+  	    	  		<li><a href="../samba-freigaben.html" title="Samba-Freigaben">18 Samba-Freigaben</a></li>
+  	    	  		<li><a href="../backup.html" title="Backup">19 Backup</a></li>
+  	    	  		<li class="last"><a href="../monitoring.html" title="Monitoring" class="last">20 Monitoring</a></li>
+  	  
+  </ol><!-- indexer::continue -->
+      </aside>
+
+                </div>
+    
+    <div class="ribbon right red" style="visibility:hidden">
+      <a href="../../das-ebook.html">Neue Auflage!</a>
+    </div>
+    
+        <footer id="footer-hidden"></footer>
+        
+    <!-- indexer::stop -->
+    <nav id="legal-links">
+      <ul>
+        <li><a href="../../impressum.html" title="Impressum">Impressum</a></li>
+        <li><a href="../../datenschutz.html" title="Datenschutz">Datenschutz</a></li>
+        <li><a href="../../sitemap.html" title="Sitemap">Sitemap</a></li>
+      </ul>
+        
+      <div class="copyright"> ein Projekt von Benedikt Niessen <em>powered by <strong>B</strong>#</em></div>
+    </nav>
+    <!-- indexer::continue -->
+
+  </div>
+
+  
+<script>setTimeout(function(){var e=function(e,t){try{var n=new XMLHttpRequest}catch(r){return}n.open("GET",e,!0),n.onreadystatechange=function(){this.readyState==4&&this.status==200&&typeof t=="function"&&t(this.responseText)},n.send()},t="system/cron/cron.";e(t+"txt",function(n){parseInt(n||0)<Math.round(+(new Date)/1e3)-86400&&e(t+"php")})},5e3);</script>
+
+<!-- Masha -->  
+<!--[IF IE]> 
+  <script type="text/javascript" src="http://serverzeit.de/files/serverzeit_v2/js/ierange.js" async defer></script> 
+<![ENDIF]-->
+<script type="text/javascript" src="../../files/serverzeit_v2/js/masha.min.js" async defer></script>
+<script type="text/javascript">
+  if(document.body.className.indexOf("mobile") == -1) {
+    if(window.addEventListener){     
+        window.addEventListener('load', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        }, false);
+    } else {
+        window.attachEvent('onload', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        });
+    }
+  }
+</script>
+  
+  <script>
+  new Request({
+    url:'system/html/cron.txt',
+    onComplete: function(txt) {
+      if (!txt) txt = 0;
+      if (parseInt(txt) < (Math.round(+new Date()/1000) - 300)) {
+        new Request({url:'cron.php'}).get();
+      }
+    }
+  }).get();
+  </script>
+
+    
+  <!-- Google Analytics --> 
+  <script type="text/javascript">
+    /*var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36693720-1']);
+    _gaq.push(['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();*/
+  </script>
+</body>
+</html>

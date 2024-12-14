@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <title>iTunes-Server - Tutorials und Anleitungen zu FreeBSD, Servern & Diensten :: serverzeit.de</title>
+  <base href="">
+
+  <meta charset="utf-8">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="">
+  <meta name="keywords" content="itunes, firefly, apple, tv, mp3, music, ipod, ipad, streaming, media, video">
+  <meta name="google-site-verification" content="yghLhV7EXvN6dHIltCHFyKpGePQ033_oRI7eMxWbQbg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="../files/serverzeit_v2/images/favicon.ico" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic%7CDroid+Sans:400%7CUbuntu:400,400italic,300,300italic,700,700italic%7CUbuntu+Mono">
+<link rel="stylesheet" href="../assets/css/5ee243558dbc.css">
+    <!--[if (lt IE 9)]>
+   <script type="text/javascript" src="http://ie-print-protector.googlecode.com/svn/trunk/javascript/iepp.min.js"></script>
+<![endif]-->
+</head>
+
+<body id="top" class="unix other  print">  
+  <div id="wrapper">
+  
+        
+<!-- indexer::stop -->
+  <div id="searchbar-frame">
+    <div id="searchbar">        
+      
+
+      <div class="searchfield">
+        <form action="http://serverzeit.de/suche" method="get" id="search" enctype="application/x-www-form-urlencoded">
+          <label for="searchfield">Suche:</label>
+          <span><input type="text" name="keywords" id="searchfield" value="" required /></span>
+          <input type="submit" name="perform-search" value="GO" />
+          
+                    
+<input type="hidden" name="date" value="2024-12-12">
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<!-- indexer::continue -->
+
+<!-- indexer::stop -->
+  <!-- indexer::stop -->
+<header>
+  <a href="../index.html"><img src="../files/serverzeit_v2/images/logo.png" style="margin-top:-14px" alt="serverzeit.de - Logo" title="serverzeit.de - Logo" /></a>
+  <nav>
+    <ul class="level_1" id="main-navigation">
+              <li class="first"><a href="../index.html" title="Startseite" class="first">Startseite</a></li>
+                  <li class="trail"><a href="../tutorials.html" title="Tutorials" class="trail">Tutorials</a></li>
+                  <li><a href="../das-ebook.html" title="Das Buch">Das Buch</a></li>
+                  <li class="last"><a href="../aus-zweiter-hand.html" title="Aus zweiter Hand" class="last">Aus zweiter Hand</a></li>
+            </ul>
+  </nav>
+</header>
+<!-- indexer::continue --><!-- indexer::continue -->
+ 
+    
+    
+    <div id="main">    
+      <div id="content-wrapper">
+	    
+<article itemscope itemtype="http://schema.org/Article">
+
+
+<div class="article-header">
+  <div class="article-title">
+    <h1 class="ce_headline first">iTunes-Server im eigenen Netzwerk</h1>
+  </div>
+</div>
+
+<!-- indexer::continue -->
+<div class="article-text" itemprop="articleBody" id="article"><!-- indexer::continue -->
+<p>Hast du auch ein Heim-Netz und teilst deine Musiksammlung mit dem Rest der Familie oder setzt verschiedene Clients ein, um über diese deine Musik abzuspielen? Dann bietet es sich oft an, eine zentrale Instanz zu installieren, auf der die Daten gesammelt werden. Sicherlich lässt sich dies sehr einfach über Samba bewerkstelligen, wenn du allerdings&nbsp;<a class="vglnk" title="Link added by VigLink" href="http://itunes.apple.com/" rel="nofollow" target="_blank"><span>iTunes</span></a>&nbsp;als MediaPlayer einsetzt, bietet sich eine interessante Ergänzung an: ein iTunes-Server. Wir setzen hierfür&nbsp;<a href="http://fireflymediaserver.org/" target="_blank">FireFly</a>&nbsp;ein, der aktiv entwickelt wird, wenngleich er noch nicht 100% stable wirkt.</p>
+<ol>
+<li>Zu allererst überlegen wir uns, wo wir FireFly installieren wollen. Gerade weil FireFly noch nicht stable ist und einige Abhängigkeit besitzt, schlage ich wie immer vor, wir installieren ihn in einer Jail. Hierfür ist allerdings eines zu beachten:<br><br>Wenn wir bisher eine Jail erstellt haben, haben wir ein 10.0.0.X-Netz verwendet. In meinem Fall liegt das Heimnetz in einem anderen IP-Netz, nämlich 192.169.X.X. Trotz NAT versucht&nbsp;<a class="vglnk" title="Link added by VigLink" href="http://itunes.apple.com/" rel="nofollow" target="_blank"><span>iTunes</span></a>&nbsp;allerdings auf die 10.0.0.X zuzugreifen. Daher: Wir müssen eine IP vergeben, die im Netzbereich der Clients liegt.<br><br></li>
+<li>Wenn wir also eine Jail mit passeneder IP-Adresse angelegt haben - ich verwende mal die 192.168.0.100 - können wir uns daran machen, den entsprechenden Port zu installieren:<br><br><span class="code"># cd /usr/ports/audio/firefly/ &amp;&amp; make install clean</span><br><br></li>
+<li>Bei der Auswahl der PlugIns habe ich einfach alle ausgewählt. Mehr ist mehr. Das kompilieren wird ziemlich lange dauern, da einige Abhängigkeiten aufgelöst werden müssen. Wenn das aber mal erledigt ist, können wir uns an die Konfiguration des Servers machen.<br><br></li>
+<li>Im Ordner '/usr/local/etc/' ist eine Beispielkonfiguration hinterlegt (mt-daad.conf.sample). Du wunderst dich jetzt vielleicht warum da nicht FireFly sondern mt-daad steht, nun FireFly hiess früher mt-daad, jetzt heisst er FireFly. Wie auch immer, wir kopieren uns die Beispielkonfiguration und passen folgende Parameter an:<br><br><strong>web_root /usr/local/share/mt-daapd/admin-root<br></strong>Dies ist das Standardverzeichnis für die Administrationsoberfläche. Dieses musst du eigentlich ändern, ausser du verschiebst diesen Ordner.<br><br><strong>port 3689<br></strong>Das ist der Standardport auf dem der&nbsp;<a class="vglnk" title="Link added by VigLink" href="http://itunes.apple.com/" rel="nofollow" target="_blank"><span>iTunes</span></a>-Server läuft. Ich würde ihn nicht ändern, habe es auch nicht ausprobiert was passiert (ob&nbsp;<a class="vglnk" title="Link added by VigLink" href="http://itunes.apple.com/" rel="nofollow" target="_blank"><span>iTunes</span></a>&nbsp;ihn nicht mehr findet bspw)<br><br><strong>admin_pw<br></strong>Hier kommt das Administratorpasswort hin. Einfach dahinter schreiben, ohne '=' oder ähnliches, wie bei den anderen Parametern auch. Über die Adresse "<a class="vglnk" title="Link added by VigLink" href="http://192.168.0.100:3689/" rel="nofollow" target="_blank"><span>http</span><span>://</span><span>192</span><span>.</span><span>168</span><span>.</span><span>0</span><span>.</span><span>100</span><span>:</span><span>3689</span></a>" kannst du später die Web-Oberfläche erreichen. Benutzername ist "admin", das Passwort das welches du hier einträgst.<br><br><strong>db_dir /usr/local/var/mt-daapd/db<br></strong>Das ist der Pfad zur SQLite-Datenbank. Den brauchst du eigentlich auch nicht zu ändern.<br><br><strong>mp3_dir /dein/Musik/Verzeichnis<br></strong>Hier trägst du den Pfad ein, unter dem du die MP3-Files hinterlegen willst. Ich nutze hier ein NULLFS-Mount um die Daten des Samba-Shares in die iTunes-Jail zu mounten. Funktioniert bestens.<br><br><strong>servername Mein iTunes-Server<br></strong>Das ist der&nbsp;<a class="vglnk" title="Link added by VigLink" href="http://itunes.apple.com/" rel="nofollow" target="_blank"><span>iTunes</span></a>-Server-Name, der in&nbsp;iTunes&nbsp;unter "Freigaben" erscheint.<br><br><strong>runas daapd<br></strong>Das ist der Benutzer unter dem der Server läuft. Hier sollte auch die Standardvorgabe ausreichen.<br><br><strong>password DeinPasswort<br></strong>Es kann sein, dass du deinen iTunes-Server mit einem Passwort schützen möchtest, dann ist das hier der richtige Parameter um ein Passwort zu setzen (nicht zu verwechseln mit dem Admin-Passwort!)<br><br><strong>extensions .mp3,.m4a,.m4p,.m4v<br></strong>Dies sind die Dateierweiterungen, die der iTunes-Server berücksichten soll. Ich habe nicht ausprobiert was passiert, wenn man hier Video-Dateien ablegt...<br><br><strong>logfile /var/log/mt-daapd.log<br></strong>Unter diesem Pfad liegt das Logfile des&nbsp;iTunes-Servers. Das ist sehr nützlich.&nbsp;iTunes&nbsp;unterstützt einige Debug-Level, die bei der Fehlersuche helfen, falls Probleme auftreten.<br><br></li>
+<li>Sobald die Konfiguration angelegt ist, müssen wir noch die Ports freigeben. Einerseites TCP 3689 und UDP 5353. Auf dem UDP-Port broadcastet der Server seinen Share.<br><br></li>
+<li>Es gibt übrigens noch die Möglichkeit Playlists anzulegen. Hierbei ist zu beachten, dass es nur ein Playlistfile gibt, welches über den Parameter&nbsp;<strong>playlist /pfad/zur/Playlist/daapd.playlist</strong>&nbsp;gesetzt wird.<br><br>Eine Sektion in dieser Playlist hat das folgende Format:<br><br><strong>"Rock" {<br>genre includes "Rock"<br>}<br><br></strong></li>
+<li>Jetzt tragen wir noch den obligatorischen Flag&nbsp;<strong>firefly_enable="YES"</strong>&nbsp;in die /etc/rc.conf ein. Danach können wir den Server starten:<br><br><span class="code"># /usr/local/etc/rc.d/mt-daapd start</span><br><br></li>
+<li>Wenn wir jetzt&nbsp;iTunes&nbsp;starten, sollte auf der linken Seite dein Server unter "Freigaben" erscheinen. Bearbeiten der Files geht über&nbsp;iTunes&nbsp;natürlich nicht, daher empfehle ich hier Samba als Ergänzung.</li>
+</ol><!-- indexer::stop -->
+  </div>
+</article>
+ 
+
+	          </div>
+        
+      
+      <aside id="sidebar">
+        
+<!-- indexer::stop -->
+    <nav id="sub-navigation">
+    <ol class="level_1" id="sub-navigation-items">
+  
+    	  		<li class="sibling first"><a href="admins-haften.html" title="Admins haften" class="sibling first">» Das Risiko eines Administrators</a></li>
+  	    	  		<li class="sibling"><a href="installation.html" title="Installation" class="sibling">01 Installation</a></li>
+  	    	  		<li class="sibling"><a href="grundlegendes.html" title="Grundlegendes" class="sibling">02 Grundlegendes</a></li>
+  	    	  		<li class="sibling"><a href="software-raid-mit-gmirror.html" title="Software-RAID mit gmirror" class="sibling">03 Software-RAID</a></li>
+  	    	  		<li class="sibling"><a href="zeitsynchronisation-per-ntp.html" title="Zeitsynchronisation per NTP" class="sibling">04 Zeitsynchronisation</a></li>
+  	    	  		<li class="sibling"><a href="updates.html" title="Das System aktuell halten" class="sibling">05 Updates</a></li>
+  	    	  		<li class="sibling"><a href="systemsicherheit.html" title="Systemsicherheit" class="sibling">06 Systemsicherheit</a></li>
+  	    	  		<li class="sibling"><a href="firewall.html" title="Firewall mit pf" class="sibling">07 Firewall</a></li>
+  	    	  		<li class="sibling"><a href="jails-mit-ezjail.html" title="Jails mit EzJail" class="sibling">08 Jails mit EzJail</a></li>
+  	    	  		<li class="sibling"><a href="datenbankserver.html" title="Datenbankserver" class="sibling">09 Datenbankserver</a></li>
+  	    	  		<li class="sibling"><a href="webserver.html" title="Webserver" class="sibling">10 Webserver</a></li>
+  	    	  		<li class="sibling"><a href="reverse-proxy.html" title="Reverse-Proxy" class="sibling">11 Reverse-Proxy</a></li>
+  	    	  		<li class="sibling"><a href="ftp-server.html" title="FTP-Server" class="sibling">12 FTP-Server</a></li>
+  	    	  		<li class="sibling"><a href="e-mailserver.html" title="E-Mailserver" class="sibling">13 E-Mailserver</a></li>
+  	    	  		<li class="sibling"><a href="dns-server.html" title="DNS-Server" class="sibling">14 DNS-Server</a></li>
+  	    	  		<li class="sibling"><a href="versionskontrolle.html" title="Versionskontrolle" class="sibling">15 Versionskontrolle</a></li>
+  	    	  		<li class="active active">16 iTunes-Server</li>
+  	    	  		<li class="sibling"><a href="virtual-private-networks.html" title="Virtual Private Networks (VPN)" class="sibling">17 Virtual Private Networks</a></li>
+  	    	  		<li class="sibling"><a href="samba-freigaben.html" title="Samba-Freigaben" class="sibling">18 Samba-Freigaben</a></li>
+  	    	  		<li class="sibling"><a href="backup.html" title="Backup" class="sibling">19 Backup</a></li>
+  	    	  		<li class="sibling last"><a href="monitoring.html" title="Monitoring" class="sibling last">20 Monitoring</a></li>
+  	  
+  </ol><!-- indexer::continue -->
+      </aside>
+
+                </div>
+    
+    <div class="ribbon right red" style="visibility:hidden">
+      <a href="../das-ebook.html">Neue Auflage!</a>
+    </div>
+    
+        <footer id="footer-hidden"></footer>
+        
+    <!-- indexer::stop -->
+    <nav id="legal-links">
+      <ul>
+        <li><a href="../impressum.html" title="Impressum">Impressum</a></li>
+        <li><a href="../datenschutz.html" title="Datenschutz">Datenschutz</a></li>
+        <li><a href="../sitemap.html" title="Sitemap">Sitemap</a></li>
+      </ul>
+        
+      <div class="copyright"> ein Projekt von Benedikt Niessen <em>powered by <strong>B</strong>#</em></div>
+    </nav>
+    <!-- indexer::continue -->
+
+  </div>
+
+  
+<script>setTimeout(function(){var e=function(e,t){try{var n=new XMLHttpRequest}catch(r){return}n.open("GET",e,!0),n.onreadystatechange=function(){this.readyState==4&&this.status==200&&typeof t=="function"&&t(this.responseText)},n.send()},t="system/cron/cron.";e(t+"txt",function(n){parseInt(n||0)<Math.round(+(new Date)/1e3)-86400&&e(t+"php")})},5e3);</script>
+
+<!-- Masha -->  
+<!--[IF IE]> 
+  <script type="text/javascript" src="http://serverzeit.de/files/serverzeit_v2/js/ierange.js" async defer></script> 
+<![ENDIF]-->
+<script type="text/javascript" src="../files/serverzeit_v2/js/masha.min.js" async defer></script>
+<script type="text/javascript">
+  if(document.body.className.indexOf("mobile") == -1) {
+    if(window.addEventListener){     
+        window.addEventListener('load', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        }, false);
+    } else {
+        window.attachEvent('onload', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        });
+    }
+  }
+</script>
+  
+  <script>
+  new Request({
+    url:'system/html/cron.txt',
+    onComplete: function(txt) {
+      if (!txt) txt = 0;
+      if (parseInt(txt) < (Math.round(+new Date()/1000) - 300)) {
+        new Request({url:'cron.php'}).get();
+      }
+    }
+  }).get();
+  </script>
+
+    
+  <!-- Google Analytics --> 
+  <script type="text/javascript">
+    /*var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36693720-1']);
+    _gaq.push(['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();*/
+  </script>
+</body>
+</html>

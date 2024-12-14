@@ -1,0 +1,146 @@
+### NETWORK ###
+var HOME_NET INTERNES-NETZ/24
+var EXTERNAL_NET EXTERNE-IP
+config detection: search-method lowmem
+
+### SERVERS ###
+var SMTP_SERVERS IP-ADRESSE
+var HTTP_SERVERS IP-ADRESSE
+var SQL_SERVERS IP-ADRESSE
+var DNS_SERVERS IP-ADRESSE
+
+var SHELLCODE_PORTS !80
+var HTTP_PORTS 80
+var AIM_SERVERS [64.12.24.0/23,64.12.28.0/23,64.12.161.0/24,64.12.163.0/24,64.12.200.0/24,205.188.3.0/24,205.188.5.0/24,205.188.7.0/24,205.188.9.0/24,205.188.153.0/24,205.188.179.0/24,205.188.248.0/24]
+var RULE_PATH ./rules
+
+dynamicpreprocessor directory /usr/local/lib/snort/dynamicpreprocessor/
+dynamicengine /usr/local/lib/snort/dynamicengine/libsf_engine.so
+
+### DISABLE ALERTS ###
+# Stop generic decode events:
+#config disable_decode_alerts
+# Stop Alerts on experimental TCP options
+#config disable_tcpopt_experimental_alerts
+# Stop Alerts on obsolete TCP options
+#config disable_tcpopt_obsolete_alerts
+# Stop Alerts on T/TCP alerts
+#config disable_tcpopt_ttcp_alerts
+# Stop Alerts on all other TCPOption type events:
+#config disable_tcpopt_alerts
+# Stop Alerts on invalid ip options
+#config disable_ipopt_alerts
+config enable_decode_oversized_alerts
+config enable_decode_oversized_drops
+
+### PREPROCESSORS ###
+preprocessor flow: stats_interval 0 hash 2
+preprocessor flow-portscan: server-watchnet [INTERNES-NETZ/24] unique-memcap 5000000 unique-rows 50000 tcp-penalties on server-scanner-limit 30 alert-mode all output-mode msg server-learning-time 3600
+# frag2: IP defragmentation support
+preprocessor frag2
+# frag3: Target-based IP defragmentation
+preprocessor frag3_global: max_frags 65536
+preprocessor frag3_engine: policy first detect_anomalies
+#preprocessor stream4: disable_evasion_alerts
+preprocessor stream4: detect_scans
+#preprocessor stream4_reassemble
+preprocessor stream4_reassemble: both ports all
+preprocessor perfmonitor: time 300 file snort.stats pktcnt 10000
+preprocessor http_inspect: global iis_unicode_map unicode.map 1252
+preprocessor http_inspect_server: server default profile all ports { 80 8080 } oversize_dir_length 500
+preprocessor rpc_decode: 111 32771
+preprocessor bo
+preprocessor sfportscan: proto  { all } memcap { 10000000 } sense_level { low }
+#preprocessor arpspoof
+#preprocessor arpspoof_detect_host: 192.168.40.1 f0:0f:00:f0:0f:00
+preprocessor ssh: server_ports { SSH-PORT } max_client_bytes 19600 max_encrypted_packets 20
+preprocessor dns: ports { 53 } enable_rdata_overflow
+preprocessor dcerpc: autodetect max_frag_size 3000 memcap 100000
+
+#output log_tcpdump: tcpdump.log
+#output alert_unified: filename snort.alert, limit 128
+#output log_unified: filename snort.log, limit 128
+
+include classification.config
+include reference.config
+
+### RULES ###
+include $RULE_PATH/local.rules
+include $RULE_PATH/bad-traffic.rules
+include $RULE_PATH/exploit.rules
+include $RULE_PATH/scan.rules
+include $RULE_PATH/finger.rules
+#include $RULE_PATH/ftp.rules
+#include $RULE_PATH/telnet.rules
+include $RULE_PATH/rpc.rules
+include $RULE_PATH/rservices.rules
+include $RULE_PATH/dos.rules
+include $RULE_PATH/ddos.rules
+include $RULE_PATH/dns.rules
+#include $RULE_PATH/tftp.rules
+
+include $RULE_PATH/web-cgi.rules
+include $RULE_PATH/web-coldfusion.rules
+#include $RULE_PATH/web-iis.rules
+#include $RULE_PATH/web-frontpage.rules
+#include $RULE_PATH/web-misc.rules
+include $RULE_PATH/web-client.rules
+include $RULE_PATH/web-php.rules
+
+#include $RULE_PATH/sql.rules
+include $RULE_PATH/x11.rules
+include $RULE_PATH/icmp.rules
+include $RULE_PATH/netbios.rules
+include $RULE_PATH/misc.rules
+include $RULE_PATH/attack-responses.rules
+#include $RULE_PATH/oracle.rules
+include $RULE_PATH/mysql.rules
+#include $RULE_PATH/snmp.rules
+
+include $RULE_PATH/smtp.rules
+include $RULE_PATH/imap.rules
+#include $RULE_PATH/pop2.rules
+#include $RULE_PATH/pop3.rules
+
+include $RULE_PATH/nntp.rules
+include $RULE_PATH/other-ids.rules
+include $RULE_PATH/web-attacks.rules
+#include $RULE_PATH/backdoor.rules
+#include $RULE_PATH/shellcode.rules
+include $RULE_PATH/policy.rules
+include $RULE_PATH/porn.rules
+#include $RULE_PATH/info.rules
+include $RULE_PATH/icmp-info.rules
+include $RULE_PATH/virus.rules
+# include $RULE_PATH/chat.rules
+# include $RULE_PATH/multimedia.rules
+# include $RULE_PATH/p2p.rules
+include $RULE_PATH/experimental.rules
+
+### COMMUNITY RULES ###
+#include $RULE_PATH/community-game.rules
+include $RULE_PATH/community-nntp.rules
+include $RULE_PATH/community-sql-injection.rules
+#include $RULE_PATH/community-web-iis.rules
+include $RULE_PATH/community-bot.rules
+include $RULE_PATH/community-icmp.rules
+#include $RULE_PATH/community-oracle.rules
+include $RULE_PATH/community-virus.rules
+include $RULE_PATH/community-web-misc.rules
+include $RULE_PATH/community-deleted.rules
+include $RULE_PATH/community-imap.rules
+include $RULE_PATH/community-policy.rules
+include $RULE_PATH/community-web-attacks.rules
+include $RULE_PATH/community-web-php.rules
+include $RULE_PATH/community-dos.rules
+include $RULE_PATH/community-inappropriate.rules
+#include $RULE_PATH/community-sid-msg.map
+include $RULE_PATH/community-web-cgi.rules
+include $RULE_PATH/community-exploit.rules
+include $RULE_PATH/community-mail-client.rules
+#include $RULE_PATH/community-sip.rules
+include $RULE_PATH/community-web-client.rules
+#include $RULE_PATH/community-ftp.rules
+include $RULE_PATH/community-misc.rules
+include $RULE_PATH/community-smtp.rules
+include $RULE_PATH/community-web-dos.rules

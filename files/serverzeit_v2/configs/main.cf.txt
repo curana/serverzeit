@@ -1,0 +1,136 @@
+### GENERAL
+smtpd_banner = $myhostname ESMTP $mail_name (some Unix)
+biff = no
+append_dot_mydomain = no
+daemon_directory = /usr/local/libexec/postfix
+command_directory = /usr/local/sbin
+#delay_warning_time = 4h
+myhostname = mail.domain.de
+myorigin = domain.de
+mydestination = localhost
+relayhost =
+mynetworks = 10.0.0.0/8
+mailbox_size_limit = 0
+recipient_delimiter = +
+inet_interfaces = all
+alias_database = hash:/etc/aliases
+alias_maps = $alias_database
+message_size_limit = 50000000
+smtpd_helo_required = yes
+
+### VIRTUAL
+virtual_mailbox_domains = proxy:mysql:$config_directory/cf/mysql_virtual_domains_maps.cf
+virtual_mailbox_base = /var/mail/virtual
+virtual_mailbox_maps = proxy:mysql:$config_directory/cf/mysql_virtual_mailbox_maps.cf
+virtual_alias_maps = proxy:mysql:$config_directory/cf/mysql_virtual_alias_maps.cf
+virtual_minimum_uid = 150
+virtual_uid_maps = static:150
+virtual_gid_maps = static:6
+virtual_transport = dovecot
+dovecot_destination_recipient_limit = 1
+
+### SASL Authentication
+smtpd_sasl_auth_enable = yes
+smtpd_sasl_exceptions_networks = $mynetworks
+smtpd_sasl_security_options = noanonymous
+broken_sasl_auth_clients = yes
+smtpd_sasl_type = dovecot
+smtpd_sasl_path = private/auth
+
+smtpd_tls_cert_file = /usr/local/etc/ssl/mail-cert.pem
+smtpd_tls_key_file = /usr/local/etc/ssl/mail-key.pem
+smtpd_tls_session_cache_database = btree:/var/lib/postfix/smtpd_tls_session_cache
+smtpd_tls_security_level = may
+smtpd_tls_received_header = no
+smtpd_tls_loglevel = 0
+smtpd_use_tls = yes
+smtpd_tls_auth_only = yes
+tls_random_source = dev:/dev/urandom
+
+debug_peer_level                = 2
+debugger_command                =
+PATH                            = /bin:/usr/bin:/usr/local/bin:/usr/X11R6/bin
+xxgdb                           = $daemon_directory/$process_name $process_id & sleep 5
+show_user_unknown_table_name    = no
+
+header_checks = pcre:/usr/local/etc/postfix/header_checks
+
+### LIMITATIONS
+smtpd_client_restrictions =
+    permit_mynetworks,
+    permit_sasl_authenticated,
+    check_client_access hash:/usr/local/etc/postfix/whitelist,
+    reject_rbl_client dnsbl.sorbs.net,
+    reject_rbl_client sbl-xbl.spamhaus.org,
+    reject_rbl_client list.dsbl.org,
+    reject_rbl_client zen.spamhaus.org,
+    reject_rbl_client blackholes.easynet.nl,
+    reject_rbl_client unconfirmed.dsbl.org,
+    reject_rbl_client dynablock.njabl.org,
+    reject_rbl_client dialup.blacklist.jippg.org,
+    reject_rbl_client cbl.abuseat.org,
+    reject_rbl_client bl.spamcop.net,
+    reject_rbl_client sbl.spamhaus.org,
+    reject_rbl_client t1.dnsbl.net.au,
+    reject_rhsbl_client block.rhs.mailpolice.com,
+    reject_rhsbl_client rhsbl.ahbl.org,
+    reject_rhsbl_client dynamic.rhs.mailpolice.com,
+    reject_rhsbl_client rhsbl.sorbs.net
+    reject_rhsbl_client bogusmx.rfc-ignorant.org,
+    permit
+
+smtpd_sender_restrictions =
+    permit_mynetworks,
+    permit_sasl_authenticated,
+    reject_unknown_sender_domain,
+    reject_non_fqdn_sender,
+    reject_sender_login_mismatch
+    check_sender_access hash:/usr/local/etc/postfix/whitelist
+    reject_rhsbl_sender rhsbl.sorbs.net,
+    reject_rhsbl_sender rddb.dnsbl.net.au,
+    reject_rhsbl_sender endn.dnsbl.net.au,
+    reject_rhsbl_sender rhsbl.ahbl.org,
+    reject_rhsbl_sender rhsbl.sorbs.net,
+    reject_rhsbl_sender block.rhs.mailpolice.com,
+    reject_rhsbl_sender dynamic.rhs.mailpolice.com,
+    permit
+    
+smtpd_recipient_restrictions =
+    permit_mynetworks,
+    permit_sasl_authenticated,
+    check_sender_access hash:/usr/local/etc/postfix/blacklist
+    reject_unknown_recipient_domain,
+    reject_non_fqdn_recipient,
+    reject_invalid_hostname,
+    reject_non_fqdn_sender,
+    reject_non_fqdn_recipient,
+    reject_unknown_sender_domain,
+    reject_unknown_recipient_domain,
+    reject_unauth_destination,
+    reject_unauth_pipelining,
+    reject_rhsbl_recipient sbl.spamhaus.org,
+    reject_rhsbl_recipient bl.spamcop.net,
+    reject_rhsbl_recipient dnsbl.sorbs.net,
+    reject_rhsbl_recipient dnsbl.njabl.org,
+    reject_rhsbl_recipient spamsources.fabel.dk,
+    permit
+    
+smtpd_data_restrictions =
+    permit_mynetworks,
+    reject_unauth_pipelining,
+    reject_multi_recipient_bounce,
+    permit
+
+readme_directory = no
+sample_directory = /usr/local/etc/postfix
+sendmail_path = /usr/local/sbin/sendmail
+html_directory = no
+setgid_group = maildrop
+manpage_directory = /usr/local/man
+newaliases_path = /usr/local/bin/newaliases
+mailq_path = /usr/local/bin/mailq
+queue_directory = /var/spool/postfix
+mail_owner = postfix
+data_directory = /var/db/postfix
+disable_vrfy_command = yes
+smtpd_delay_reject = yes

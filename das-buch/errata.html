@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <title>Errata - Tutorials und Anleitungen zu FreeBSD, Servern & Diensten :: serverzeit.de</title>
+  <base href="">
+
+  <meta charset="utf-8">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="google-site-verification" content="yghLhV7EXvN6dHIltCHFyKpGePQ033_oRI7eMxWbQbg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="../files/serverzeit_v2/images/favicon.ico" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic%7CDroid+Sans:400%7CUbuntu:400,400italic,300,300italic,700,700italic%7CUbuntu+Mono">
+<link rel="stylesheet" href="../assets/css/5ee243558dbc.css">
+    <!--[if (lt IE 9)]>
+   <script type="text/javascript" src="http://ie-print-protector.googlecode.com/svn/trunk/javascript/iepp.min.js"></script>
+<![endif]-->
+</head>
+
+<body id="top" class="unix other  print">  
+  <div id="wrapper">
+  
+        
+<!-- indexer::stop -->
+  <div id="searchbar-frame">
+    <div id="searchbar">        
+      
+
+      <div class="searchfield">
+        <form action="http://serverzeit.de/suche" method="get" id="search" enctype="application/x-www-form-urlencoded">
+          <label for="searchfield">Suche:</label>
+          <span><input type="text" name="keywords" id="searchfield" value="" required /></span>
+          <input type="submit" name="perform-search" value="GO" />
+          
+                    
+<input type="hidden" name="date" value="2024-12-12">
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<!-- indexer::continue -->
+
+<!-- indexer::stop -->
+  <!-- indexer::stop -->
+<header>
+  <a href="../index.html"><img src="../files/serverzeit_v2/images/logo.png" style="margin-top:-14px" alt="serverzeit.de - Logo" title="serverzeit.de - Logo" /></a>
+  <nav>
+    <ul class="level_1" id="main-navigation">
+              <li class="first"><a href="../index.html" title="Startseite" class="first">Startseite</a></li>
+                  <li><a href="../tutorials.html" title="Tutorials">Tutorials</a></li>
+                  <li class="trail"><a href="../das-ebook.html" title="Das Buch" class="trail">Das Buch</a></li>
+                  <li class="last"><a href="../aus-zweiter-hand.html" title="Aus zweiter Hand" class="last">Aus zweiter Hand</a></li>
+            </ul>
+  </nav>
+</header>
+<!-- indexer::continue --><!-- indexer::continue -->
+ 
+    
+    
+    <div id="main">    
+      <div id="content-wrapper">
+	    
+<article itemscope itemtype="http://schema.org/Article">
+
+
+<div class="article-header">
+  <div class="article-title">
+    <h1 class="ce_headline first">Errata</h1>
+  </div>
+</div>
+
+<!-- indexer::continue -->
+<div class="article-text" itemprop="articleBody" id="article"><!-- indexer::continue -->
+<p>Der Satz "Nobody is perfect" trifft leider auch auf mich zu, und so haben sich trotz sorgfältiger Prüfung kleinere Fehler eingeschlichen, die ich nachfolgend korrigieren möchte. Für entstandene Unannehmlichkeiten entschuldige ich mich natürlich.</p><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>3.3 Die Verzeichnisstruktur von FreeBSD, S. 25</h2>
+<p>In der Beschreibung des Inhalts des Verzeichnisses <em>/bin</em> hat sich ein Fehler eingeschlichen. Der Satz muss korrekterweise lauten:</p>
+<div class="page" title="Page 43">
+<div class="layoutArea">
+<div class="column">
+<p><em>"In diesem Verzeichnis liegen Systemprogramme, die von allen Benutzern und natürlich von root ausgeführt werden können, beispielsweise das Programm zum Kopieren von Dateien und Verzeichnissen: cp."</em></p>
+</div>
+</div>
+</div><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>3.8 Zeitsynchronisation per NTP, S. 35</h2>
+<p>Vor den Namen der Zeitserver fehlt ein Leerzeichen. Der Inhalt der Datei</p>
+<pre><code>/usr/local/etc/ntpd.conf</code></pre>
+<p>muss daher wie folgt aussehen:</p>
+<pre><code>listen on 127.0.0.1<br>server 0.de.pool.ntp.org<br>server 1.de.pool.ntp.org<br>server 2.de.pool.ntp.org<br>server 3.de.pool.ntp.org</code></pre><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>7.2.1 Der Firewall-Airbag, S. 58</h2>
+<p>Die Crontab-Zeile am Ende der Seite ist falsch. Da wir hier eine benutzerspezifische Crontab bearbeiten, wird die Spalte 6 (hier: root) nicht mit dem Benutzernamen sondern bereits mit dem Befehl gefüllt. Korrekterweise muss die Zeile daher wie folgt lauten (Danke an Jens H. für den Hinweis):</p>
+<pre><code>*/5   *   *   *   *   /sbin/pfctl -d<br></code></pre><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>7.2.4 Eine Beispielkonfiguration, S. 61</h2>
+<p>Die letzten beiden Regelsätze in der Beispiel pf-Konfiguration sind doppelt. In der <a href="../files/das-buch/k7.2.4/pf.conf">pf.conf</a>, die hier zum Download bereitgestellt ist, wurde der Fehler behoben:</p>
+<pre><code>pass in on $if inet proto icmp all icmp-type $icmp_types keep state
+pass in on $if inet proto udp from any to any port 33433 &gt;&lt; 33626 keep state</code></pre><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>8.2.3 FreeBSD-Quellcode auschecken, S. 75</h2>
+<p>Der erste Kopierbefehl enthält einen Fehler. Und zwar wird die Datei /etc/standard-supfile erstellt, im Folgenden wird allerdings auf die Datei /etc/source-supfile Bezug genommen. Der Befehl muss daher korrekterweise lauten:</p>
+<pre><code># cp /usr/share/examples/cvsup/standard-supfile /etc/source-supfile</code></pre><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>9.2.1 nginx, S. 99</h2>
+<p>In der nginx-Konfiguration nutzen wir das nginx-Modul "aio" für asynchrone Systemaufrufe. Um <em>aio</em> nutzen zu können, muss das Kernelmodul auf dem Host ebenfalls geladen sein, sonst kommt es zu Fehlermeldungen in den nginx-Logdateien.</p>
+<p>Das Kernelmodul kann auf dem Host (ausserhalb der Jail) mit folgendem Befehl geladen werden:</p>
+<pre><code># kldload aio</code></pre>
+<p>Soll das Modul bei jedem Systemstart automatisch geladen werden, müssen Sie folgende Zeile in die Datei <em>/boot/loader.conf</em> einfügen:</p>
+<pre><code>aio_load="YES"</code></pre>
+<p>Anschliessend muss nginx neu gestartet werden.</p><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>9.2.2.5 PHP 5-Prozesse konfigurieren und starten, S. 116/117</h2>
+<p>Die Standard-Konfiguration von PHP-FPM (<em>php-fpm.conf</em>) beinhaltet bereits einen Pool mit dem Namen <em>WWW</em>. Dieser ist auf Port <em>9000</em> konfiguriert und führt beim Hinzufügen des abgedruckten Pools zu folgender Fehlermeldung:</p>
+<pre><code>ERROR: unable to bind listening socket for address '10.0.0.2:9000': Address already in use (48)</code></pre>
+<p>Demnach bitte darauf achten, dass entweder der Pool <em>WWW</em> verwendet wird, die zugehörigen Parameter kommentiert werden oder der Port des Pools <em>example_com</em> auf bspw. 9001 geändert wird. Siehe hierzu auch die entsprechende Meldung im <a href="http://serversupportforum.de/forum/linux/54036-problem-mit-jails-syslog.html" target="_blank">Server Support Forum</a>.</p>
+<p>In der Beispielkonfiguration "example_com.conf" hat sich in der letzten Zeile ein Fehler eingeschlichen (Danke an Nicola T.). Und zwar wird hier als Session-Savehandler "file" angegeben. Korrekterweise muss es für ein Speichern der Sessions in Dateien "file<strong>s</strong>" heissen.</p>
+<p>Korrekt lautet die Zeile demnach wie folgt:</p>
+<pre><code>php_admin_value[session.save_handler] = files</code></pre><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>9.4.2.4 Mailserver mit IMAP und POP3, S. 137</h2>
+<p>Hierbei handelt es sich nicht um einen Fehler, sondern um eine Änderung in Postfix 2.10. Und zwar wurde eine neue "Restriction" eingeführt,&nbsp;<em>smtpd_relay_restrictions</em>. Diese regelt die Nutzung von Postfix als Relay.</p>
+<p>Folgende Zeilen müssen daher zusätzlich in die <em>/usr/local/etc/postfix/main.cf</em> eingefügt werden:</p>
+<pre><code>smtpd_relay_restrictions =
+     permit_mynetworks, 
+     permit_sasl_authenticated, 
+     defer_unauth_destination</code></pre>
+<p>Die Downloads zum Buch wurden bereits angepasst.</p>
+<p>Danke an Jan-Dirk K. für diesen Hinweis.</p><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>9.4.8.2 Spam-Filter und Virenscanner per DSPAM integrieren, S. 162</h2>
+<p>Auf Seite 162 hat sich ein Fehler in den Cronjob eingeschlichen. Wir legen die Datei <em>dspam_purge.sh</em> im Verzeichnis <em>/usr/local/bin/</em> an. Im Cronjob wurde fälschlicherweise auf das Verzeichnis <em>/usr/local/etc/</em> verwiesen:</p>
+<pre><code>0 &nbsp; 0 &nbsp; * &nbsp; * &nbsp; * &nbsp; root &nbsp; /usr/local/<strong>bin</strong>/dspam_purge.sh</code></pre>
+<p>Danke für den Hinweis von Andreas H.</p><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>9.8.1 Öffentliche Freigaben, S. 195</h2>
+<p>Hinter der ersten Zeile des Konfigurationsbeispiels hat sich ein überflüssiges Fragezeichen ("?") eingeschlichen. Dieses ist überflüssig und führt zu Syntaxfehlern beim Start von Samba.</p>
+<p>Korrekt lautet der Abschnitt wie folgt:</p>
+<pre><code>[PUBLIC]<br>comment = "PUBLIC-Freigabe"<br>path = /samba/public<br>writable = no<br>browseable = yes<br>user = BENUTZERNAME1<br>write list = BENUTZERNAME1, BENUTZERNAME2 <br>locking = no<br>guest ok = yes<br>create mode = 0644<br>directory mode = 0755<br>public = yes</code></pre><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>9.8.2 Geschützte Freigaben, S. 195</h2>
+<p>Hinter der ersten Zeile des Konfigurationsbeispiels hat sich ein überflüssiges Fragezeichen ("?") eingeschlichen. Dieses ist überflüssig und führt zu Syntaxfehlern beim Start von Samba.</p>
+<p>Korrekt lautet der Abschnitt wie folgt:</p>
+<pre><code>[PRIVATE]<br>comment = "PRIVATE-Freigabe" <br>path = /samba/private <br>writable = no<br>browseable = no<br>valid users = BENUTZERNAME1 <br>locking = no<br>guest ok = no<br>create mode = 0600<br>directory mode = 0700<br>public = no</code></pre><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>9.4.9.2 Die Syntax von Sieve, S. 175</h2>
+<p>Hinter der zweiten Zeile des Beispielskripts fehlt eine schliessende Klammer ")".</p>
+<p>Korrekt lautet das Beispiel wie folgt:</p>
+<pre><code>require ["reject", "fileinto"];
+if allof ( size :over 3M, not header :matches "Subject" "[SPAM]*" ) 
+{
+   reject "Bitte keine E-Mails mit einem Anhang &gt; 3 MB.";
+   stop; 
+}
+
+if header :matches "Subject" "[SPAM]*" 
+{
+   fileinto "Junk";
+   stop; 
+}
+</code></pre><!-- indexer::stop -->
+  </div>
+</article>
+ 
+
+	          </div>
+        
+      
+      <aside id="sidebar">
+        
+<!-- indexer::stop -->
+    <nav id="sub-navigation">
+    <ol class="level_1" id="sub-navigation-items">
+  
+    	  		<li class="sibling first"><a href="leseprobe.html" title="Leseprobe" class="sibling first">Leseprobe</a></li>
+  	    	  		<li class="sibling"><a href="inhaltsverzeichnis.html" title="Inhaltsverzeichnis" class="sibling">Inhaltsverzeichnis</a></li>
+  	    	  		<li class="sibling"><a href="zusatzkapitel.html" title="Zusatzkapitel" class="sibling">Zusatzkapitel</a></li>
+  	    	  		<li class="sibling"><a href="feedback.html" title="Feedback" class="sibling">Feedback</a></li>
+  	    	  		<li class="sibling"><a href="kaufen.html" title="Das Buch kaufen" class="sibling">Kaufen</a></li>
+  	    	  		<li class="active active">Errata</li>
+  	    	  		<li class="sibling last"><a href="downloads.html" title="Downloads" class="sibling last">Downloads</a></li>
+  	  
+  </ol><!-- indexer::continue -->
+      </aside>
+
+                </div>
+    
+    <div class="ribbon right red" style="visibility:hidden">
+      <a href="../das-ebook.html">Neue Auflage!</a>
+    </div>
+    
+        <footer id="footer-hidden"></footer>
+        
+    <!-- indexer::stop -->
+    <nav id="legal-links">
+      <ul>
+        <li><a href="../impressum.html" title="Impressum">Impressum</a></li>
+        <li><a href="../datenschutz.html" title="Datenschutz">Datenschutz</a></li>
+        <li><a href="../sitemap.html" title="Sitemap">Sitemap</a></li>
+      </ul>
+        
+      <div class="copyright"> ein Projekt von Benedikt Niessen <em>powered by <strong>B</strong>#</em></div>
+    </nav>
+    <!-- indexer::continue -->
+
+  </div>
+
+  
+<script>setTimeout(function(){var e=function(e,t){try{var n=new XMLHttpRequest}catch(r){return}n.open("GET",e,!0),n.onreadystatechange=function(){this.readyState==4&&this.status==200&&typeof t=="function"&&t(this.responseText)},n.send()},t="system/cron/cron.";e(t+"txt",function(n){parseInt(n||0)<Math.round(+(new Date)/1e3)-86400&&e(t+"php")})},5e3);</script>
+
+<!-- Masha -->  
+<!--[IF IE]> 
+  <script type="text/javascript" src="http://serverzeit.de/files/serverzeit_v2/js/ierange.js" async defer></script> 
+<![ENDIF]-->
+<script type="text/javascript" src="../files/serverzeit_v2/js/masha.min.js" async defer></script>
+<script type="text/javascript">
+  if(document.body.className.indexOf("mobile") == -1) {
+    if(window.addEventListener){     
+        window.addEventListener('load', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        }, false);
+    } else {
+        window.attachEvent('onload', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        });
+    }
+  }
+</script>
+  
+  <script>
+  new Request({
+    url:'system/html/cron.txt',
+    onComplete: function(txt) {
+      if (!txt) txt = 0;
+      if (parseInt(txt) < (Math.round(+new Date()/1000) - 300)) {
+        new Request({url:'cron.php'}).get();
+      }
+    }
+  }).get();
+  </script>
+
+    
+  <!-- Google Analytics --> 
+  <script type="text/javascript">
+    /*var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36693720-1']);
+    _gaq.push(['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();*/
+  </script>
+</body>
+</html>

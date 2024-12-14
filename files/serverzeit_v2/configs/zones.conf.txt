@@ -1,0 +1,7 @@
+local-zone: "local." static
+
+# DOMAINS
+local-data: "mysql.local.           IN A 10.0.0.1"
+
+# PTR
+local-data-ptr: "10.0.0.1          mysql.local"

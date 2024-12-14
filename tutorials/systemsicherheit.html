@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <title>Systemsicherheit - Tutorials und Anleitungen zu FreeBSD, Servern & Diensten :: serverzeit.de</title>
+  <base href="">
+
+  <meta charset="utf-8">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="">
+  <meta name="keywords" content="sicherheit, absichern, sicherheitslücke, hacken, hardening">
+  <meta name="google-site-verification" content="yghLhV7EXvN6dHIltCHFyKpGePQ033_oRI7eMxWbQbg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="../files/serverzeit_v2/images/favicon.ico" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic%7CDroid+Sans:400%7CUbuntu:400,400italic,300,300italic,700,700italic%7CUbuntu+Mono">
+<link rel="stylesheet" href="../assets/css/5ee243558dbc.css">
+    <!--[if (lt IE 9)]>
+   <script type="text/javascript" src="http://ie-print-protector.googlecode.com/svn/trunk/javascript/iepp.min.js"></script>
+<![endif]-->
+</head>
+
+<body id="top" class="unix other  print">  
+  <div id="wrapper">
+  
+        
+<!-- indexer::stop -->
+  <div id="searchbar-frame">
+    <div id="searchbar">        
+      
+
+      <div class="searchfield">
+        <form action="http://serverzeit.de/suche" method="get" id="search" enctype="application/x-www-form-urlencoded">
+          <label for="searchfield">Suche:</label>
+          <span><input type="text" name="keywords" id="searchfield" value="" required /></span>
+          <input type="submit" name="perform-search" value="GO" />
+          
+                    
+<input type="hidden" name="date" value="2024-12-12">
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<!-- indexer::continue -->
+
+<!-- indexer::stop -->
+  <!-- indexer::stop -->
+<header>
+  <a href="../index.html"><img src="../files/serverzeit_v2/images/logo.png" style="margin-top:-14px" alt="serverzeit.de - Logo" title="serverzeit.de - Logo" /></a>
+  <nav>
+    <ul class="level_1" id="main-navigation">
+              <li class="first"><a href="../index.html" title="Startseite" class="first">Startseite</a></li>
+                  <li class="trail"><a href="../tutorials.html" title="Tutorials" class="trail">Tutorials</a></li>
+                  <li><a href="../das-ebook.html" title="Das Buch">Das Buch</a></li>
+                  <li class="last"><a href="../aus-zweiter-hand.html" title="Aus zweiter Hand" class="last">Aus zweiter Hand</a></li>
+            </ul>
+  </nav>
+</header>
+<!-- indexer::continue --><!-- indexer::continue -->
+ 
+    
+    
+    <div id="main">    
+      <div id="content-wrapper">
+	    
+<article itemscope itemtype="http://schema.org/Article">
+
+
+<div class="article-header">
+  <div class="article-title">
+    <h1 class="ce_headline first">Systemsicherheit</h1>
+  </div>
+</div>
+
+<!-- indexer::continue -->
+<div class="article-text" itemprop="articleBody" id="article"><!-- indexer::continue -->
+<p>Wie jede Frau braucht auch ein Server Aufmerksamkeit und regelmäßige Pflege. Diese bezieht sich zwar nicht so sehr auf emotionale Nähe und Streicheleinheiten, sondern eher auf Sicherheitsupdates und Performanceauslastungen.</p>
+<p>Ich werde dir hier verschieden Tools vorstellen und Dinge nennen, die du regelmäßig kontrollieren solltest. Dazu gehört vorallem das Überprüfen der installierten Software auf Sicherheitslücken, das regelmäßige Updaten von Software, das Prüfen auf Viren und Rootkits erfolgt ja bereits über entsprechende Tools, die ich in einer anderen Kategorie genannt habe.</p>
+<p><strong>portaudit / jailaudit:</strong>&nbsp;Portaudit ist ein Tool, welches anhand einer aktuellen Datenbank von Sicherheitslöchern abgleicht, ob eine betroffene Software auf deinem System installiert ist. Ist dies der Fall, so solltest du diese updaten.</p>
+<ul>
+<li>Jailaudit macht im Grund genau das gleiche, allerdings nur für die Jails. Du kannst alternativ natürlich einfach portaudit in jeder Jail installieren, aber das frisst Speicherplatz und Zeit</li>
+<li>Um zu verhindern, dass du dich regelmäßig an deinem Server anmelden musst um auf dem Laufenden zu bleiben, würde ich dir empfehlen, die Mails an den User "root" an deinen normalen Mail-Account weiterzuleiten. Das werden wir später im Mailserver-Tutorial noch genauer betrachten.</li>
+<li>Um dies zu bewerkstelligen, editierst du die Datei '/etc/mail/aliases' und schreibst folgende Zeile hinein:</li>
+<li>root:&nbsp;&#100;&#x65;&#105;&#x6E;&#101;&#64;&#x6D;&#97;&#105;&#108;&#97;&#x64;&#x72;&#101;&#115;&#115;&#x65;&#x2E;&#100;&#101;</li>
+<li>Dann werden alle Mails an "root" an dich weitergeleitet. Port- und Jailaudit geben täglich ihre Berichte in den Sicherheitsmails aus, die dein Server täglich verschickt. Das würde ich übrigens bei den Jails auch so machen, falls noch nicht geschehen.</li>
+</ul><!-- indexer::stop -->
+  </div>
+</article>
+ 
+
+	          </div>
+        
+      
+      <aside id="sidebar">
+        
+<!-- indexer::stop -->
+    <nav id="sub-navigation">
+    <ol class="level_1" id="sub-navigation-items">
+  
+    	  		<li class="sibling first"><a href="admins-haften.html" title="Admins haften" class="sibling first">» Das Risiko eines Administrators</a></li>
+  	    	  		<li class="sibling"><a href="installation.html" title="Installation" class="sibling">01 Installation</a></li>
+  	    	  		<li class="sibling"><a href="grundlegendes.html" title="Grundlegendes" class="sibling">02 Grundlegendes</a></li>
+  	    	  		<li class="sibling"><a href="software-raid-mit-gmirror.html" title="Software-RAID mit gmirror" class="sibling">03 Software-RAID</a></li>
+  	    	  		<li class="sibling"><a href="zeitsynchronisation-per-ntp.html" title="Zeitsynchronisation per NTP" class="sibling">04 Zeitsynchronisation</a></li>
+  	    	  		<li class="sibling"><a href="updates.html" title="Das System aktuell halten" class="sibling">05 Updates</a></li>
+  	    	  		<li class="active active submenu">06 Systemsicherheit	<ol class="level_2">
+  
+    	  		<li class="first"><a href="systemsicherheit/ssh-konfigurieren-und-absichern.html" title="SSH konfigurieren &amp; absichern" class="first">SSH konfigurieren & absichern</a></li>
+  	    	  		<li><a href="systemsicherheit/rootkit-scanner-installieren.html" title="Rootkit-Scanner installieren">Rootkit-Scanner installieren</a></li>
+  	    	  		<li><a href="systemsicherheit/portknocking.html" title="Portknocking: knockd">Portknocking: knockd</a></li>
+  	    	  		<li><a href="systemsicherheit/ids-snort.html" title="IDS: Snort">IDS: Snort</a></li>
+  	    	  		<li><a href="systemsicherheit/portscans-erkennen.html" title="Portscans erkennen">Portscans erkennen</a></li>
+  	    	  		<li class="last"><a href="systemsicherheit/ids-mit-freebsd-update.html" title="IDS mit freebsd-update" class="last">IDS mit freebsd-update</a></li>
+  	  
+  </ol></li>
+  	    	  		<li class="sibling"><a href="firewall.html" title="Firewall mit pf" class="sibling">07 Firewall</a></li>
+  	    	  		<li class="sibling"><a href="jails-mit-ezjail.html" title="Jails mit EzJail" class="sibling">08 Jails mit EzJail</a></li>
+  	    	  		<li class="sibling"><a href="datenbankserver.html" title="Datenbankserver" class="sibling">09 Datenbankserver</a></li>
+  	    	  		<li class="sibling"><a href="webserver.html" title="Webserver" class="sibling">10 Webserver</a></li>
+  	    	  		<li class="sibling"><a href="reverse-proxy.html" title="Reverse-Proxy" class="sibling">11 Reverse-Proxy</a></li>
+  	    	  		<li class="sibling"><a href="ftp-server.html" title="FTP-Server" class="sibling">12 FTP-Server</a></li>
+  	    	  		<li class="sibling"><a href="e-mailserver.html" title="E-Mailserver" class="sibling">13 E-Mailserver</a></li>
+  	    	  		<li class="sibling"><a href="dns-server.html" title="DNS-Server" class="sibling">14 DNS-Server</a></li>
+  	    	  		<li class="sibling"><a href="versionskontrolle.html" title="Versionskontrolle" class="sibling">15 Versionskontrolle</a></li>
+  	    	  		<li class="sibling"><a href="itunes-server.html" title="iTunes-Server" class="sibling">16 iTunes-Server</a></li>
+  	    	  		<li class="sibling"><a href="virtual-private-networks.html" title="Virtual Private Networks (VPN)" class="sibling">17 Virtual Private Networks</a></li>
+  	    	  		<li class="sibling"><a href="samba-freigaben.html" title="Samba-Freigaben" class="sibling">18 Samba-Freigaben</a></li>
+  	    	  		<li class="sibling"><a href="backup.html" title="Backup" class="sibling">19 Backup</a></li>
+  	    	  		<li class="sibling last"><a href="monitoring.html" title="Monitoring" class="sibling last">20 Monitoring</a></li>
+  	  
+  </ol><!-- indexer::continue -->
+      </aside>
+
+                </div>
+    
+    <div class="ribbon right red" style="visibility:hidden">
+      <a href="../das-ebook.html">Neue Auflage!</a>
+    </div>
+    
+        <footer id="footer-hidden"></footer>
+        
+    <!-- indexer::stop -->
+    <nav id="legal-links">
+      <ul>
+        <li><a href="../impressum.html" title="Impressum">Impressum</a></li>
+        <li><a href="../datenschutz.html" title="Datenschutz">Datenschutz</a></li>
+        <li><a href="../sitemap.html" title="Sitemap">Sitemap</a></li>
+      </ul>
+        
+      <div class="copyright"> ein Projekt von Benedikt Niessen <em>powered by <strong>B</strong>#</em></div>
+    </nav>
+    <!-- indexer::continue -->
+
+  </div>
+
+  
+<script>setTimeout(function(){var e=function(e,t){try{var n=new XMLHttpRequest}catch(r){return}n.open("GET",e,!0),n.onreadystatechange=function(){this.readyState==4&&this.status==200&&typeof t=="function"&&t(this.responseText)},n.send()},t="system/cron/cron.";e(t+"txt",function(n){parseInt(n||0)<Math.round(+(new Date)/1e3)-86400&&e(t+"php")})},5e3);</script>
+
+<!-- Masha -->  
+<!--[IF IE]> 
+  <script type="text/javascript" src="http://serverzeit.de/files/serverzeit_v2/js/ierange.js" async defer></script> 
+<![ENDIF]-->
+<script type="text/javascript" src="../files/serverzeit_v2/js/masha.min.js" async defer></script>
+<script type="text/javascript">
+  if(document.body.className.indexOf("mobile") == -1) {
+    if(window.addEventListener){     
+        window.addEventListener('load', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        }, false);
+    } else {
+        window.attachEvent('onload', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        });
+    }
+  }
+</script>
+  
+  <script>
+  new Request({
+    url:'system/html/cron.txt',
+    onComplete: function(txt) {
+      if (!txt) txt = 0;
+      if (parseInt(txt) < (Math.round(+new Date()/1000) - 300)) {
+        new Request({url:'cron.php'}).get();
+      }
+    }
+  }).get();
+  </script>
+
+    
+  <!-- Google Analytics --> 
+  <script type="text/javascript">
+    /*var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36693720-1']);
+    _gaq.push(['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();*/
+  </script>
+</body>
+</html>

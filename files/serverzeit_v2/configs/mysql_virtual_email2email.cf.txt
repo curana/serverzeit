@@ -1,0 +1,7 @@
+user 		= postfix
+password 	= PASSWORT
+hosts 		= localhost
+dbname 		= postfix
+table 		= users
+select_field 	= email
+where_field 	= email

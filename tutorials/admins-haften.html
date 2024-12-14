@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <title>Admins haften - Tutorials und Anleitungen zu FreeBSD, Servern & Diensten :: serverzeit.de</title>
+  <base href="">
+
+  <meta charset="utf-8">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="Eine kleine Geschichte zu den Folgen von Unachtsamkeit und Ignoranz im Umgang mit Servern. Wofür Admins haften und warum.">
+  <meta name="keywords" content="Admins haften, Administrator, Verwantwortung, Hacken, Schwachstellen, Security, Einen eigenen server betreiben, Was kostet ein Server, Wie werde ich Admin, Server, Online, Sicherheitslücken">
+  <meta name="google-site-verification" content="yghLhV7EXvN6dHIltCHFyKpGePQ033_oRI7eMxWbQbg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="../files/serverzeit_v2/images/favicon.ico" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic%7CDroid+Sans:400%7CUbuntu:400,400italic,300,300italic,700,700italic%7CUbuntu+Mono">
+<link rel="stylesheet" href="../assets/css/5ee243558dbc.css">
+    <!--[if (lt IE 9)]>
+   <script type="text/javascript" src="http://ie-print-protector.googlecode.com/svn/trunk/javascript/iepp.min.js"></script>
+<![endif]-->
+</head>
+
+<body id="top" class="unix other  print">  
+  <div id="wrapper">
+  
+        
+<!-- indexer::stop -->
+  <div id="searchbar-frame">
+    <div id="searchbar">        
+      
+
+      <div class="searchfield">
+        <form action="http://serverzeit.de/suche" method="get" id="search" enctype="application/x-www-form-urlencoded">
+          <label for="searchfield">Suche:</label>
+          <span><input type="text" name="keywords" id="searchfield" value="" required /></span>
+          <input type="submit" name="perform-search" value="GO" />
+          
+                    
+<input type="hidden" name="date" value="2024-12-12">
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<!-- indexer::continue -->
+
+<!-- indexer::stop -->
+  <!-- indexer::stop -->
+<header>
+  <a href="../index.html"><img src="../files/serverzeit_v2/images/logo.png" style="margin-top:-14px" alt="serverzeit.de - Logo" title="serverzeit.de - Logo" /></a>
+  <nav>
+    <ul class="level_1" id="main-navigation">
+              <li class="first"><a href="../index.html" title="Startseite" class="first">Startseite</a></li>
+                  <li class="trail"><a href="../tutorials.html" title="Tutorials" class="trail">Tutorials</a></li>
+                  <li><a href="../das-ebook.html" title="Das Buch">Das Buch</a></li>
+                  <li class="last"><a href="../aus-zweiter-hand.html" title="Aus zweiter Hand" class="last">Aus zweiter Hand</a></li>
+            </ul>
+  </nav>
+</header>
+<!-- indexer::continue --><!-- indexer::continue -->
+ 
+    
+    
+    <div id="main">    
+      <div id="content-wrapper">
+	    
+<article itemscope itemtype="http://schema.org/Article">
+
+
+<div class="article-header">
+  <div class="article-title">
+    <h1 class="ce_headline first">Admins haften für ihre Server</h1>
+  </div>
+</div>
+
+<!-- indexer::continue -->
+<div class="article-text" itemprop="articleBody" id="article"><!-- indexer::continue -->
+<p>In letzter Zeit muss ich vermehrt feststellen, dass *NIX-Anfänger eigene Server, seien es dedizierte/Root-Server oder vServer, betreiben und einfach keine Ahnung davon haben, was sie da eigentlich tun. Mir scheint es, als ob nicht ausreichend aufgeklärt bzw. das Kleingedruckte einfach nicht gelesen wird. Daher möchte ich hier ein wenig aufklären und vielleicht geht dem einen oder anderen ein Licht auf...</p>
+<p>Zunächst ein paar Zitate aus den&nbsp;<strong>AGB</strong>&nbsp;der größten Server-Provider im mittleren und unteren Preissegment Deutschlands:</p>
+<ul>
+<li>"(...) Wir übernehmen&nbsp;<span style="text-decoration: underline;">keine Haftung</span>&nbsp;für Schäden oder Folgeschäden. (...)"&nbsp;</li>
+<li>"(...) XXX übernimmt&nbsp;<span style="text-decoration: underline;">keine Haftung</span>&nbsp;für Schäden oder Folgeschäden. (...)"</li>
+<li>"(...) Der Kunde stellt den Provider&nbsp;<span style="text-decoration: underline;">von der Haftung</span>&nbsp;durch eventuell auftretende Sicherheitslücken&nbsp;<span style="text-decoration: underline;">frei</span>. (...)"</li>
+<li>"(...) Für unsachgemäße Handhabung des Servers haftet&nbsp;<span style="text-decoration: underline;">ausschließlich der Kunde</span>. (...)"</li>
+<li>"(...) Der Kunde hat&nbsp;<span style="text-decoration: underline;">für die Sicherheit</span>&nbsp;seines Servers Sorge zu tragen. (...)"</li>
+<li>"(...) Ansprüche Dritter durch fehlerhafte Konfigurationen sind&nbsp;<span style="text-decoration: underline;">vom Kunden</span>&nbsp;zu erfüllen. (...)"</li>
+<li>...</li>
+</ul>
+<p>Wenn man das so liest, sollte jedem recht schnell klar sein, hier hafte ich, also der Kunde.&nbsp;<strong>Wofür muss ich als Kunde denn nun haften?</strong><br>Hier ein paar Beispiele:</p>
+<ul>
+<li>für&nbsp;<strong>offene Mailserver</strong>&nbsp;(sog. OpenRelays), die für den Versand von Spammails missbraucht werden, also vielmehr für die zusätzlichen Kosten</li>
+<li>für Server die für die&nbsp;<strong>Verbreitung von Malware</strong>&nbsp;oder illegalen Dateien (geschützte Musikstück bspw.) missbraucht werden</li>
+<li>für&nbsp;<strong>Folgeschäden</strong>&nbsp;die aus mangelhafter Absicherung des Servers Dritten entstehen</li>
+<li>...</li>
+</ul>
+<p>Auf den ersten Blick scheint die Liste nicht so lang, aber das sind erstmal die schwerwiegensten Dinge. Das klingt jetzt zwar harmlos, aber wenn man sich überlegt, was da an Kosten zusammen kommen, sollte man sich wirklich zweimal oder besser sechsmal überlegen, ob man wirklich einen eigenen Server braucht.</p>
+<p><strong><br></strong></p><!-- indexer::stop --><!-- indexer::continue -->
+<p><strong>Mal ein Beispiel:</strong><br>Angenommen Harald (Name aus Datenschutzgründen geändert, Parallelen zu realen Personen sind zufälliger Natur), ein 18jähriger Schüler, betreibt ohne fundierte Kenntnisse über Serversicherheit einen eigenen Rootserver im unteren Preissegment. Erschwinglich, ausreichend schnell und für jeden Unfug gut.<br>Harald denkt sich nichts böses und installiert über ein Webinterface SuSE Linux, welches sehr verbreitet ist in der Mietserver-Szene und gerade durch das Tool "yast" bzw. "yast2" relativ einfach bedient werden kann.</p>
+<p>Jedenfalls macht sich Harald nun auf die Suche nach einem geeigneten Tutorial. Natürlich wird er schnell fündig, er nutzt das Internet ja schon lange. Harald freut sich, dass es recht kurz und einfach ist. Er arbeitet es durch und ist glücklich, da alles funktioniert. Was in dem Tutorial aber nicht behandelt wurde, ist die Absicherung nach außen. Vielleicht stand irgendwo, dass der Server als "Relay" konfiguriert ist, aber da Harald mit dem Begriff nichts anfangen konnte und ja "ISP-like Mailserver HowTo" drüber stand, macht er sich auch keine weiteren Gedanken, denn der Server funktioniert. Mails können verschickt werden und Mails kommen an.</p>
+<p>Nun geht Harald einen Schritt weiter und installiert einen Webserver. Da die Konfigurationsdatei aber recht lang ist und die Dokumentation auch nicht gerade leichte Kost ist, ändert er nur die wichtigsten Parameter, die er durch gezielte Fragen in Internetforen und Beispiel-Konfigurationen genannt bekommt. Klasse, die Webseite funktoniert auch.</p>
+<p>Harald hat schonmal davon gehört, dass man sichere Passwörter verwenden muss und so wählt der den Namen seines verstorbenen Meerschweinchens. Das ist leicht zu merken und kann ja niemand kennen, es ist schon seit vielen Jahren tot. Der Name war "Tamara".</p>
+<p>Virenscanner braucht Harald nicht, da es ja keine Viren für Linux gibt. Aber er möchte seine Dateien komfortabel mit seinen Freunden teilen. Er hat die Lieder alle ordnungsgemäß bei einem fruchtigen Online-Musikladen gekauft und ist somit rechtmäßiger Besitzer. Komfortabel in Windows einzubinden sind die tanzenden Freigaben: Samba muss her. Geht schnell, ist einfach und funktioniert (das Adjektiv "sicher" fehlt hier nicht unabsichtlich).</p>
+<p>Jetzt kommt der Sommer, Sommerferien und der ersehnte Urlaub steht an. Wegfahren!! Der Server tut seinen Dienst und dümpelt so vor sich hin. "Never touch a running system" hat mal einer im Forum gesagt. Gesagt, getan - nämlich nichts. Die Website wird nicht mehr so sehr beansprucht, da das Forum "out" ist und das Webinterface seines FreeMail-Accounts ist auch komfortabler. Aber er hat ja noch Mindestvertragslaufzeit von weiteren 4 Monaten.</p><!-- indexer::stop --><!-- indexer::continue -->
+<p><strong>Soweit das Szenario. Jetzt zu den Geschehnissen danach...</strong></p>
+<p>Als Harald aus dem Urlaub zurück kommt, hat er sehr viele Spammails in seinem Postfach und er wundert sich, dass er keine Verbindung mehr zu seinem Server aufbauen kann. Auch die Freigaben sind voller Dateien, die er zuvor noch nie gesehen hat.</p>
+<p>Seine Eltern leeren den Briefkasten und finden eine Unmenge an Briefen an ihren Sohn:</p>
+<ol>
+<li>Vorladung zur Anhörung</li>
+<li>Serverrechnung über Mehrverbrauch</li>
+<li>Schadenersatzklage eines größeren Unternehmens</li>
+<li>...</li>
+</ol>
+<p><strong>Was war passiert?</strong>&nbsp;Harald hatte die Klauseln nicht gelesen, die Teil seines Vertrages sind: "Kunde haftet für Schäden" und Harald ist kein begrenzt haftendes Unternehmen, er ist nach dem Jugendstrafrecht zu bestrafen und muss wahrscheinlich mit 18 Jahren bereits&nbsp;<a title="Wikipedia: Privatinsolvenz" href="http://de.wikipedia.org/wiki/Privatinsolvenz" target="_blank">Privatinsolvenz</a>&nbsp;anmelden, da er neben den Anwaltskosten und Schadenersatzklagen nicht mal mehr die Servermiete bezahlen kann und seine Freunde die den Server mit ihm betreiben wollten, wollen nichts davon wissen.</p>
+<p><strong>Harald hat einige Dinge versäumt</strong>, die hier nur auszugsweise genannt werden sollen:</p>
+<ol>
+<li>Keine tiefgehende Beschäftigung mit der Dokumentation der eingesetzten Software</li>
+<li>Keine Ahnung von der Absicherung von Serversystemen</li>
+<li>Kein Bewusstsein über mögliche Folgeschäden</li>
+<li>Keine Systemupdates</li>
+<li>Keine Erfahrung mit *NIX</li>
+<li>Gutgläubigkeit und Faulheit</li>
+<li>Unnötiger Geiz</li>
+<li>...</li>
+</ol>
+<p>"Tja, traurige Geschichte, aber das betrifft mich nicht. Ich hab viel Ahnung von Computern, repariere die meiner Freunde und habe auch schon einen selber zusammengebaut! Ich weiß worauf es ankommt, schließlich verwende ich Linux 10.0!"</p>
+<p>Wenn dem so ist, toll. Dann ist all dies wirklich nur eine nette Geschichte. Aber wenn dem nicht so ist oder du Zweifel hast, wenn du aber doch gerne einen eigenen Server möchtest, du willst frei sein und machen können was du willst, ohne Performanceeinbußen durch andere Benutzer...</p><!-- indexer::stop --><!-- indexer::continue -->
+<p><strong>Die wohl häufigsten Gründe für einen eigenen Server sind:</strong></p>
+<ol>
+<li>"Wir sind ein Clan und wollen zocken, ein Forum, nen TeamSpeak-Server und eine eigene Website!"</li>
+<li>"Ich brauch mehr Speicherplatz und will die Software installieren, die ich will!"</li>
+<li>"Ich will *NIX lernen, kann aber meinen Computer nicht dafür verwenden."</li>
+<li>...</li>
+</ol>
+<p>Wenn eine der oben genannten Gründe auch für dich zutrifft, dann habe ich einige Hinweise für dich, die dir viel Ärger und auch Geld sparen können:</p>
+<p><strong>zu 1.</strong>&nbsp;"Wir sind ein Clan und wollen zocken, ein Forum, nen TeamSpeak-Server und eine eigene Website!"</p>
+<blockquote>
+<p>Im Internet gibt es zahlreiche Game-Server-Anbieter, die zu wirklich günstigen Preisen sehr leistungsfähige Systeme anbieten. Da braucht ihr euch um nichts zu kümmern, einfach nur spielen.<br>Oft sind in diesen Angebote auch bereits Webspace und TeamSpeak-Server enthalten oder durch geringen Aufpreis zu haben. Auch wenn euch das auf den ersten Blick teurer vorkommt, hey, ihr legt einfach zusammen und spart auf jeden Fall mehr Geld, als wenn ein Schaden passiert.</p>
+</blockquote>
+<p><strong>zu 2.</strong>&nbsp;"Ich brauch mehr Speicherplatz und will die Software installieren, die ich will!"</p>
+<blockquote>
+<p>Mehr Speicherplatz ist heutzutage kein Problem mehr. Speicherplatz ist sehr billig und "Shared Hosting"-Angebote gibt es in allen Größen und Preisklassen. Notfalls solltest du mal über einen "managed Server" nachdenken, da wird die Wartung für dich übernommen und du hast keinen Ärger. Kostet vielleicht etwas mehr, aber vielleicht brauchst du ja doch nicht alles was du zu brauchen glaubst?</p>
+<p>Bezüglich der Software würde ich dir raten, einen guten Provider zu suchen, der mit sich reden lässt und auf individuelle Wünsche eingeht. Sollte es sich nicht um Software handeln die besonders unsicher ist bzw. Resourcenfressend ist, sollte sowas in der Regel möglich sein. Wer suchet der findet.</p>
+</blockquote>
+<p><strong>zu 3.</strong>&nbsp;"Ich will *NIX lernen, kann aber meinen Computer nicht dafür verwenden."</p>
+<blockquote>
+<p>Oft gehört und mit Abstand mein Lieblingsargument, weil drei Wörter drin stecken, eigentlich vier: "Ich", "will", "lernen" und "*NIX". Sehr löblich und ich unterstütze diese Ansicht, aber: Es gibt Virtualisierungsumgebungen, mit denen kannst du auf dem eigenen PC einen Server betreiben. Hier kannst du üben, neuinstallieren, Erfahrung sammeln. Wenn das nicht reicht, kauf dir einen gebrauchten (oder auch neuen) Computer, der nur dafür da ist. Schließe keine Maus, keine Tastatur und keinen Monitor an, nachdem er installiert ist. Mache alles über SSH.</p>
+<p>Den Server kannst du dann hinter deinen DSL-Router schalten, der in den meisten Fällen eine "Firewall" integriert hat und dich gegen die größten Angriffe schützt (entbindet dich aber nicht von der Pflicht der Führsorge!). Wenn du jetzt sagst "Ein alter Pentium is aber viel zu langsam!" dann sag ich dir: Kauf nen schnelleren bzw. schau dir mal die Systemvoraussetzungen für *NIX-Systeme an. Die brauchen keine AGP-Grafikkarten, die brauchen kein Gigabyte RAM (wir gehen ja von einem kleinen Server für den Eigenbedarf aus) etc. Spiele damit rum (möglichst keinen Mailserver, wenn du ne dynamische IP hast, die werden oft geblockt da potentielle Spamschleuder). Du wirst schnell sehen, wieviel Arbeit das macht, aber wenn du die Zeit und Lust hast, dann kann ich dich nur unterstützen, irgendwann einen "echten" Server zu betreiben. Aber gehen lernt man auch nicht in zwei Tagen.</p>
+</blockquote><!-- indexer::stop --><!-- indexer::continue -->
+<p><strong>Abschließende Worte</strong></p>
+<p>Man kann mir jetzt vorwerfen "Du bietest aber doch genau diese Tutorials an, die alles so einfach aussehen lassen!" und dem kann ich ehrlich gesagt nicht allzuviel entgegensetzen, aber meine Anleitungen sind nicht dafür gedacht, ohne Nachzudenken einfach "abgetippt" zu werden. Vereinzelt weise ich auch darauf hin, aber ich denke doch, dass meine Tutorials weitestgehend so beschrieben sind, dass selbst bei bloßem Abtippen keine allzu großen Sicherheitslöcher entstehen.</p>
+<p>Jeder der *NIX lernen will, und ich kann jeden nur dazu ermutigen, da es ein toller "Sport" ist, aber ich will gleichzeitig auch davor warnen. Es kann gefährlich und teuer sein, es kann große Schäden verursachen und man kann sich damit auch sein Leben ruinieren, wenn man nicht aufpasst, sich mit der Materie nicht auseinandersetzt und Dinge hinterfragt. Foren sind toll, sie sind eine riesen Hilfe, aber man kann einen Server nicht mit dem bloßen Beantworten von Fragen betreiben. Da gehört mehr dazu. Und wenn ich dann lese "/etc/rc.d/sshd sind das drei Unterverzeichnisse?", dann mache ich mir Sorgen, kriege Angst um meinen Server (ja, Spamschleudern kosten mich einen haufen Geld) und ärgere mich über die Kurzsichtigkeit der Leute.</p>
+<p>Was würdet ihr sagen, wenn jemand bei euch anruft und fragt "Hey, ich bin auf der Autobahn und fahre krasse 180 KM/h, aber wo war nochmal die Bremse? War das das in der Mitte?"...</p>
+<p>Daher: Nachdenken, lasst euch beraten was ihr braucht wenn ihr nicht sicher seid und lernt zuhause! Das Internet ist zu groß und zu gefährlich um zu üben. In der Fahrschule sitzt auch immer jemand neben euch!&nbsp;</p>
+<p>[Danke an&nbsp;<a href="http://www.ip-minds.de/">Jean-Michel Brünn von ip-minds</a>&nbsp;für die Verbesserungsvorschläge!]</p><!-- indexer::stop --><!-- indexer::continue -->
+
+<h2>Literaturempfehlungen</h2>
+<p>Falls du dich nun angesprochen fühlst und an deinen Wissenslücken arbeiten möchtest, empfehle ich dir einen Blick in die Rubrik "<a title="Literaturempfehlungen" href="../aus-zweiter-hand/literatur.html">Aus zweiter Hand &gt; Literatur</a>". Sie ist noch nicht sehr umfangreich, aber es folgen immer mehr Bücher.</p>
+<p>Einen einfachen Einstieg in das Thema "Der eigene Server" versuche ich auch mit meinem Buch "<a title="Der eigene Server mit FreeBSD 9 - Konfiguration, Sicherheit und Pflege" href="../das-ebook.html">Der eigene Server mit FreeBSD 9 - Konfiguration, Sicherheit und Pflege</a>" zu bieten. Hierin wird der Einsatz von FreeBSD als Serverbetriebssystem im Ganzen betrachtet, und nicht nur einzelne Serverdienste oder nur das Betriebssystem.</p><!-- indexer::stop -->
+  </div>
+</article>
+ 
+
+	          </div>
+        
+      
+      <aside id="sidebar">
+        
+<!-- indexer::stop -->
+    <nav id="sub-navigation">
+    <ol class="level_1" id="sub-navigation-items">
+  
+    	  		<li class="active active first">» Das Risiko eines Administrators</li>
+  	    	  		<li class="sibling"><a href="installation.html" title="Installation" class="sibling">01 Installation</a></li>
+  	    	  		<li class="sibling"><a href="grundlegendes.html" title="Grundlegendes" class="sibling">02 Grundlegendes</a></li>
+  	    	  		<li class="sibling"><a href="software-raid-mit-gmirror.html" title="Software-RAID mit gmirror" class="sibling">03 Software-RAID</a></li>
+  	    	  		<li class="sibling"><a href="zeitsynchronisation-per-ntp.html" title="Zeitsynchronisation per NTP" class="sibling">04 Zeitsynchronisation</a></li>
+  	    	  		<li class="sibling"><a href="updates.html" title="Das System aktuell halten" class="sibling">05 Updates</a></li>
+  	    	  		<li class="sibling"><a href="systemsicherheit.html" title="Systemsicherheit" class="sibling">06 Systemsicherheit</a></li>
+  	    	  		<li class="sibling"><a href="firewall.html" title="Firewall mit pf" class="sibling">07 Firewall</a></li>
+  	    	  		<li class="sibling"><a href="jails-mit-ezjail.html" title="Jails mit EzJail" class="sibling">08 Jails mit EzJail</a></li>
+  	    	  		<li class="sibling"><a href="datenbankserver.html" title="Datenbankserver" class="sibling">09 Datenbankserver</a></li>
+  	    	  		<li class="sibling"><a href="webserver.html" title="Webserver" class="sibling">10 Webserver</a></li>
+  	    	  		<li class="sibling"><a href="reverse-proxy.html" title="Reverse-Proxy" class="sibling">11 Reverse-Proxy</a></li>
+  	    	  		<li class="sibling"><a href="ftp-server.html" title="FTP-Server" class="sibling">12 FTP-Server</a></li>
+  	    	  		<li class="sibling"><a href="e-mailserver.html" title="E-Mailserver" class="sibling">13 E-Mailserver</a></li>
+  	    	  		<li class="sibling"><a href="dns-server.html" title="DNS-Server" class="sibling">14 DNS-Server</a></li>
+  	    	  		<li class="sibling"><a href="versionskontrolle.html" title="Versionskontrolle" class="sibling">15 Versionskontrolle</a></li>
+  	    	  		<li class="sibling"><a href="itunes-server.html" title="iTunes-Server" class="sibling">16 iTunes-Server</a></li>
+  	    	  		<li class="sibling"><a href="virtual-private-networks.html" title="Virtual Private Networks (VPN)" class="sibling">17 Virtual Private Networks</a></li>
+  	    	  		<li class="sibling"><a href="samba-freigaben.html" title="Samba-Freigaben" class="sibling">18 Samba-Freigaben</a></li>
+  	    	  		<li class="sibling"><a href="backup.html" title="Backup" class="sibling">19 Backup</a></li>
+  	    	  		<li class="sibling last"><a href="monitoring.html" title="Monitoring" class="sibling last">20 Monitoring</a></li>
+  	  
+  </ol><!-- indexer::continue -->
+      </aside>
+
+                </div>
+    
+    <div class="ribbon right red" style="visibility:hidden">
+      <a href="../das-ebook.html">Neue Auflage!</a>
+    </div>
+    
+        <footer id="footer-hidden"></footer>
+        
+    <!-- indexer::stop -->
+    <nav id="legal-links">
+      <ul>
+        <li><a href="../impressum.html" title="Impressum">Impressum</a></li>
+        <li><a href="../datenschutz.html" title="Datenschutz">Datenschutz</a></li>
+        <li><a href="../sitemap.html" title="Sitemap">Sitemap</a></li>
+      </ul>
+        
+      <div class="copyright"> ein Projekt von Benedikt Niessen <em>powered by <strong>B</strong>#</em></div>
+    </nav>
+    <!-- indexer::continue -->
+
+  </div>
+
+  
+<script>setTimeout(function(){var e=function(e,t){try{var n=new XMLHttpRequest}catch(r){return}n.open("GET",e,!0),n.onreadystatechange=function(){this.readyState==4&&this.status==200&&typeof t=="function"&&t(this.responseText)},n.send()},t="system/cron/cron.";e(t+"txt",function(n){parseInt(n||0)<Math.round(+(new Date)/1e3)-86400&&e(t+"php")})},5e3);</script>
+
+<!-- Masha -->  
+<!--[IF IE]> 
+  <script type="text/javascript" src="http://serverzeit.de/files/serverzeit_v2/js/ierange.js" async defer></script> 
+<![ENDIF]-->
+<script type="text/javascript" src="../files/serverzeit_v2/js/masha.min.js" async defer></script>
+<script type="text/javascript">
+  if(document.body.className.indexOf("mobile") == -1) {
+    if(window.addEventListener){     
+        window.addEventListener('load', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        }, false);
+    } else {
+        window.attachEvent('onload', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        });
+    }
+  }
+</script>
+  
+  <script>
+  new Request({
+    url:'system/html/cron.txt',
+    onComplete: function(txt) {
+      if (!txt) txt = 0;
+      if (parseInt(txt) < (Math.round(+new Date()/1000) - 300)) {
+        new Request({url:'cron.php'}).get();
+      }
+    }
+  }).get();
+  </script>
+
+    
+  <!-- Google Analytics --> 
+  <script type="text/javascript">
+    /*var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36693720-1']);
+    _gaq.push(['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();*/
+  </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+smtpd_banner = $myhostname ESMTP $mail_name (FreeBSD) 
+biff = no
+append_dot_mydomain = no
+myorigin = $mydomain
+mydestination = localhost 
+mynetworks = 10.0.0.0/8 
+mailbox_size_limit = 0 
+recipient_delimiter = + 
+message_size_limit = 52428800 
+smtpd_helo_required = yes 
+disable_vrfy_command = yes 
+strict_rfc821_envelopes = yes 
+inet_protocols = ipv4
+
+proxy_read_maps = $local_recipient_maps,
+									$myhostname,
+									$mynetworks,
+									$virtual_mailbox_domains,
+									$virtual_mailbox_maps,
+									$virtual_alias_maps
+
+virtual_mailbox_domains = proxy:mysql:$config_directory/mysql_cf/virtual_domains_maps.cf
+virtual_mailbox_maps = proxy:mysql:$config_directory/mysql_cf/virtual_mailbox_maps.cf
+virtual_alias_maps = proxy:mysql:$config_directory/mysql_cf/virtual_alias_maps.cf 
+virtual_mailbox_base = /var/mail/accounts 
+virtual_minimum_uid = 500 
+virtual_uid_maps = static:500 
+virtual_gid_maps = static:500 
+virtual_transport = dovecot 
+dovecot_destination_recipient_limit = 1
+
+smtpd_sasl_auth_enable = yes 
+smtpd_sasl_exceptions_networks = $mynetworks 
+broken_sasl_auth_clients = yes
+smtpd_sasl_path = private/auth
+smtpd_tls_cert_file = /usr/local/etc/ssl/mail-cert.pem 
+smtpd_tls_key_file = /usr/local/etc/ssl/mail-key.pem
+smtpd_tls_security_level = may 
+smtpd_use_tls = yes 
+smtpd_tls_auth_only = yes 
+show_user_unknown_table_name = no
+
+# E-Mail-Client
+smtpd_client_restrictions =
+  permit_mynetworks,
+  permit_sasl_authenticated,
+  check_client_access hash:/usr/local/etc/postfix/white.lst, 
+  reject_rbl_client zen.spamhaus.org,
+	reject_rbl_client bl.spamcop.net,
+	reject_rhsbl_client rhsbl.ahbl.org,
+	reject_rhsbl_client bogusmx.rfc-ignorant.org,
+  permit
+
+# Absender
+smtpd_sender_restrictions =
+	permit_mynetworks, 
+	permit_sasl_authenticated, 
+	reject_unknown_sender_domain, 
+	reject_non_fqdn_sender, 
+	reject_sender_login_mismatch,
+	check_sender_access hash:/usr/local/etc/postfix/white.lst,
+	reject_spf_invalid_sender,
+	reject_rhsbl_sender rddb.dnsbl.net.au,
+	reject_rhsbl_sender endn.dnsbl.net.au,
+	reject_rhsbl_sender rhsbl.ahbl.org,
+	permit
+
+# Empfaenger 
+smtpd_recipient_restrictions =
+	permit_mynetworks, 
+	permit_sasl_authenticated,
+	heck_sender_access hash:/usr/local/etc/postfix/black.lst,
+	reject_unknown_recipient_domain, 
+	check_recipient_access pcre:/usr/local/etc/postfix/dspam/dspam_filter_reject_external,
+	check_sender_access pcre:/usr/local/etc/postfix/dspam/dspam_filter_reject_external,
+	reject_non_fqdn_recipient, 
+	reject_invalid_hostname, 
+	reject_non_fqdn_sender, 
+	reject_non_fqdn_recipient, 
+	reject_unknown_sender_domain, 
+	reject_unknown_recipient_domain,
+	reject_unauth_destination,
+	reject_unauth_pipelining,
+	reject_rhsbl_recipient zen.spamhaus.org, 
+	reject_rhsbl_recipient bl.spamcop.net,
+	check_recipient_access pcre:/usr/local/etc/postfix/dspam/dspam_filter,
+	permit
+
+# E-Mail
+smtpd_data_restrictions =
+	permit_mynetworks, 
+	reject_unauth_pipelining, 
+	reject_multi_recipient_bounce, 
+	permit
+
+# Relay
+smtpd_relay_restrictions =
+        permit_mynetworks,
+        permit_sasl_authenticated,
+        defer_unauth_destination
+
+header_checks = pcre:/usr/local/etc/postfix/dspam/dspam_header_checks 
+nested_header_checks =
+canonical_maps = pcre:/usr/local/etc/postfix/dspam/dspam_alias_rewrite
+transport_maps = hash:/usr/local/etc/postfix/dspam/dspam_transport_maps
+spf_mark_only = yes

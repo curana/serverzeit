@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <title>Spambekämpfung auf Firewallebene - Tutorials und Anleitungen zu FreeBSD, Servern & Diensten :: serverzeit.de</title>
+  <base href="">
+
+  <meta charset="utf-8">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="">
+  <meta name="keywords" content="email, server, postfix, dovecot, ldap, clamav, smtp, pop3, imap, mime, tls, sendmail, spam, pf, spamd">
+  <meta name="google-site-verification" content="yghLhV7EXvN6dHIltCHFyKpGePQ033_oRI7eMxWbQbg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="../../../files/serverzeit_v2/images/favicon.ico" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic%7CDroid+Sans:400%7CUbuntu:400,400italic,300,300italic,700,700italic%7CUbuntu+Mono">
+<link rel="stylesheet" href="../../../assets/css/5ee243558dbc.css">
+    <!--[if (lt IE 9)]>
+   <script type="text/javascript" src="http://ie-print-protector.googlecode.com/svn/trunk/javascript/iepp.min.js"></script>
+<![endif]-->
+</head>
+
+<body id="top" class="unix other  print">  
+  <div id="wrapper">
+  
+        
+<!-- indexer::stop -->
+  <div id="searchbar-frame">
+    <div id="searchbar">        
+      
+
+      <div class="searchfield">
+        <form action="http://serverzeit.de/suche" method="get" id="search" enctype="application/x-www-form-urlencoded">
+          <label for="searchfield">Suche:</label>
+          <span><input type="text" name="keywords" id="searchfield" value="" required /></span>
+          <input type="submit" name="perform-search" value="GO" />
+          
+                    
+<input type="hidden" name="date" value="2024-12-12">
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<!-- indexer::continue -->
+
+<!-- indexer::stop -->
+  <!-- indexer::stop -->
+<header>
+  <a href="../../../index.html"><img src="../../../files/serverzeit_v2/images/logo.png" style="margin-top:-14px" alt="serverzeit.de - Logo" title="serverzeit.de - Logo" /></a>
+  <nav>
+    <ul class="level_1" id="main-navigation">
+              <li class="first"><a href="../../../index.html" title="Startseite" class="first">Startseite</a></li>
+                  <li class="trail"><a href="../../../tutorials.html" title="Tutorials" class="trail">Tutorials</a></li>
+                  <li><a href="../../../das-ebook.html" title="Das Buch">Das Buch</a></li>
+                  <li class="last"><a href="../../../aus-zweiter-hand.html" title="Aus zweiter Hand" class="last">Aus zweiter Hand</a></li>
+            </ul>
+  </nav>
+</header>
+<!-- indexer::continue --><!-- indexer::continue -->
+ 
+    
+    
+    <div id="main">    
+      <div id="content-wrapper">
+	    
+<article itemscope itemtype="http://schema.org/Article">
+
+
+<div class="article-header">
+  <div class="article-title">
+    <h1 class="ce_headline first">Spambekämpfung mit spamd</h1>
+  </div>
+</div>
+
+<!-- indexer::continue -->
+<div class="article-text" itemprop="articleBody" id="article"><!-- indexer::continue -->
+<p>Zunächst muss natürlich spamd installiert werden. Stelle zuvor sicher, dass der&nbsp;<a title="Software updaten" href="http://serverzeit.de/FreeBSD/Software-updaten">Portstree</a>&nbsp;aktuell ist.</p>
+<ol>
+<li>Mit folgendem Befehl installieren wir spamd;<br><br><span class="code"># cd /usr/ports/mail/spamd/ &amp;&amp; make install clean</span>&nbsp;<br><br></li>
+<li>Folgende Einträge machen wir in '/etc/rc.conf':<br>
+<p class="code">obspamd_flags="-G 15:4:864 -v -l 127.0.0.1"<br>obspamd_enable="YES"<br>obspamlogd_enable="YES"</p>
+Die pfspamd_flags bedeuten im einzelnen folgendes:
+<blockquote>-G: aktiviere folgende Refresh-Raten:<br>
+<blockquote>15: Der sendende Host bleibt für 15 Minuten in der Greylist<br>4: Leere die Greylist nach 4 Stunden<br>864: Lösche die Einträge in der Whitelist, die älter als 3 Monate sind</blockquote>
+-v: protokolliere sehr genau, sodass die ausgehenden Mails in der Whitelist landen</blockquote>
+</li>
+<li>Als nächstes erstellen wir uns eine Konfigurationsdatei für spamd. Diese finden wir als '<a href="../../../files/serverzeit_v2/configs/spamd.conf.txt" target="_blank">/usr/local/etc/spamd/spamd.conf</a>'. Diese lädtst du am besten von mir herunter. Die Syntax ist ziemlich klar. Achte aber darauf, dass du nur Leerzeichen verwendest, keine Tabulatoren. Damit kommt spamd nämlich nicht klar. Die Benachrichtigungen an die Absender habe ich deaktiviert.<br><br>In der "<a href="../../../files/serverzeit_v2/configs/spamd.conf.txt" target="_blank">spamd.conf</a>" werden die Listen hinterlegt, anhand derer die sendenden Server auf Spam überprüft werden.<br><br></li>
+<li>Bevor wir in einem weiteren Schritt die pf-Konfiguration anpassen, erstellen wir noch ein paar Dateien und bringen spamd dazu, über syslogd zu protokollieren.<br><br><span class="code"># touch /var/log/spamd</span><br><br><span class="code"># touch /etc/pf_files/whitelist.lst</span><br><br><span class="code"># touch /etc/pf_files/blacklist.lst</span><br><br><span class="code"># touch /var/db/spamd</span><br><br><span class="code"># chown _spamd:_spamd /var/db/spamd</span><br><br>Füge folgenden Eintrag in die Datei '/etc/syslog.conf' ein:<br>
+<p class="code">!spamd<br>daemon.err;daemon.warn;daemon.info&nbsp;&nbsp; /var/log/spamd</p>
+</li>
+<li>Zu guter letzt starten wir den syslog-Daemon neu und ergänzen in der '/etc/fstab' folgenden Eintrag, sodass spamlogd richtig arbeiten kann:<br>
+<p class="code">fdescfs&nbsp;&nbsp;&nbsp;&nbsp; /dev/fd&nbsp;&nbsp;&nbsp;&nbsp; fdescfs&nbsp;&nbsp;&nbsp;&nbsp; rw&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0</p>
+</li>
+</ol><!-- indexer::stop -->
+<div class="article-header">
+  <div class="article-title">
+    <h2 class="ce_headline">Firewallregeln anpassen</h2>
+  </div>
+</div>
+
+<!-- indexer::continue -->
+<div class="article-text" itemprop="articleBody" id="article"><!-- indexer::continue -->
+<p>Jetzt öffnen wir unsere '/etc/pf.conf' und ändern sie wie folgt ab:</p>
+<ol>
+<li>Im Abschnitt "Tables" ergänzen wir folgende Zeile, die verhindert, dass interne IPs nicht von außen ankommen dürfen:<br>
+<p class="code">table &lt;rfc1918&gt; persist&nbsp;<br>table &lt;spamd&gt; persist<br>table &lt;spamd-white&gt; persist<br>table &lt;whitelist&gt; persist file "/etc/pf_files/whitelist.lst"<br>table &lt;blacklist&gt; persist file "/etc/pf_files/blacklist.lst"</p>
+</li>
+<li>Jetzt fügen wir noch folgende Weiterleitungsregeln ein. Achte dabei auf die Reihenfolge, da dies erreichen könnte, dass überhaupt keine Mail mehr ankommt.<br>
+<p class="code">rdr pass on $if proto tcp from &lt;whitelist&gt; to $if port 25 -&gt; $mail_ip port 25<br>rdr pass on $if proto tcp from &lt;blacklist&gt; to $if port 25 -&gt; 127.0.0.1 port 8025<br>rdr pass on $if proto tcp from &lt;spamd&gt; to $if port 25 -&gt; 127.0.0.1 port 8025<br>rdr pass on $if proto tcp from &lt;spamd-white&gt; to $if port 25 -&gt; $mail_ip port 25<br>rdr pass on $if proto tcp from !&lt;spamd-white&gt; to $if port 25 -&gt; 127.0.0.1 port 8025<br>rdr pass on $if proto tcp from any to $if port 25 -&gt; $mail_ip port 25</p>
+$if: Ist das Interface, bspw. eth0<br>$mail_ip: Ist die interne IP des Mailservers (z.B. einer Jail)<br><br></li>
+<li>Bei den Block-Regeln tragen wir noch folgendes ein:<br><br><span class="code">block in quick on $if inet from &lt;rfc1918&gt; to any</span><br><br></li>
+<li>Bei den pass-Regeln tragen wir noch diese Zeilen ein. Diese bewirken, dass pflogd vom Mailverkehr erfährt und somit in die Whitelist aufgenommen werden.<br>
+<p class="code">pass out log on $if inet proto tcp from $mail_ip to any port 25 keep state<br>pass in log on $if inet proto tcp from any to $if port 25 keep state</p>
+</li>
+<li><strong>Ein wichtiger Hinweis:</strong>&nbsp;Da du wahrscheinlich eine dynamische IP-Adresse hast, wird dein Mailclient nicht mit dem Mailserver verbinden können. Ist logisch, da spamd sagt, dass du später wiederkommen sollst. Um das zu verhindern, kannst du entweder die Regeln entschärfen, dass du sagst, wenn der Host nicht in einer Blacklist steht, dann darf er durch (setze hierzu einfach eine '#' vor die zwei &lt;spamd-white&gt;-Zeilen), oder du erstellst eine weitere rdr pass-Regel, die einen anderen Port weiterleitet und stellst deinen Mailclient dann auf diesen Port ein (hier 8825). Beispiel:<br><br><span class="code">rdr pass on $if proto tcp from any to $if port 8825 -&gt; $mail_ip port 25</span></li>
+</ol><!-- indexer::stop --><!-- indexer::continue -->
+<pre><code>set limit table-entries 500000</code></pre><!-- indexer::stop -->
+  </div>
+</article>
+ 
+
+	          </div>
+        
+      
+      <aside id="sidebar">
+        
+<!-- indexer::stop -->
+    <nav id="sub-navigation">
+    <ol class="level_1" id="sub-navigation-items">
+  
+    	  		<li class="first"><a href="../../admins-haften.html" title="Admins haften" class="first">» Das Risiko eines Administrators</a></li>
+  	    	  		<li><a href="../../installation.html" title="Installation">01 Installation</a></li>
+  	    	  		<li><a href="../../grundlegendes.html" title="Grundlegendes">02 Grundlegendes</a></li>
+  	    	  		<li><a href="../../software-raid-mit-gmirror.html" title="Software-RAID mit gmirror">03 Software-RAID</a></li>
+  	    	  		<li><a href="../../zeitsynchronisation-per-ntp.html" title="Zeitsynchronisation per NTP">04 Zeitsynchronisation</a></li>
+  	    	  		<li><a href="../../updates.html" title="Das System aktuell halten">05 Updates</a></li>
+  	    	  		<li><a href="../../systemsicherheit.html" title="Systemsicherheit">06 Systemsicherheit</a></li>
+  	    	  		<li><a href="../../firewall.html" title="Firewall mit pf">07 Firewall</a></li>
+  	    	  		<li><a href="../../jails-mit-ezjail.html" title="Jails mit EzJail">08 Jails mit EzJail</a></li>
+  	    	  		<li><a href="../../datenbankserver.html" title="Datenbankserver">09 Datenbankserver</a></li>
+  	    	  		<li><a href="../../webserver.html" title="Webserver">10 Webserver</a></li>
+  	    	  		<li><a href="../../reverse-proxy.html" title="Reverse-Proxy">11 Reverse-Proxy</a></li>
+  	    	  		<li><a href="../../ftp-server.html" title="FTP-Server">12 FTP-Server</a></li>
+  	    	  		<li class="submenu trail"><a href="../../e-mailserver.html" title="E-Mailserver" class="submenu trail">13 E-Mailserver</a>	<ol class="level_2">
+  
+    	  		<li class="first"><a href="../postfix.html" title="Mail Transfer Agent: Postfix" class="first">Mail Transfer Agent: Postfix</a></li>
+  	    	  		<li><a href="../dovecot.html" title="Mail Delivery Agent: Dovecot">Mail Delivery Agent: Dovecot</a></li>
+  	    	  		<li><a href="../antivirus.html" title="Antivirus: ClamAV">Antivirus: ClamAV</a></li>
+  	    	  		<li class="submenu trail"><a href="../antispam.html" title="Massnahmen gegen Spam" class="submenu trail">Massnahmen gegen Spam</a>	<ol class="level_3">
+  
+    	  		<li class="active active first last">Spambekämpfung auf Firewallebene</li>
+  	  
+  </ol></li>
+  	    	  		<li><a href="../jails-anpassen.html" title="Jails anpassen">Jails anpassen</a></li>
+  	    	  		<li><a href="../domainkeys-mit-postfix-und-dkimproxy.html" title="DomainKeys mit Postfix und DKIMproxy">DKIM mit Postfix und DKIMproxy</a></li>
+  	    	  		<li><a href="../emails-verschluesselt-uebertragen.html" title="Emails verschlüsselt übertragen">Emails verschlüsselt übertragen</a></li>
+  	    	  		<li class="last"><a href="../volltextsuche-fuer-dovecot.html" title="Volltextsuche für Dovecot" class="last">Volltextsuche für Dovecot</a></li>
+  	  
+  </ol></li>
+  	    	  		<li><a href="../../dns-server.html" title="DNS-Server">14 DNS-Server</a></li>
+  	    	  		<li><a href="../../versionskontrolle.html" title="Versionskontrolle">15 Versionskontrolle</a></li>
+  	    	  		<li><a href="../../itunes-server.html" title="iTunes-Server">16 iTunes-Server</a></li>
+  	    	  		<li><a href="../../virtual-private-networks.html" title="Virtual Private Networks (VPN)">17 Virtual Private Networks</a></li>
+  	    	  		<li><a href="../../samba-freigaben.html" title="Samba-Freigaben">18 Samba-Freigaben</a></li>
+  	    	  		<li><a href="../../backup.html" title="Backup">19 Backup</a></li>
+  	    	  		<li class="last"><a href="../../monitoring.html" title="Monitoring" class="last">20 Monitoring</a></li>
+  	  
+  </ol><!-- indexer::continue -->
+      </aside>
+
+                </div>
+    
+    <div class="ribbon right red" style="visibility:hidden">
+      <a href="../../../das-ebook.html">Neue Auflage!</a>
+    </div>
+    
+        <footer id="footer-hidden"></footer>
+        
+    <!-- indexer::stop -->
+    <nav id="legal-links">
+      <ul>
+        <li><a href="../../../impressum.html" title="Impressum">Impressum</a></li>
+        <li><a href="../../../datenschutz.html" title="Datenschutz">Datenschutz</a></li>
+        <li><a href="../../../sitemap.html" title="Sitemap">Sitemap</a></li>
+      </ul>
+        
+      <div class="copyright"> ein Projekt von Benedikt Niessen <em>powered by <strong>B</strong>#</em></div>
+    </nav>
+    <!-- indexer::continue -->
+
+  </div>
+
+  
+<script>setTimeout(function(){var e=function(e,t){try{var n=new XMLHttpRequest}catch(r){return}n.open("GET",e,!0),n.onreadystatechange=function(){this.readyState==4&&this.status==200&&typeof t=="function"&&t(this.responseText)},n.send()},t="system/cron/cron.";e(t+"txt",function(n){parseInt(n||0)<Math.round(+(new Date)/1e3)-86400&&e(t+"php")})},5e3);</script>
+
+<!-- Masha -->  
+<!--[IF IE]> 
+  <script type="text/javascript" src="http://serverzeit.de/files/serverzeit_v2/js/ierange.js" async defer></script> 
+<![ENDIF]-->
+<script type="text/javascript" src="../../../files/serverzeit_v2/js/masha.min.js" async defer></script>
+<script type="text/javascript">
+  if(document.body.className.indexOf("mobile") == -1) {
+    if(window.addEventListener){     
+        window.addEventListener('load', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        }, false);
+    } else {
+        window.attachEvent('onload', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        });
+    }
+  }
+</script>
+  
+  <script>
+  new Request({
+    url:'system/html/cron.txt',
+    onComplete: function(txt) {
+      if (!txt) txt = 0;
+      if (parseInt(txt) < (Math.round(+new Date()/1000) - 300)) {
+        new Request({url:'cron.php'}).get();
+      }
+    }
+  }).get();
+  </script>
+
+    
+  <!-- Google Analytics --> 
+  <script type="text/javascript">
+    /*var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36693720-1']);
+    _gaq.push(['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();*/
+  </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# jexec-wrapper:
+# Let's you perform commands within jails identified by its name.
+# v1.0 by Benedikt Niessen (www.serverzeit.de)
+
+JAILNAME=$1
+HOSTNAME=`/bin/hostname`
+
+JID=`/usr/sbin/jls | /usr/bin/grep $JAILNAME.$HOSTNAME | /usr/bin/awk '{ print $1 }'`
+
+/usr/sbin/jexec $JID $2

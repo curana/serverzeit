@@ -1,0 +1,8 @@
+user = db_mailserver
+password = <PASSWORT>
+hosts = 10.0.0.1
+dbname = db_mailserver
+table = alias
+select_field = goto
+where_field = address 
+additional_conditions = and active = '1'

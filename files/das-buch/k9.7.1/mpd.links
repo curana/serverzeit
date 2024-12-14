@@ -1,0 +1,5 @@
+pptp:
+	set link type pptp
+	set pptp self xxx.xxx.xxx.xxx 
+	set pptp enable incoming
+	set pptp disable originate

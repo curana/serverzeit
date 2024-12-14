@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <title>Neuigkeiten-Archiv - Tutorials und Anleitungen zu FreeBSD, Servern & Diensten :: serverzeit.de</title>
+  <base href="">
+
+  <meta charset="utf-8">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="Dies ist das Nachrichtenarchiv von serverzeit.de">
+  <meta name="keywords" content="Archiv, FreeBSD, News, Nachrichten, Neuigkeiten, serverzeit.de, Blog, Freshports, Ports">
+  <meta name="google-site-verification" content="yghLhV7EXvN6dHIltCHFyKpGePQ033_oRI7eMxWbQbg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="files/serverzeit_v2/images/favicon.ico" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic%7CDroid+Sans:400%7CUbuntu:400,400italic,300,300italic,700,700italic%7CUbuntu+Mono">
+<link rel="stylesheet" href="assets/css/5ee243558dbc.css">
+    <!--[if (lt IE 9)]>
+   <script type="text/javascript" src="http://ie-print-protector.googlecode.com/svn/trunk/javascript/iepp.min.js"></script>
+<![endif]-->
+</head>
+
+<body id="top" class="unix other  print">  
+  <div id="wrapper">
+  
+        
+<!-- indexer::stop -->
+  <div id="searchbar-frame">
+    <div id="searchbar">        
+      
+
+      <div class="searchfield">
+        <form action="http://serverzeit.de/suche" method="get" id="search" enctype="application/x-www-form-urlencoded">
+          <label for="searchfield">Suche:</label>
+          <span><input type="text" name="keywords" id="searchfield" value="" required /></span>
+          <input type="submit" name="perform-search" value="GO" />
+          
+                    
+<input type="hidden" name="date" value="2024-12-12">
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<!-- indexer::continue -->
+
+<!-- indexer::stop -->
+  <!-- indexer::stop -->
+<header>
+  <a href="index.html"><img src="files/serverzeit_v2/images/logo.png" style="margin-top:-14px" alt="serverzeit.de - Logo" title="serverzeit.de - Logo" /></a>
+  <nav>
+    <ul class="level_1" id="main-navigation">
+              <li class="trail first"><a href="index.html" title="Startseite" class="trail first">Startseite</a></li>
+                  <li><a href="tutorials.html" title="Tutorials">Tutorials</a></li>
+                  <li><a href="das-ebook.html" title="Das Buch">Das Buch</a></li>
+                  <li class="last"><a href="aus-zweiter-hand.html" title="Aus zweiter Hand" class="last">Aus zweiter Hand</a></li>
+            </ul>
+  </nav>
+</header>
+<!-- indexer::continue --><!-- indexer::continue -->
+ 
+    
+    
+    <div id="main">    
+      <div id="content-wrapper">
+	    
+<article itemscope itemtype="http://schema.org/Article">
+
+
+<div class="article-header">
+  <div class="article-title">
+          <h1 itemprop="headline">Neuigkeiten aus 2014</h1>
+      </div>
+</div>
+
+<div class="article-text" itemprop="articleBody" id="article">
+  <!-- indexer::continue -->
+  <!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/angriffe-erkennen-und-abwehren.html" class="news-h2"><span class="news_date">07. Dez.</span> Angriffe erkennen und abwehren</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2014-12-07T09:47:00+01:00">2014-12-07</time></p>
+    
+    
+  <p>Heute habe ich eine neue Version meines Buchs "Der eigene Server mit FreeBSD 10" veröffentlicht. Neu ist darin das Kapitel "Angriffe erkennen und abwehren". Dort beschreibe ich wie wir Anzeichen eines Angriffs erkennen, wie wir den betroffenen Dienst identifizieren und was wir gegebenenfalls tun können, um dem Angriff stand zu halten.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/hylafax-und-faxgetty-100-cpu-last-unter-freebsd.html" class="news-h2"><span class="news_date">02. Dez.</span> HylaFax und Faxgetty  - 100% CPU-Last unter FreeBSD</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2014-12-02T08:41:00+01:00">2014-12-02</time></p>
+    
+    
+  <p>Wer HylaFax unter FreeBSD einsetzt hat vielleicht festgestellt, dass die CPU-Last auf 100% ansteigt, sobald Faxgetty läuft. Ich bin kein Experte in diesem Bereich, das Phänomen ist aber wohl auf die Handhabung der FIFO-Devicenodes zurückzuführen.</p>
+<p>Abhilfe bringt eine Anpassung der Kompilieroptionen von HylaFax. Hierzu entpacken wir zunächst den Port mit Hilfe von&nbsp;<em>make extract</em>. Anschliessend müssen wir in der Datei <em>/usr/ports/comms/hylafax/work/hylafax-6.0.6/config.site</em> den Parameter <em>CONFIG_OPENFIFO</em> aktivieren und auf "<em>O_RDWR</em>" setzen:</p>
+<pre><code>CONFIG_OPENFIFO="O_RDWR"</code></pre>
+<p>Jetzt können wir HylaFax per <em>make install clean</em> installieren. Faxgetty wird sich dann artig verhalten.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/gratis-test-server-bei-webtropia.html" class="news-h2"><span class="news_date">01. Dez.</span> Gratis Test-Server bei Webtropia</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2014-12-01T20:25:00+01:00">2014-12-01</time></p>
+    
+    
+  <p>Was bitte? Ein kostenloser Server? In der Regel werden nur mal günstige vServer kostenlos zur Probe angeboten, seit Kurzem bietet Webtropia ihren Opteron S für 30 Tage zum kostenlosen Ausprobieren an.</p>
+<p>Leider konnte ich auf der Übersichtsseite nicht mehr erkennen, ob FreeBSD noch unterstützt wird. Wäre sehr schade, wenn es aus dem Programm genommen worden wäre. Vielleicht kann mir das einer beantworten, bevor ich mich an Webtropia wende?</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/digitalocean-vs-vultr-1230.html" class="news-h2"><span class="news_date">05. Sep.</span> DigitalOcean vs. Vultr</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2014-09-05T09:24:00+02:00">2014-09-05</time></p>
+    
+    
+  <p>Viele haben bereits von DigitalOcean gehört, einem grossen Anbieter von Cloud-Servern, dessen so gegenannte Droplets mit Hilfe einer API bedient werden können. Gut, das ist noch nicht so besonders, aber dass die Server alle über 100% SSD-Speicher verfügen hebt sie dann doch etwas hervor.</p>
+<p>Mich hat bislang gestört, dass es kaum Locations gibt aus denen man wählen kann und dass natürlich FreeBSD nicht unterstützt wird, obwohl es schon seit langem versprochen wird. Mehrere Millionen USD Finanzspritze aber wenn es um weitere Betriebssysteme geht erhält man nur die Antwort "Wir sind ein kleines Team".</p>
+<p>Zum Glück gibt es eine Alternative.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/ein-dankeschoen.html" class="news-h2"><span class="news_date">10. Juli</span> Ein Dankeschön</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2014-07-10T09:44:00+02:00">2014-07-10</time></p>
+    
+    
+  <p>Seit ein paar Tagen ist das zweite Buch nun verfügbar und einige haben es sich bereits gekauft. An dieser Stelle möchte ich mich daher schon einmal für die Unterstützung bedanken. Es sind einige dabei, die sogar <strong>mehr als den Mindestpreis</strong> bezahlt haben, was mich natürlich sehr motiviert. Ich werte das als Anerkennung für die Arbeit, die in so einem Buch steckt.</p>
+<p>Natürlich sollt ihr wissen wie es weiter geht.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/der-eigene-server-mit-freebsd-10.html" class="news-h2"><span class="news_date">06. Juli</span> Der eigene Server mit FreeBSD 10</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2014-07-06T17:57:00+02:00">2014-07-06</time></p>
+    
+    
+  <p>Heute habe ich mich endlich dazu durchgerungen den "roten Knopf" zu drücken. Ab sofort ist mein neues Buch "Der eigene Server mit FreeBSD 10" auf <a href="https://leanpub.com/freebsd10">Leanpub</a> verfügbar.</p>
+<p>Jetzt beginnt für mich die Arbeit an weiteren Kapiteln und Einarbeitung von Leser-Feedback. Da das mein erstes Leanpub-Buch ist bin ich sehr gespannt, ob dieser Veröffentlichungsweg ein Erfolg ist oder ob es mein letztes Buch zu FreeBSD ist.</p>
+<p>Viel Spass beim Lesen und ich freue mich auf euer Feedback!</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/review-des-zweiten-buchs-gestartet.html" class="news-h2"><span class="news_date">27. Juni</span> Review des zweiten Buchs gestartet</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2014-06-27T16:39:00+02:00">2014-06-27</time></p>
+    
+    
+  <p>Aktuell umfasst das zweite Buch ca. 40 Seiten. Einige Dinge habe ich erstmal weggelassen, da ich sonst nie dazu komme es in einen Zustand zu bringen, den ich guten Gewissens auch veröffentlichen kann.</p>
+<p>Das grosse Risiko beim zweiten Buch ist, dass die Erwartungen nicht erfüllt werden. Daher kann ich es nicht oft genug sagen: <strong>Es ist kein Ersatz für das erste Buch, es ist eine Ergänzung!</strong></p>
+<p>Ich habe über einige Dinge geschrieben, die ich gerne im ersten Buch betrachtet hätte, aber es ist unglaublich schwer ein Buch aktuell zu halten. Kaum ist man am Ende angekommen sind einzelne Kapitel schon fast wieder veraltet. Dieses Problem erhoffe ich mir durch den "Lean-Publishing"-Ansatz in den Griff zu bekommen.</p>
+<p><strong>Vielen Dank für eure Geduld!</strong></p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/das-thema-dns.html" class="news-h2"><span class="news_date">22. Juni</span> Das Thema DNS</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2014-06-22T11:52:00+02:00">2014-06-22</time></p>
+    
+    
+  <p>Aktuell arbeite ich an einem Tutorial zum Thema Nameserver. Ich schwanke noch zwischen PowerDNS und Bind9. Der Betrieb eines Nameservers ist nicht unproblematisch, aber ich hoffe euch das durchaus komplexe Thema verständliche nahebringen zu können.</p>
+<p>Habt ihr euch mit Nameservern beschäftigt? Ist PowerDNS oder Bind9 für euch interessanter?</p>
+<p>Gerne würde ich noch das Thema DDNS behandeln, allerdings habe ich noch keinen komfortablen Weg gefunden die Unterstützung für alle Router zu ermöglichen.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/ostern-wurde-es-nicht.html" class="news-h2"><span class="news_date">07. Mai</span> Ostern wurde es nicht</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2014-05-07T09:22:00+02:00">2014-05-07</time></p>
+    
+    
+  <p>Schade, ich hatte gehofft bis Ostern auch den ZFS-Teil soweit abzudecken, allerdings ist mir das nicht gelungen. Mein Plan ist das ZFS-Kapitel fertigzustellen und anschliessend die erste Version zu veröffentlichen.</p>
+<p>Anschliessend geht es dann Schritt für Schritt weiter mit neuen Tutorials und Updates/Korrekturen. Ich bin gespannt wie die Reaktionen auf diese Art der Veröffentlichung sein werden.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/ein-neues-buch-zu-ostern.html" class="news-h2"><span class="news_date">08. Apr.</span> Ein neues Buch zu Ostern?</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2014-04-08T08:36:00+02:00">2014-04-08</time></p>
+    
+    
+  <p>Als ich anfing mit dem Gedanken zu spielen eine neue Auflage meines Buchs zu veröffentlichen war mir klar, dass ich es nur nach dem Prinzip "Veröffentliche früh und regelmässig" schaffen könnte. Also habe ich mich hingesetzt und an der zweiten Auflage gearbeitet.</p>
+<p>Nun stellt sich natürlich die Frage "Wann kann ich die erste Version veröffentlichen?". Das ist schwierig für mich zu beantworten, da mir die Erfahrung fehlt. Aber ich glaube, dass schon bald der richtige Moment gekommen ist.</p>
+<p>Das Buch ist im Moment noch nicht so umfangreich wie man das vielleicht erwartet hätte. Es ist aber ja so, dass ich in regelmässigen Abstände Ergänzungen veröffentlichen möchte, sodass der Umfang heute gar keine so grosse Rolle spielt. Viel interessanter finde ich den Aspekt, dass ich Feedback direkt in das Buch einfliessen lassen kann.</p>
+<p>Meine Fortschritte in den letzten Tagen waren gut. Wenn ich in diesem Tempo weitermachen kann werde ich kurz vor Ostern vermutlich die erste Version veröffentlichen. Sie ist sicher nicht perfekt und noch lange nicht vollständig, aber es ist einen Versuch wert. Ich bin gespannt wie die Reaktionen sind.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/freebsd-10-buch.html" class="news-h2"><span class="news_date">02. Apr.</span> FreeBSD 10-Buch</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2014-04-02T09:24:00+02:00">2014-04-02</time></p>
+    
+    
+  <p>Es ist ja kein Geheimnis mehr, dass ich aktiv an einem neuen Buch (genauer gesagt einer Erweiterung) zu FreeBSD 10 arbeite. Das ganze wir ein "lebendes" Buch, sprich es wird eine erste Version geben die noch nicht vollständig und sicherlich noch nicht ausgereift ist.</p>
+<p>Auf Basis von Feedback von <strong>euch</strong> werde ich das ganze dann erweitern und ergänzen. Wichtig für mich ist allerdings weiterhin, dass ihr euch in die Interessentenliste auf <a href="http://leanpub.com/freebsd10">Leanpub.com</a> eintragt. Themenvorschläge etc. jederzeit bitte per <a href="impressum.html">Email</a> an mich.</p>
+<p><strong>Hinweis:</strong> Wer das erste Buch kauft oder bereits hat kriegt das zweite vergünstigt. Zu sagen "Ich warte auf das neue Buch" lohnt sich demnach nicht, da es kein komplett neuer Rewrite ist, sondern eine Art Update.</p>
+<p><strong>Zudem möchte ich mich noch bei allen Lesern für das zahlreiche und durchwegs positive Feedback bedanken.</strong> Sicherlich sind manche Tutorials schon etwas holprig, vor allem weil sich auch die Software weiterentwickelt hat, aber dank zahlreichen Rückmeldungen konnte ich zahlreiche Stolpersteine hier auf der Webseite in den Kapitelhinweisen ausräumen.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/video-tutorials-zu-freebsd-1222.html" class="news-h2"><span class="news_date">07. März</span> Video-Tutorials zu FreeBSD</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2014-03-07T09:35:00+01:00">2014-03-07</time></p>
+    
+    
+  <p>Durch einen Leser bin ich auf folgenden Vimeo-Kanal aufmerksam geworden: <a href="http://vimeo.com/channels/freebsdguides">FreeBSD Guides</a></p>
+<p>Dort findet ihr ein paar Videos von <a href="http://smyck.net/">John-Paul Bader</a>, einem FreeBSD-Fan. Ich gehe davon aus, dass dort mit der Zeit noch mehr Videos auftauchen werden, daher empfehle ich unbedingt dort regelmässig vorbei zu schauen.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/web-applikation-manuell-oder-aus-den-ports-installieren.html" class="news-h2"><span class="news_date">14. Feb.</span> Web-Applikation manuell oder aus den Ports installieren?</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2014-02-14T15:59:00+01:00">2014-02-14</time></p>
+    
+    
+  <p>Via Twitter wurde ich gefragt, ob ich Web-Applikationen von Hand oder lieber aus den Ports installiere. Da mich Twitter auf 140 Zeichen beschränkt, folgt hier die längere Antwort.</p>
+<p>Kurz: Ich installiere in der Regel Web-Applikationen wie phpMyAdmin, ownCloud etc. von Hand.</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/ntp-attacken-betrifft-mich-das.html" class="news-h2"><span class="news_date">13. Feb.</span> NTP-Attacken: Betrifft mich das?</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2014-02-13T07:08:00+01:00">2014-02-13</time></p>
+    
+    
+  <p>In den letzten Tagen war immer wieder zu lesen, dass Server mit Hilfe gespoofter IP-Adressen und NTP-Servern grosse DDoS-Angriffe durchgeführt haben. Die Frage ist nun: Ist mein NTP-Server davon auch betroffen?</p>
+<p>Wenn du den Server wie in meinem Buch beschrieben konfiguriert hast und zudem noch ein entsprechendes Firewall-Regelwerk installiert hast, das keine Kommunikation mit deiner OpenNTPd-Instanz zulässt, bist du nicht betroffen.</p>
+<p>Fazit: Entwarnung :-)</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/freebsd-10-ist-da.html" class="news-h2"><span class="news_date">21. Jan.</span> FreeBSD 10 ist da</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2014-01-21T12:02:00+01:00">2014-01-21</time></p>
+    
+    
+  <p>FreeBSD 10 ist endlich da. Ein Blick auf die <a href="http://www.freebsd.org/releases/10.0R/relnotes.html">Release Notes</a> zeigt, dass die Entwickler ganze Arbeit geleistet haben. Für mich liest sich die lange Liste an Neuerungen und Verbesserungen wie eine Wunschliste. Meine persönlichen Highlights sind:</p>
+<ul>
+<li>Integration von <a href="tutorials/dns-server.html">Unbound (Tutorial verfügbar)</a> anstelle von Bind</li>
+<li>TRIM-Support für ZFS</li>
+<li>PF-Update</li>
+<li>Clang Integration</li>
+<li>ARM Support</li>
+<li>bsdinstall Erweiterungen (ZFS-root, 4K etc.)</li>
+<li>u.v.a.</li>
+</ul>
+<p>Haltet euch am besten an die <a href="http://www.freebsd.org/releases/10.0R/installation.html#upgrade">Upgrade Instructions</a>. Es gibt zwei Errata zu Upgrades von RCs und Betas, diese bitte berücksichten (sind in den Release Notes zu finden).</p></section>
+<!-- indexer::continue
+<!-- indexer::stop -->
+<section itemprop="articleSection">
+  <h2><a href="neuigkeiten/ein-neues-buch-ist-denkbar.html" class="news-h2"><span class="news_date">18. Jan.</span> Ein neues Buch ist denkbar</a></h2>
+      <p class="info">von <span itemprop="author"><a href="autoren/benedikt-niessen.html">Benedikt Niessen</a></span> am <time datetime="2014-01-18T10:13:00+01:00">2014-01-18</time></p>
+    
+    
+  <p>In den letzten Tagen habe ich immer häufiger mit dem Gedanken gespielt mein Buch zu FreeBSD 9 zu aktualisieren und für FreeBSD 10 zu veröffentlichen.</p>
+<p>Allerdings musste ich feststellen, dass gebundene Ausgaben einige Nachteile haben, inbesondere wenn sie sich auf technische Themen beziehen, die sich recht schnell weiterentwickeln.</p>
+<p>Gebundene Ausgaben lassen sich mal nicht eben korrigieren, weshalb ich das neue Buch wenn nur als Update zum jetzigen Buch anbiete. Das heisst, dass ich nicht das ganze Grundlagen-Kapitel erneut integrieren werde.</p>
+<p>Ich werde diesmal den LeanPub-Weg gehen und das Buch <a title="LeanPub - Der eigene Server mit FreeBSD 10" href="https://leanpub.com/freebsd10">dort veröffentlichen</a>. mit all seinen Vor- und Nachteilen, <strong>vorausgesetzt ich erhalten genügend Feedback.</strong> Anregungen dazu nehme ich jederzeit gerne entgegen.</p></section>
+<!-- indexer::continue
+  <!-- indexer::stop -->
+  
+  
+  </div>
+</article>
+ 
+
+	          </div>
+        
+      
+      <aside id="sidebar">
+        <!-- indexer::stop -->
+<nav id="sub-navigation">
+	<ul id="news-archive">
+					  <li><a href="neuigkeiten-archiv@year=2016.html" title="2016 (1 Eintrag)">2016</a></li>
+							  <li><a href="neuigkeiten-archiv@year=2015.html" title="2015 (6 Einträge)">2015</a></li>
+							  <li class="active">2014</li>
+							  <li><a href="neuigkeiten-archiv@year=2013.html" title="2013 (26 Einträge)">2013</a></li>
+							  <li><a href="neuigkeiten-archiv@year=2012.html" title="2012 (57 Einträge)">2012</a></li>
+							  <li><a href="neuigkeiten-archiv@year=2011.html" title="2011 (31 Einträge)">2011</a></li>
+							  <li><a href="neuigkeiten-archiv@year=2010.html" title="2010 (20 Einträge)">2010</a></li>
+							  <li><a href="neuigkeiten-archiv@year=2009.html" title="2009 (44 Einträge)">2009</a></li>
+							  <li><a href="neuigkeiten-archiv@year=2008.html" title="2008 (39 Einträge)">2008</a></li>
+							  <li><a href="neuigkeiten-archiv@year=2007.html" title="2007 (71 Einträge)">2007</a></li>
+				</ul>
+</nav>
+<!-- indexer::continue -->      </aside>
+
+                </div>
+    
+    <div class="ribbon right red" style="visibility:hidden">
+      <a href="das-ebook.html">Neue Auflage!</a>
+    </div>
+    
+        <footer id="footer-hidden"></footer>
+        
+    <!-- indexer::stop -->
+    <nav id="legal-links">
+      <ul>
+        <li><a href="impressum.html" title="Impressum">Impressum</a></li>
+        <li><a href="datenschutz.html" title="Datenschutz">Datenschutz</a></li>
+        <li><a href="sitemap.html" title="Sitemap">Sitemap</a></li>
+      </ul>
+        
+      <div class="copyright"> ein Projekt von Benedikt Niessen <em>powered by <strong>B</strong>#</em></div>
+    </nav>
+    <!-- indexer::continue -->
+
+  </div>
+
+  
+<script>setTimeout(function(){var e=function(e,t){try{var n=new XMLHttpRequest}catch(r){return}n.open("GET",e,!0),n.onreadystatechange=function(){this.readyState==4&&this.status==200&&typeof t=="function"&&t(this.responseText)},n.send()},t="system/cron/cron.";e(t+"txt",function(n){parseInt(n||0)<Math.round(+(new Date)/1e3)-86400&&e(t+"php")})},5e3);</script>
+
+<!-- Masha -->  
+<!--[IF IE]> 
+  <script type="text/javascript" src="http://serverzeit.de/files/serverzeit_v2/js/ierange.js" async defer></script> 
+<![ENDIF]-->
+<script type="text/javascript" src="files/serverzeit_v2/js/masha.min.js" async defer></script>
+<script type="text/javascript">
+  if(document.body.className.indexOf("mobile") == -1) {
+    if(window.addEventListener){     
+        window.addEventListener('load', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        }, false);
+    } else {
+        window.attachEvent('onload', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        });
+    }
+  }
+</script>
+  
+  <script>
+  new Request({
+    url:'system/html/cron.txt',
+    onComplete: function(txt) {
+      if (!txt) txt = 0;
+      if (parseInt(txt) < (Math.round(+new Date()/1000) - 300)) {
+        new Request({url:'cron.php'}).get();
+      }
+    }
+  }).get();
+  </script>
+
+    
+  <!-- Google Analytics --> 
+  <script type="text/javascript">
+    /*var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36693720-1']);
+    _gaq.push(['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();*/
+  </script>
+</body>
+</html>

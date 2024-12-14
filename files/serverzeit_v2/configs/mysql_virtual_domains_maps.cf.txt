@@ -1,0 +1,8 @@
+user 		= postfix
+password 	= PASSWORT
+hosts 		= localhost
+dbname 		= postfix
+table 		= domain
+select_field 	= description
+where_field 	= domain
+additional_conditions = and backupmx = '0' and active = '1'

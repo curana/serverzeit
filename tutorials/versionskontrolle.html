@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <title>Versionskontrolle - Tutorials und Anleitungen zu FreeBSD, Servern & Diensten :: serverzeit.de</title>
+  <base href="">
+
+  <meta charset="utf-8">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="">
+  <meta name="keywords" content="svn, git, hq, subversion, github, bitbucket, version control, versionskontrolle">
+  <meta name="google-site-verification" content="yghLhV7EXvN6dHIltCHFyKpGePQ033_oRI7eMxWbQbg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="../files/serverzeit_v2/images/favicon.ico" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic%7CDroid+Sans:400%7CUbuntu:400,400italic,300,300italic,700,700italic%7CUbuntu+Mono">
+<link rel="stylesheet" href="../assets/css/5ee243558dbc.css">
+    <!--[if (lt IE 9)]>
+   <script type="text/javascript" src="http://ie-print-protector.googlecode.com/svn/trunk/javascript/iepp.min.js"></script>
+<![endif]-->
+</head>
+
+<body id="top" class="unix other  print">  
+  <div id="wrapper">
+  
+        
+<!-- indexer::stop -->
+  <div id="searchbar-frame">
+    <div id="searchbar">        
+      
+
+      <div class="searchfield">
+        <form action="http://serverzeit.de/suche" method="get" id="search" enctype="application/x-www-form-urlencoded">
+          <label for="searchfield">Suche:</label>
+          <span><input type="text" name="keywords" id="searchfield" value="" required /></span>
+          <input type="submit" name="perform-search" value="GO" />
+          
+                    
+<input type="hidden" name="date" value="2024-12-12">
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<!-- indexer::continue -->
+
+<!-- indexer::stop -->
+  <!-- indexer::stop -->
+<header>
+  <a href="../index.html"><img src="../files/serverzeit_v2/images/logo.png" style="margin-top:-14px" alt="serverzeit.de - Logo" title="serverzeit.de - Logo" /></a>
+  <nav>
+    <ul class="level_1" id="main-navigation">
+              <li class="first"><a href="../index.html" title="Startseite" class="first">Startseite</a></li>
+                  <li class="trail"><a href="../tutorials.html" title="Tutorials" class="trail">Tutorials</a></li>
+                  <li><a href="../das-ebook.html" title="Das Buch">Das Buch</a></li>
+                  <li class="last"><a href="../aus-zweiter-hand.html" title="Aus zweiter Hand" class="last">Aus zweiter Hand</a></li>
+            </ul>
+  </nav>
+</header>
+<!-- indexer::continue --><!-- indexer::continue -->
+ 
+    
+    
+    <div id="main">    
+      <div id="content-wrapper">
+	    
+<article itemscope itemtype="http://schema.org/Article">
+
+
+<div class="article-header">
+  <div class="article-title">
+    <h1 class="ce_headline first">Versionskontrolle</h1>
+  </div>
+</div>
+
+<!-- indexer::continue -->
+<div class="article-text" itemprop="articleBody" id="article"><!-- indexer::continue -->
+<p>"Heute ist es in der Regel üblich, dass mehrere Entwickler an einem Softwareprojekt beteiligt sind. Dabei kommt es oft vor, dass mehrere Leute&nbsp;<strong>gleichzeitig</strong>&nbsp;an einer Quelltext-Datei arbeiten wollen / müssen, wobei es immer wieder zu denselben Problemen kommt, egal ob die Programmierer nun im gleichen Gebäude sitzen, oder sie tausende von Kilometer weit auf der Erde verstreut sind.</p>
+<p>Während ein Entwickler an einer Quelldatei arbeitet, kann es sehr leicht passieren, dass ein anderer Entwickler auch etwas an der Quelldatei ändert. Kopiert nun der Entwickler, der später fertig wird seine geänderte Quellcode-Datei wieder auf den Server, so überschreibt er somit die Änderungen des anderen Entwicklers. Eine Veranschaulichung dieses Problems ist in Abbildung 2.3 auf Seite 10 (<a href="http://www.woerter.at/dud/stuff/subversion.pdf" target="_blank">das Artikels</a>&nbsp;von&nbsp;<a href="http://www.woerter.at/" target="_blank">Florian Wörter</a>) zu sehen. Dieses Problem tritt vor allem bei der Open Source Gemeinde verstärkt auf, da es hier üblich ist, dass die Entwickler auf der ganzen Erde&nbsp;<strong>verstreut sind</strong>&nbsp;und somit oft gar nicht wissen, wer genau jetzt noch alles an diesem Projekt arbeitet. Deshalb kommt auch die Lösung für dieses Problem aus der Open Source Gemeinde.</p>
+<p>Das Zauberwort heißt&nbsp;<strong>Versionsverwaltung</strong>. Dabei handelt es sich um Systeme, die den Sourcecode&nbsp;<strong>zentral</strong>&nbsp;auf einem Server lagern. Will ein Entwickler an einer Datei arbeiten, so&nbsp;<strong>checkt</strong>&nbsp;er die Datei&nbsp;<strong>aus</strong>&nbsp;und lädt sie so auf seinen lokalen Rechner. Die Dateien werden mit&nbsp;<strong>Versionsnummern</strong>&nbsp;bezeichnet, so weiß der Entwickler sofort, welche Version dieser Datei er gerade bearbeitet. Hat der Programmierer seine Änderungen abgeschlossen,<br>so führt er ein&nbsp;<strong>Commit</strong>&nbsp;durch. Dadurch wird die Datei wieder auf den Server, in das so genannte „<strong>Repository</strong>“ gespeichert.</p>
+<p>Bevor dies geschieht, wird jedoch vom System überprüft, ob die Datei inzwischen von jemand anderen bearbeitet wurde. Dies geschieht auf Basis der Versionsnummer, die für jedes im Repository befindliche Objekt vergeben und gespeichert wird. Stimmt die Versionsnummer überein, so wird diese&nbsp;<strong>inkrementiert</strong>&nbsp;und die geänderte Datei wird im Repository gespeichert. Ist jedoch schon eine&nbsp;<strong>neuere Version</strong>&nbsp;der Datei im Repository, so muss ein so genanntes „<strong>diff</strong>“ durchgeführt werden.</p>
+<p>Dabei werden dem Entwickler die neue und die alte Version der Datei gezeigt und die Differenzen der beiden Dateien werden hervorgehoben. Nun muss der Entwickler entscheiden, welche der von ihm getätigten Änderungen übernommen werden sollen und welche nicht. Dabei muss er darauf achten, dass nur seine Änderungen übernommen werden.</p>
+<p>Das Verwenden eines solchen Tools bringt jedoch noch eine Reihe von anderen nicht zu unterschätzenden Vorteile mit sich. Da die verschiedenen Versionen der Dateien&nbsp;<strong>auf dem Server</strong>&nbsp;gespeichert bleiben, ist es jederzeit möglich eine bestimmte Version des Projektes&nbsp;<strong>wiederherzustellen</strong>. Dadurch wird die Verwendung einer Versionsverwaltung sogar für eine Einzelperson schon interessant. Um Platz zu sparen, speichert eine intelligente Versionsverwaltung (wie zum Beispiel Subversion) nur die Unterschiede zwischen einzelnen Dateiversionen."</p>
+<p>Quelle:&nbsp;<a href="http://www.woerter.at/" target="_blank">Florian Wörter</a>, "<a href="http://www.woerter.at/dud/stuff/subversion.pdf" target="_blank">Versionsverwaltung mit Subversion</a>" (2007)&nbsp;</p><!-- indexer::stop -->
+  </div>
+</article>
+ 
+
+	          </div>
+        
+      
+      <aside id="sidebar">
+        
+<!-- indexer::stop -->
+    <nav id="sub-navigation">
+    <ol class="level_1" id="sub-navigation-items">
+  
+    	  		<li class="sibling first"><a href="admins-haften.html" title="Admins haften" class="sibling first">» Das Risiko eines Administrators</a></li>
+  	    	  		<li class="sibling"><a href="installation.html" title="Installation" class="sibling">01 Installation</a></li>
+  	    	  		<li class="sibling"><a href="grundlegendes.html" title="Grundlegendes" class="sibling">02 Grundlegendes</a></li>
+  	    	  		<li class="sibling"><a href="software-raid-mit-gmirror.html" title="Software-RAID mit gmirror" class="sibling">03 Software-RAID</a></li>
+  	    	  		<li class="sibling"><a href="zeitsynchronisation-per-ntp.html" title="Zeitsynchronisation per NTP" class="sibling">04 Zeitsynchronisation</a></li>
+  	    	  		<li class="sibling"><a href="updates.html" title="Das System aktuell halten" class="sibling">05 Updates</a></li>
+  	    	  		<li class="sibling"><a href="systemsicherheit.html" title="Systemsicherheit" class="sibling">06 Systemsicherheit</a></li>
+  	    	  		<li class="sibling"><a href="firewall.html" title="Firewall mit pf" class="sibling">07 Firewall</a></li>
+  	    	  		<li class="sibling"><a href="jails-mit-ezjail.html" title="Jails mit EzJail" class="sibling">08 Jails mit EzJail</a></li>
+  	    	  		<li class="sibling"><a href="datenbankserver.html" title="Datenbankserver" class="sibling">09 Datenbankserver</a></li>
+  	    	  		<li class="sibling"><a href="webserver.html" title="Webserver" class="sibling">10 Webserver</a></li>
+  	    	  		<li class="sibling"><a href="reverse-proxy.html" title="Reverse-Proxy" class="sibling">11 Reverse-Proxy</a></li>
+  	    	  		<li class="sibling"><a href="ftp-server.html" title="FTP-Server" class="sibling">12 FTP-Server</a></li>
+  	    	  		<li class="sibling"><a href="e-mailserver.html" title="E-Mailserver" class="sibling">13 E-Mailserver</a></li>
+  	    	  		<li class="sibling"><a href="dns-server.html" title="DNS-Server" class="sibling">14 DNS-Server</a></li>
+  	    	  		<li class="active active submenu">15 Versionskontrolle	<ol class="level_2">
+  
+    	  		<li class="first last"><a href="versionskontrolle/subversion-server.html" title="Einfache Versionskontrolle mit svnserve" class="first last">Subversion-Server</a></li>
+  	  
+  </ol></li>
+  	    	  		<li class="sibling"><a href="itunes-server.html" title="iTunes-Server" class="sibling">16 iTunes-Server</a></li>
+  	    	  		<li class="sibling"><a href="virtual-private-networks.html" title="Virtual Private Networks (VPN)" class="sibling">17 Virtual Private Networks</a></li>
+  	    	  		<li class="sibling"><a href="samba-freigaben.html" title="Samba-Freigaben" class="sibling">18 Samba-Freigaben</a></li>
+  	    	  		<li class="sibling"><a href="backup.html" title="Backup" class="sibling">19 Backup</a></li>
+  	    	  		<li class="sibling last"><a href="monitoring.html" title="Monitoring" class="sibling last">20 Monitoring</a></li>
+  	  
+  </ol><!-- indexer::continue -->
+      </aside>
+
+                </div>
+    
+    <div class="ribbon right red" style="visibility:hidden">
+      <a href="../das-ebook.html">Neue Auflage!</a>
+    </div>
+    
+        <footer id="footer-hidden"></footer>
+        
+    <!-- indexer::stop -->
+    <nav id="legal-links">
+      <ul>
+        <li><a href="../impressum.html" title="Impressum">Impressum</a></li>
+        <li><a href="../datenschutz.html" title="Datenschutz">Datenschutz</a></li>
+        <li><a href="../sitemap.html" title="Sitemap">Sitemap</a></li>
+      </ul>
+        
+      <div class="copyright"> ein Projekt von Benedikt Niessen <em>powered by <strong>B</strong>#</em></div>
+    </nav>
+    <!-- indexer::continue -->
+
+  </div>
+
+  
+<script>setTimeout(function(){var e=function(e,t){try{var n=new XMLHttpRequest}catch(r){return}n.open("GET",e,!0),n.onreadystatechange=function(){this.readyState==4&&this.status==200&&typeof t=="function"&&t(this.responseText)},n.send()},t="system/cron/cron.";e(t+"txt",function(n){parseInt(n||0)<Math.round(+(new Date)/1e3)-86400&&e(t+"php")})},5e3);</script>
+
+<!-- Masha -->  
+<!--[IF IE]> 
+  <script type="text/javascript" src="http://serverzeit.de/files/serverzeit_v2/js/ierange.js" async defer></script> 
+<![ENDIF]-->
+<script type="text/javascript" src="../files/serverzeit_v2/js/masha.min.js" async defer></script>
+<script type="text/javascript">
+  if(document.body.className.indexOf("mobile") == -1) {
+    if(window.addEventListener){     
+        window.addEventListener('load', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        }, false);
+    } else {
+        window.attachEvent('onload', function(){
+            MaSha.instance = new MaSha({
+              'selectable':'article'
+            });
+        });
+    }
+  }
+</script>
+  
+  <script>
+  new Request({
+    url:'system/html/cron.txt',
+    onComplete: function(txt) {
+      if (!txt) txt = 0;
+      if (parseInt(txt) < (Math.round(+new Date()/1000) - 300)) {
+        new Request({url:'cron.php'}).get();
+      }
+    }
+  }).get();
+  </script>
+
+    
+  <!-- Google Analytics --> 
+  <script type="text/javascript">
+    /*var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36693720-1']);
+    _gaq.push(['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();*/
+  </script>
+</body>
+</html>

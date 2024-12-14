@@ -1,0 +1,8 @@
+user = db_mailserver
+password = <PASSWORT>
+hosts = 10.0.0.1
+dbname = db_mailserver
+table = domain
+select_field = description
+where_field = domain
+additional_conditions = and backupmx = '0' and active = '1'

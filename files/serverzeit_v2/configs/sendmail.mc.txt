@@ -1,0 +1,23 @@
+include(`/usr/share/sendmail/cf/m4/cf.m4')dnl
+OSTYPE(freebsd6)dnl
+DOMAIN(generic)dnl
+FEATURE(access_db, `hash -o -T<TMPF> /etc/mail/access')dnl
+FEATURE(blacklist_recipients)dnl
+FEATURE(local_lmtp)dnl
+FEATURE(mailertable, `hash -o /etc/mail/mailertable')dnl
+FEATURE(virtusertable, `hash -o /etc/mail/virtusertable')dnl
+define(`SMART_HOST', `[IP-DER-MAILSERVER-JAIL]')dnl
+define(`MAIL_HUB', `[IP-DER-MAILSERVER-JAIL]')dnl
+MASQUERADE_AS(`DOMAIN.DE')dnl
+FEATURE(`masquerade_envelope')dnl
+GENERICS_DOMAIN(HOST.DOMAIN.DE HOST)dnl
+FEATURE(genericstable)dnl
+define(`confCW_FILE', `-o /etc/mail/local-host-names')dnl
+DAEMON_OPTIONS(`Name=IPv4, Family=inet')dnl
+define(`confBIND_OPTS', `WorkAroundBrokenAAAA')dnl
+define(`confNO_RCPT_ACTION', `add-to-undisclosed')dnl
+define(`confPRIVACY_FLAGS', `authwarnings,noexpn,novrfy')dnl
+define(`confDONT_PROBE_INTERFACES',`True')dnl
+define(`confDEF_CHAR_SET',`ISO-8859-1')dnl
+MAILER(local)dnl
+MAILER(smtp)dnl

@@ -1,0 +1,73 @@
+base_dir = /var/run/dovecot
+log_path = /var/log/dovecot.log
+info_log_path = /var/log/dovecot.log
+#login_user = vmail
+
+protocols = imap imaps
+
+protocol imap {
+	listen = *:143
+	ssl_listen = *:993
+}
+
+log_timestamp = .%Y-%m-%d %H:%M:%S .
+syslog_facility = mail
+
+ssl_cert_file = /usr/local/etc/ssl/mail-cert.pem
+ssl_key_file = /usr/local/etc/ssl/mail-key.pem
+#ssl_ca_file = /usr/local/etc/ca/ca-cert.pem
+#ssl_verify_client_cert = yes
+ssl_parameters_regenerate = 168
+verbose_ssl = no
+
+# Ordner für die Mailboxen
+mail_location = maildir:/var/mail/virtual/%d/%u
+
+mail_access_groups = mail
+mail_debug = no
+first_valid_uid = 150
+last_valid_uid = 150
+maildir_copy_with_hardlinks = yes
+
+protocol imap {
+	login_executable = /usr/local/libexec/dovecot/imap-login
+	mail_executable = /usr/local/libexec/dovecot/imap
+	imap_max_line_length = 65536
+	imap_client_workarounds = tb-extra-mailbox-sep
+}
+
+protocol lda {
+	postmaster_address = postmaster@<DOMAIN>
+	sendmail_path = /usr/lib/sendmail
+	auth_socket_path = /var/run/dovecot/auth-master
+}
+
+auth_verbose = no
+auth_debug = no
+auth_debug_passwords = no
+
+auth default {
+	mechanisms = plain
+
+	passdb sql {
+		args = /usr/local/etc/dovecot-sql.conf
+	}
+	userdb sql {
+		args = /usr/local/etc/dovecot-sql.conf
+	}
+	user = nobody
+	socket listen {
+		master {
+			path = /var/run/dovecot/auth-master
+			mode = 0660
+			user = vmail
+			group = mail
+		}
+		client {
+			path = /var/spool/postfix/private/auth
+			mode = 0660
+			user = postfix
+			group = postfix
+		}
+	}
+}
