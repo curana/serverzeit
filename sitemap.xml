@@ -1,0 +1,2475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+<url>
+  <loc>https://serverzeit.de/</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/index.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/das-ebook.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/bufferbloating-und-pfsense.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/autoren/benedikt-niessen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/mysql-ssl-und-die-logjam-luecke.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/duply-mit-gpg-21.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/authentication-warning-set-sender-to-using-f.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/digitalocean-mit-freebsd-support.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/freebsd-kehrt-zu-webtropia-zurueck.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/opensmtpd-statt-postfix.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/angriffe-erkennen-und-abwehren.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/hylafax-und-faxgetty-100-cpu-last-unter-freebsd.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/gratis-test-server-bei-webtropia.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/digitalocean-vs-vultr-1230.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ein-dankeschoen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/der-eigene-server-mit-freebsd-10.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/review-des-zweiten-buchs-gestartet.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/das-thema-dns.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ostern-wurde-es-nicht.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ein-neues-buch-zu-ostern.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/freebsd-10-buch.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/impressum.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/video-tutorials-zu-freebsd-1222.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/web-applikation-manuell-oder-aus-den-ports-installieren.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ntp-attacken-betrifft-mich-das.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/freebsd-10-ist-da.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/dns-server.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ein-neues-buch-ist-denkbar.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/freebsd-10-wird-noch-ein-bisschen-sicherer.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/configuration-management.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ein-wenig-geschichte.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/link-aggregation-unter-freebsd.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/installation/link-aggregation-und-failover.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/intel-910-ssd-unter-freebsd.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/webtropia-vs-hetzner-ein-update.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/wechsel-von-freenas-zu-synology.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ovh-399-euro-server-im-kurztest.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/provider-und-dienstleister/ovh-isgenug-ks-2g.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/hetzner-ex8s-im-test.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/hetzner-de-ex8s-mit-intel-ssds.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/volltextsuche-fuer-dovecot.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/e-mailserver/volltextsuche-fuer-dovecot.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/keine-freebsd-unterstuetzung-fuer-dell-reihe-bei-hetzner.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/transip-ein-neuer-vserver-mit-freebsd.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/provider-und-dienstleister/transip-eu.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/use-cases-ein-neuer-bereich.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/kampf-der-giganten.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/provider-und-dienstleister/webtropia-hp-enterprise-server-20-l.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/server-hardware-ist-ein-traum.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/video-tutorials-zu-freebsd.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/id-8-von-10-punkten-von-it-administratorde.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/kurztipps-zum-wochenende.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/the-meaning-of-su.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/errata-update-und-whats-new-with-freebsd.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/das-buch/errata.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/performance-vergleich-hetzner-vs-webtropia-vs.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/provider-und-dienstleister/performance-ranking.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/kurztests-der-neuen-webtropia-produkte.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/webtropia-com-hp-microserver-s.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/webtropia-mit-neuer-enterprise-serie.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ein-muss-fuer-jeden-freebsd-administrator.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/aliassh-die-grosse-alias-sammlung.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/freebsd-91-mit-trim-unterstuetzung-fuer-raid1.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/kvm-turboboost-dank-virtio.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ab-sofort-auch-als-epubmobi-erhaeltlich.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ifconfig_lo_alias0-syntax-ersetzen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/willkommen-bei-host-europe.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/hosteurope-de.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/kommentarfunktion-in-den-news-voruebergehend-aus.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/http-strict-transport-security-hsts-in-nginx.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/webserver/nginx/hsts-mit-nginx.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/server-der-freebsd-foundation-kompromittiert.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/dkim-unterstuetzung-fuer-postfix.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/e-mailserver/domainkeys-mit-postfix-und-dkimproxy/dkim-signierung.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/e-mailserver/emails-verschluesselt-uebertragen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/root-server-von-host-europe.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/dkim-validierung-fuer-postfix-mit-dspam.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/e-mailserver/domainkeys-mit-postfix-und-dkimproxy.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/dkim-domainkey-validierung-mit-postfix-in-kuerze.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/es-ist-zeit-fuer-ipv6.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/installation/ipv6-unter-freebsd.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/freebsd-8x-upgrade-auf-9x-mit-gmirror.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/webtropia-wirklich-interessante-angebote.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/unbound-ein-eigener-nameserver.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/bsd-magazine-der-jahresrueckblick.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/online-backup-ein-paar-anbieter-im-vergleich.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/mein-gastartikel-auf-codegefluesterde.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/endlich-spricht-einer-aus-was-alle-denken.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/literaturempfehlungen-auf-serverzeitde.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/literatur.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ssds-im-raid-was-muss-ich-beachten.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/software-raid-mit-gmirror/ssds-im-raid-richtig-konfigurieren.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/leser-feedback-erwuenscht.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/das-buch/feedback.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/datafabrikde-im-test.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/datafabrik-de.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/hetzner-bietet-freebsd-90-als-image.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/commit-des-tages.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/kaufen-statt-bestellung-abschicken.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/kernel-panic-unter-freebsd-9-mit-pf.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/beastiecloud-gibt-auf.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/hetzner-verlost-mein-buch.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ovh-eg-ssd-server-im-kurztest.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/ovh-de.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/lieferbar-ab-sofort-ist-das-e-book-erhaeltlich.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/id-20-vor-11-das-neue-logo.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/release-des-buchs-steht-kurz-bevor.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/das-buch/leseprobe.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/remote-execution-mit-salt.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/links-gefixt-weitere-aenderungen-stehen-an.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/webtropia-und-stand-der-dinge.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/neues-layout-neue-struktur-neu-neu-neu.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/spam-spammer-turbosmtp.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/neues-layout-und-dann.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/themenlinks-zfs-und-mysql.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/buch-korrekturen-sind-abgeschlossen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/beastiecloud-im-test-und-ein-link.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/preise-bekannt.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/kurztest-neue-webtropia-server.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/neue-dedicated-root-server-bei-webtropia.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/hetzner-ex4-performance.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/re-launch-rueckt-naeher.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/wind-of-change.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/neuer-vserver-anbieter-im-test.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/was-nun.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/cubox-der-power-wuerfel.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/jetzt-ist-es-raus-das-cover.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/der-literatur-scherz.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/aboalarm-serververtraege-komfortabel-verwalten.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/freebsd-90-da-ist-es.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/html5-vs-xhtml.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/seo-und-semantisches-coding.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/das-jahr-endet-mit.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/inhaltsverzeichnis-wurde-aktualisiert.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/cover-ist-fertig.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ihr-server-ist-nicht-mehr-erreichbar.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/aus-e-book-wird-buch.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/serverzeitde-ist-jetzt-bei-google.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/aktueller-stand-der-buch-entwicklung.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/artikelweise-veroeffentlichung-des-ebooks.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/freebsd-9-rc1-ab-sofort-verfuegbar.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/webtropia-ein-zwischenstand.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ressourcen-beschraenkungen-fuer-jails.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ipv6-ab-heute.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/wuensch-dir-was-950.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/e-book-fortschritte.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/centos-und-debian-in-freebsd-jails-betreiben.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/sichere-server-dank-nsa.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/php5-redis-maintainership-dropped.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/e-book-lighttpd-ist-tot.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/quicktip-indizes-fuer-mysql-tabellen-re-aktivieren.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/quicktip-port-von-upgrades-ausschliessen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/wuensch-dir-was.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/lighttpd-ein-totes-projekt.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ddos-angriffe-erkennen-und-abwehren.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/freebsd-82-bzw-74-erschienen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/noch-drei-kapitel.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/webtropia-review-und-e-book-status.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/e-book-unterseite-mit-updates.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/php-53-jetzt-erst-recht.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/zwei-neue-reviews-online.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/e-book-schreitet-voran.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/so-wird-das-jahr-2011.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/serverzeitde-zunaechst-wieder-werbefrei.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/performance-charts.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/review-zeit.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/unterstuetzer-gesucht.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/zwei-neue-reviews-online-1001.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/vserver-bei-hetzner.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/wie-die-zeit-vergeht.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/bsdmag-for-free.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/php5-redis-mein-erster-port-ist-drin.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/erster-port-committed.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/erfolgloser-umstieg-von-php-5212-auf-532.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/umstieg-auf-nginx-wer-weiss.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/freebsd-73-release-ist-da.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/providerwechsel-distributed-filesystems.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/munin-hidden-cron-macht-mich-wahnsinnig.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/serverumzug-im-maerz.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/neuer-artikel-in-den-grundlagen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/alles-liebe-zum-valentinstag.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/lighttpd-bug-und-greensql.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/serverumzug-im-maerz-1017.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/mysql-uprade-50-auf-51.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/freebsd-80-release-erschienen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ebook-macht-fortschritte.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/preisrutsch-bei-edis.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/mysql-such-performance-optimieren.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/freebsd-8-steht-vor-der-tuer.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/zfs-das-dateisystem-der-zukunft.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ufszfs-snapshots-leicht-gemacht.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/debian-60-squeeze-mit-freebsd-kernel.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/freebsd-installationstutorial-fuer-hetzner.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/serverzeitde-ist-nominiert.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/munin-tutorial-verzoegert-sich.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/netbootme-der-pxe-dienst.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/neuer-webserver.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/neues-tutorial-steht-vor-der-tuer.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/apc-installationsprobleme.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/servermonitoring-erweitert.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/zeitweise-ausfaelle-aufgrund-von-wartungsarbeiten.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/hetzner-und-irq-storm.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/sysadmin-appreciation-day.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/phpbb-hinter-einem-loadbalancer-und-die-ip.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/mynextprojectde-die-job-und-projektboerse-fuer-freelancer.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/neues-cms-fuer-den-relaunch.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/pound-und-grosser-headers-nginx.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/neue-kategorie-aus-zweiter-hand.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/wartungsarbeiten-am-1607.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/freebsd-server-fuer-unter-096-euro-am-tag.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/serverzeitde-wieder-adsense-frei.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/googleadsense-account-gesperrt.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/guenstige-ssl-zertifikate.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/freebsd-serverprovider.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/neue-lighttpd-und-hiawatha-versionen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/deutschsprachige-codeigniter-community.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/sieve-und-webservermigration.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/werbung-auf-serverzeitde.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/logrotation-fuer-lighttpd.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/server-update-auf-freebsd-72.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/das-server-postamt-serverseitige-email-sortierung-per-sieve.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/caching-fuer-webseiten-vicompress.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/neuer-webserver-noch-im-sommer.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/monitoring-strato.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/freebsd-strato.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/serverzeitde-ebook-schreitet-voran.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/upgrade-auf-freebsd-71-release-neuerungen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ein-gutes-jahr-geht-zu-ende.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ausfall-am-21122008.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/greensql-performance.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/itunes-server-firefly-auf-freebsd.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/mysql-firewall-fuer-serverzeitde.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/update-tag.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ubench-ergebnisse-sind-da.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/serverausfall.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/drunter-und-drueber.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/stromsparen-auch-im-rz.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/green-it-freebsd-server-mit-atom-230.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/logwatch-und-portsentry.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/der-september-im-zeichen-der-sicherheit.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/playing-soon.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/kunde-droht-mit-auftrag.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/serverupdate-und-neues-tutorial.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/mehrere-ips-pro-jail-unter-freebsd-7.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/lighttpd-tutorial-online.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/schulungen-und-em-2008.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/serverzeitde-wieder-online.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/lighttpd-tutorial-im-anmarsch.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/umfrageergebnis-welche-art-von-werbung.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/freebsd-70-ist-fertig.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/serverzeitde-spricht-lighttpd.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/welche-form-der-werbung-wird-toleriert.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/nameserverzeitde-rip.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ruby-wrapper-fuer-lighttpd.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/und-weiter-gehts-mit-lighttpd.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/mysqltuner-optimiere-deinen-mysql-server.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/weitere-experimente-mit-lighttpd.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/log-format-auch-fuer-lighttpd-anpassen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/shopping-ist-angesagt.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/serverumzug-im-maerz-1064.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/depenguinator-version-20-erschienen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/updates-noch-im-gange-abgeschlossen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/neues-tutorial-pound-der-reverse-proxy.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/apache-1341-released-und-nun.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/jabber-serverde-und-backup.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/freebsd-63-verfuegbar-stable.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/frohe-weihnachten.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/vpn-tutorial-um-pf-regeln-ergaenzt.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/kostenloser-secondary-dns.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/wartungsarbeiten-am-0612.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/es-weihnachtetist-es-schon-so-spaet.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/haenschen-piep-einmal.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/wartungsarbeiten-131410.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/einige-updates-auch-fuer-freebsd.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/bsdinstallde-viel-zu-sehen-lernen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/pf-tutorial-ueberarbeitet.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/geplante-downtime-am-05102007.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/sicherheitshinweise-fuer-apache-server.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/cram-md5-fuer-den-mailserver.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/es-ist-still.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/wartungsarbeiten.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/neuer-alter-nameserver.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/werbung-in-kommentaren.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/aenderungen-stehen-an-1043.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/marasql-hier-kommt-das-gui.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/weboberflaeche-fuer-maradns-marasql.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/anbindungsprobleme.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/dovecot-logins-not-permitted-see-login_user-in-config-file.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ohne-ipod-zurueck.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/tanze-samba-mit-mir.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/vserver-anbieter-mit-freebsd-angebot.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/pfspamd-wird-obspamd.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/woher-weisst-du-wann-ein-update-faellig-ist.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ich-waer-so-gern-ein-server.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/link-verzeichnis-aufgeraeumt-neuer-artikel-admins-haften-fuer-ihre-server.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/subversion-tutorial-online.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/maradns-logging-konfigurieren.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/httpdconf-update.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/nameserverzeit-ein-logo-muss-her.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/feldversuch-nameserverzeitde.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/openspf-der-personalausweis-des-mailservers.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/bilder-klau-im-internet.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/http-trace-deaktivieren-rss-feed.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/pig-sentry-realtime-snort-log-analyse.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/php-je-host-konfigurieren.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/maradns-update-und-php-settings-in-httpdconf.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ordnung-muss-sein-dazuko-tutorial-endlich-bereinigt.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/php-523-und-xorg-72.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/tuning-mod_security.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/neue-kategorie-rss-feeds.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/fyi-mein-pgp-key-unter-kontakt.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ab-jetzt-im-handel-das-archiv.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ids-snort-du-sau.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/virenscanner-fuer-mails.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/aenderungen-stehen-an.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/serverzeit_v2/configs/main.cf.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/spamfilter-muss-doch-her-unixboardde.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/erster-wiki-beitrag-meines-lebens.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/webmail-mit-roundcube-mein-eintrag-bei-bsdforende.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/open-relay-test.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ddos-schutz-wir-tun-was-fuer-die-sicherheit.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ich-hab-euch-nicht-vergessen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/heute-ein-seltsames-problem.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/alles-neu-macht-der-mai.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/rechtzeitig-vor-dem-tag-der-arbeit.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/speedtest-und-wieder-was-gelernt.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/dovecot-und-postfix-mit-mysql-und-postfix-admin.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/qualitaetssicherung-steht-an.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/sicherheit-geht-vor.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/dns-vollstaendig-entschluesselt.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/ie7.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/faulheit-macht-erfinderisch-aloadersh.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/wichtig-avira-freeav-durch-clamav-ersetzt.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/backup-und-datenwiederherstellung.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/kommentarfunktion-fuer-tutorials.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/sicherheit-und-mehr.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/id-1145am-stunden-spaeter.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/neuigkeiten/zuwachs-auf-der-serverfarm.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/datenschutz.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/sitemap.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/admins-haften.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/installation.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/grundlegendes.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/software-raid-mit-gmirror.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/zeitsynchronisation-per-ntp.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/updates.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/systemsicherheit.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/firewall.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/jails-mit-ezjail.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/datenbankserver.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/webserver.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/reverse-proxy.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/ftp-server.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/e-mailserver.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/versionskontrolle.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/itunes-server.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/virtual-private-networks.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/samba-freigaben.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/backup.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/monitoring.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/das-buch/kaufen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/das-buch/inhaltsverzeichnis.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/das-buch/zusatzkapitel.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/das-buch/downloads.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/provider-und-dienstleister.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/kampf-der-giganten-hp-vs-dell.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/serverzeit_v2/configs/unbound.conf.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/serverzeit_v2/configs/zones.conf.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/das-buch/feedback/zfs-vs-ufs2.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/edis-at.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/hetzner-de.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/tralios-hosting-de.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/syscentral-de.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/webtropia-com.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/e-mailserver/postfix.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/e-mailserver/dovecot.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/e-mailserver/antivirus.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/e-mailserver/antispam.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/e-mailserver/jails-anpassen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/webserver/lighttpd.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/webserver/nginx.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/e-mailserver/domainkeys-mit-postfix-und-dkimproxy/dkim-validierung.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/literatur/freebsd.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/literatur/pf.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/literatur/mysql.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/das-buch/feedback/qjail-vs-ezjail.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/grundlegendes/das-szenario.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/grundlegendes/kurzeinfuehrng-in-vi.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/grundlegendes/software-installieren.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/grundlegendes/sudo-root-rechte-fuer-alle.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/grundlegendes/sichere-passwoerter-leicht-gemacht.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/grundlegendes/verzeichnisstruktur-von-freebsd.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/grundlegendes/die-shell-anpassen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/grundlegendes/das-handbuch.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/updates/system-updates.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/updates/software-aktualisieren.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/systemsicherheit/ssh-konfigurieren-und-absichern.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/systemsicherheit/rootkit-scanner-installieren.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/systemsicherheit/portknocking.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/systemsicherheit/ids-snort.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/snort-protokoll-auswerten.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/systemsicherheit/portscans-erkennen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/systemsicherheit/ids-mit-freebsd-update.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/firewall/schutz-vor-bruteforce-angriffen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/firewall/firewall-monitoring-mit-pftop.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/jails-mit-ezjail/jails-anlegen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/jails-mit-ezjail/jails-loeschen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/jails-mit-ezjail/jails-sichern-und-wiederherstellen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/firewall/jails-mit-ezjail/firewall-regeln-fuer-jails.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/jails-mit-ezjail/der-portstree-fuer-die-jail.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/datenbankserver/mysql.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/reverse-proxy/pound.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/ftp-server/sftp-scp-via-ssh.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/e-mailserver/antispam/spambekaempfung-auf-firewallebene.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/versionskontrolle/subversion-server.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/subversion-server/subversion-verwenden.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/virtual-private-networks/client-server-vpn.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/virtual-private-networks/client-server-vpn/zertifikate-erstellen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/virtual-private-networks/client-server-vpn/windows-als-client.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/backup/simplebackup.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/backup/automysqlbackup.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/backup/dateisystem-snapshots.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/monitoring/hardware.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/monitoring/software.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/software-monitoring/monit-fuer-jails.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/software-monitoring/webinterface-fuer-monit.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/tutorials/software-monitoring/logfiles-ueberwachen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k3.3.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k3.5.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k3.6.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k3.8.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k6.1.5.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k7.2.4.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k8.2.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k8.3.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k9.1.1.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k9.1.5.1.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k9.1.5.2.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k9.2.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k9.2.1.3.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k9.2.1.4.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k9.2.2.5.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k9.3.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k9.4.2.3.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k9.4.2.4.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k9.4.3.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k9.4.8.1.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k9.4.8.2.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k9.4.8.3.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k9.4.8.4.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k9.4.8.5.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k9.4.8.6.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/das-buch/downloads/kapitel-9492.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k9.4.9.3.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k9.4.10.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k9.7.1.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k9.8.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k11.2.3.2.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k12.2.1.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k12.2.2.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k12.2.2.2.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/k12.2.3.2.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/kampf-der-giganten-hp-vs-dell/die-hardware.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/kampf-der-giganten-hp-vs-dell/die-disziplinen.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/kampf-der-giganten-hp-vs-dell/id-1-performance-vergleich.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/kampf-der-giganten-hp-vs-dell/software-raid-1-vs-hardware-raid-1.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/kampf-der-giganten-hp-vs-dell/id-3-hardware-raid-5.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/kampf-der-giganten-hp-vs-dell/id-4-fuer-speed-junkies.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/kampf-der-giganten-hp-vs-dell/handhabung.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/aus-zweiter-hand/kampf-der-giganten-hp-vs-dell/id-5-fazit.html</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/serverzeit_v2/configs/edis.eco-server_dmesg.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/serverzeit_v2/configs/mysql_relay_domains_maps.cf.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/serverzeit_v2/configs/mysql_virtual_alias_maps.cf.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/serverzeit_v2/configs/mysql_virtual_domains_maps.cf.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/serverzeit_v2/configs/mysql_virtual_email2email.cf.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/serverzeit_v2/configs/mysql_virtual_mailbox_maps.cf.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/serverzeit_v2/configs/master.cf.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/serverzeit_v2/configs/sql-postfix.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/serverzeit_v2/configs/dovecot.conf.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/serverzeit_v2/configs/dovecot-sql.conf.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/serverzeit_v2/configs/sendmail.mc.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/serverzeit_v2/configs/lighttpd.conf.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/serverzeit_v2/configs/vhostcreate.sh.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/serverzeit_v2/configs/snort.conf.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/serverzeit_v2/configs/snortLog.pl.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/serverzeit_v2/configs/portsentry.conf.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/serverzeit_v2/configs/pound.cfg.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/serverzeit_v2/configs/spamd.conf.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/serverzeit_v2/configs/jexec-wrapper.sh.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serverzeit.de/files/das-buch/k9.4.2.3/postfix-create.sql.txt</loc>
+  <lastmod>2024-12-14T11:06:00+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+
+
+</urlset>
